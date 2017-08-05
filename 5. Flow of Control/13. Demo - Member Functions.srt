@@ -1,0 +1,336 @@
+1
+00:00:01,000 --> 00:00:04,000
+To demonstrate member functions, I'm going to return to
+
+2
+00:00:04,000 --> 00:00:12,000
+the classes and objects demo, from earlier demos with the Person class and the Tweeter class that inherits from
+
+3
+00:00:12,000 --> 00:00:22,000
+person, but I've added some more capability to person since the last time you saw it and let me just show you that.
+
+4
+00:00:22,000 --> 00:00:27,000
+I'm going to open the include file Person.h
+
+5
+00:00:27,000 --> 00:00:34,000
+and you can see that I've added some functionality. Let's start with this one, standard string GetName.
+
+6
+00:00:34,000 --> 00:00:42,000
+You can see like just with the constructors, it's added in here in the public section and if I right click Go to Definition
+
+7
+00:00:42,000 --> 00:00:48,000
+and see the code for GetName, it returns the first name then a space and then the last name and I've actually changed
+
+8
+00:00:48,000 --> 00:00:55,000
+the constructor and destructor to use this function. If you remember Person and Tweeter have printouts in their
+
+9
+00:00:55,000 --> 00:01:00,000
+constructor and destructor so that we can learn a little bit about the scope of objects that are constructed
+
+10
+00:01:00,000 --> 00:01:08,000
+on the stack. Using this function GetName instead of firstname and then a space and then lastname, means first
+
+11
+00:01:08,000 --> 00:01:15,000
+of all our code is shorter. These statements used to have to span two lines in the file, now they're just a single line,
+
+12
+00:01:15,000 --> 00:01:21,000
+but also gives us great consistency. If this was a real application with real work to do and someone said, wow I
+
+13
+00:01:21,000 --> 00:01:27,000
+hate that you print out firstname lastname, it really should be lastname, firstname.
+
+14
+00:01:27,000 --> 00:01:32,000
+The old way we would had to go in and change it in a bunch of places and hope we caught them all, now we can just
+
+15
+00:01:32,000 --> 00:01:35,000
+go change the code for GetName and everybody's using GetName.
+
+16
+00:01:35,000 --> 00:01:40,000
+So this is one of the ways that encapsulating things up into functions can save you work.
+
+17
+00:01:40,000 --> 00:01:47,000
+Refactoring is always a good plan, code duplication always a bad plan.
+
+18
+00:01:47,000 --> 00:01:56,000
+Here inside Person, we can just call the function just as its name GetName, it's of course the Person GetName and
+
+19
+00:01:56,000 --> 00:02:01,000
+it's for the particular we're working on. So when we're constructing p1 and we call GetName it's going to use the
+
+20
+00:02:01,000 --> 00:02:08,000
+member variables, the first, last, and arbitrary number of the p1 person.
+
+21
+00:02:08,000 --> 00:02:14,000
+You can also just take an instance of a class, an object, and tell it you want to use one of its functions and
+
+22
+00:02:14,000 --> 00:02:15,000
+that's what happens in
+
+23
+00:02:15,000 --> 00:02:25,000
+the main here, we can call p1.GetName and that's how we call the function.
+
+24
+00:02:25,000 --> 00:02:29,000
+Now I have some other functions in Person.h
+
+25
+00:02:29,000 --> 00:02:35,000
+that are implemented a little bit differently. These are almost like properties, C++ doesn't support properties,
+
+26
+00:02:35,000 --> 00:02:44,000
+but you're welcome to write functions whose names start with Get or Set according to the capitalization strategy
+
+27
+00:02:44,000 --> 00:02:52,000
+that your team is providing, I'm using capital letters throughout rather than camelcasing, it's your call
+
+28
+00:02:52,000 --> 00:02:57,000
+and these two functions GetNumber and SetNumber are inline functions.
+
+29
+00:02:57,000 --> 00:03:02,000
+That's what we call it when the code for them is right here in the header file and nowhere to be found in the
+
+30
+00:03:02,000 --> 00:03:11,000
+implementation file. So I'm going to scroll around in here, there's no person:: GetNumber or person:: SetNumber
+
+31
+00:03:11,000 --> 00:03:12,000
+they're implemented
+
+32
+00:03:12,000 --> 00:03:19,000
+here in the header file. Implementing in the header file, if you find old enough material they'll tell you that
+
+33
+00:03:19,000 --> 00:03:25,000
+makes it faster. Being an inline function makes it faster and the compiler decides whether something is an
+
+34
+00:03:25,000 --> 00:03:32,000
+inline function or not and can inline really short functions even if they're in the cpp file.
+
+35
+00:03:32,000 --> 00:03:38,000
+However, putting them in here makes it obvious to anyone who reads your code and remember, everybody has to be
+
+36
+00:03:38,000 --> 00:03:42,000
+able to read your header, exactly what these two functions do.
+
+37
+00:03:42,000 --> 00:03:47,000
+In the case of something like a property, which is really completely transparent, there's no validation, there's
+
+38
+00:03:47,000 --> 00:03:51,000
+no business rules, nothing, you're fine with everybody knowing it.
+
+39
+00:03:51,000 --> 00:03:56,000
+In the case of a real function that does real work, you wouldn't want it in the header file being compiled over
+
+40
+00:03:56,000 --> 00:04:03,000
+and over again into every file that included it. It's find for something like GetNumber and SetNumber.
+
+41
+00:04:03,000 --> 00:04:04,000
+Now notice you can't
+
+42
+00:04:04,000 --> 00:04:08,000
+tell when people are using the functions how they're implemented.
+
+43
+00:04:08,000 --> 00:04:15,000
+Here I have a call to GetName and GetNumber right after each other and there's no visible difference between them
+
+44
+00:04:15,000 --> 00:04:21,000
+and nor should there be. The point is that person has a GetName function and it has a GetNumber function, neither
+
+45
+00:04:21,000 --> 00:04:28,000
+one of them take any parameters, fine. So GetName returns a string,
+
+46
+00:04:28,000 --> 00:04:33,000
+you can see that here and GetNumber returns an integer, you can see that here,
+
+47
+00:04:33,000 --> 00:04:36,000
+and don't forget that Visual Studio will tell you that.
+
+48
+00:04:36,000 --> 00:04:44,000
+So if I hover it says std::string Person::GetName and int Person::GetNumber.
+
+49
+00:04:44,000 --> 00:04:47,000
+Here I'm also calling SetNumber. Let me show you
+
+50
+00:04:47,000 --> 00:04:52,000
+setNumber it's also inline and I wanted to show you the return type which is void.
+
+51
+00:04:52,000 --> 00:04:57,000
+Constructors and destructors don't have a return type, there's nothing before their name.
+
+52
+00:04:57,000 --> 00:05:03,000
+Every other kind of function, every free function and every member function that's not a constructor or a destructor
+
+53
+00:05:03,000 --> 00:05:11,000
+has a return type, but if it's sort of subroutinish and doesn't have anything to return, we say that it returns void.
+
+54
+00:05:11,000 --> 00:05:17,000
+Void's not technically a type, it's a keyword that belongs where types go to say, I'm not an idiot, I didn't forget,
+
+55
+00:05:17,000 --> 00:05:26,000
+I want to say nothing an absence of information. Some people type void inside the round brackets when they're
+
+56
+00:05:26,000 --> 00:05:32,000
+declaring a function that doesn't take any parameters, you don't need to, so I don't, but if you see it there,
+
+57
+00:05:32,000 --> 00:05:38,000
+that's what they're doing. So SetNumber takes an integer number and doesn't return anything and here we're calling
+
+58
+00:05:38,000 --> 00:05:44,000
+it to change the value of arbitrary number for this person, p1, and then I'm immediately going to call GetName
+
+59
+00:05:44,000 --> 00:05:55,000
+and GetNumber again, so that I can see that I successfully changed the value from 123 as we constructed it at, to 124.
+
+60
+00:05:55,000 --> 00:05:59,000
+So this demo shows you calling a member function from within another member function.
+
+61
+00:05:59,000 --> 00:06:03,000
+When you don't have any decoration you just say the name of the function you want to call and calling a member
+
+62
+00:06:03,000 --> 00:06:13,000
+function on an instance of the class using this . notation. So let's see it all happen.
+
+63
+00:06:13,000 --> 00:06:20,000
+And we still have the same code in the constructor as before and one of things that this shows you, remember that
+
+64
+00:06:20,000 --> 00:06:25,000
+someone else,
+
+65
+00:06:25,000 --> 00:06:28,000
+is a Tweeter, which inherits from Person
+
+66
+00:06:28,000 --> 00:06:33,000
+and here when is says constructing Someone Else, before constructing the Tweeter object it constructs a person
+
+67
+00:06:33,000 --> 00:06:39,000
+object and it can still use GetName because GetName is a person function and that works out just fine.
+
+68
+00:06:39,000 --> 00:06:42,000
+Anyway, and then our Tweeter goes out of scope and we're down here
+
+69
+00:06:42,000 --> 00:06:46,000
+where it says p1 and we call Name and Number
+
+70
+00:06:46,000 --> 00:06:48,000
+I'm set to 123
+
+71
+00:06:48,000 --> 00:06:49,000
+then we use SetNumber
+
+72
+00:06:49,000 --> 00:06:58,000
+and it comes out 124 and then finally, p1 goes out of scope and is destructed.
+
+73
+00:06:58,000 --> 00:07:04,000
+All of the rules that you just learned for free functions about taking your parameters by reference or by value,
+
+74
+00:07:04,000 --> 00:07:09,000
+about returning things by reference or by values still apply to member functions.
+
+75
+00:07:09,000 --> 00:07:14,000
+What I find very common with member functions is that they perhaps don't take any parameters because they work
+
+76
+00:07:14,000 --> 00:07:21,000
+entirely on member variables of the class or that they don't return a value because they keep their answer in a
+
+77
+00:07:21,000 --> 00:07:23,000
+member variable of the class.
+
+78
+00:07:23,000 --> 00:07:27,000
+That's what you see with GetNumber and SetNumber. It doesn't need to take any parameters because it can use the
+
+79
+00:07:27,000 --> 00:07:34,000
+member variable arbitrarynumber and it doesn't need to return anything when you SetNumber because it's keeping the
+
+80
+00:07:34,000 --> 00:07:40,000
+result in arbitrarynumber, which is this member variable of our class and that pattern's really common
+
+81
+00:07:40,000 --> 00:07:49,000
+in member functions. Also member functions can be inline, as you see here and that improves readability and like
+
+82
+00:07:49,000 --> 00:07:53,000
+all inlining whether it's triggered by this or by some of the other ways you can inline including the compiler just
+
+83
+00:07:53,000 --> 00:07:59,000
+choosing too, it also improves performance. C++ is all about performance and calling a function has a little bit
+
+84
+00:07:59,000 --> 00:59:00,000
+of overhead in it. Inlining is something the compiler does to take that overhead away.
+

@@ -1,0 +1,176 @@
+1
+00:00:04,000 --> 00:00:08,000
+Some people are scared of pointers. There's really no need to be.
+
+2
+00:00:08,000 --> 00:00:14,000
+Being scared of memory management maybe, but not of pointers. Pointers and references are just another way
+
+3
+00:00:14,000 --> 00:00:21,000
+to talk to the variables that you already have in your code and if you want to use certain constructs within
+
+4
+00:00:21,000 --> 00:00:29,000
+your code, passing by reference, passing by address, keeping a pointer to something in something else, you've
+
+5
+00:00:29,000 --> 00:00:34,000
+got to learn to work the syntax -- where does the star go; when do you use the arrow; what does the ampersand
+
+6
+00:00:34,000 --> 00:00:41,000
+mean -- in order to work with pointers and references, but it's quite doable.
+
+7
+00:00:41,000 --> 00:00:47,000
+Same with const. Const keeps your programs correct. It keeps you from accidentally changing things when you
+
+8
+00:00:47,000 --> 00:00:53,000
+didn't mean to. You have some function called GetName; it shouldn't change somebody's number, and the
+
+9
+00:00:53,000 --> 00:00:57,000
+compiler will help you through that. It's especially important if you're writing any kind of a function that
+
+10
+00:00:57,000 --> 00:01:02,000
+takes a parameter by reference, but that might be given a literal like three,
+
+11
+00:01:02,000 --> 00:01:08,000
+and it tends to spread through your code. Once you decide that this operator takes a const reference
+
+12
+00:01:08,000 --> 00:01:13,000
+then you discover that, oh, gee that means GetNumber has to be const and GetName has to be const
+
+13
+00:01:13,000 --> 00:01:18,000
+and this other thing has to be const. It's a much better habit to build const correctness in
+
+14
+00:01:18,000 --> 00:01:23,000
+right from the very beginning. The minute you find yourself taking a reference say, why am I doing that?
+
+15
+00:01:23,000 --> 00:01:28,000
+Am I doing that because I want to change it or am I just doing it for speed, so that I can avoid the copy?
+
+16
+00:01:28,000 --> 00:01:32,000
+If it's just for speed immediately say, const whatever reference.
+
+17
+00:01:32,000 --> 00:01:36,000
+Even if it doesn't matter to the compiler it matters to other humans who read your code.
+
+18
+00:01:36,000 --> 00:01:40,000
+Now they know why you're taking it by reference; it's just for speed.
+
+19
+00:01:40,000 --> 00:01:47,000
+And there are a number of member functions that you can write in objects that have a standard canonical form.
+
+20
+00:01:47,000 --> 00:01:52,000
+The copy constructor has to take a const reference to whatever this type is.
+
+21
+00:01:52,000 --> 00:02:00,000
+The assignment operator, the same. The addition and arithmetic and comparison operators have a standard form
+
+22
+00:02:00,000 --> 00:02:07,000
+that involves typically taking a const something reference, and in often returning references as well.
+
+23
+00:02:07,000 --> 00:02:12,000
+You need to understand references and you need to understand const in order to do a good job of writing
+
+24
+00:02:12,000 --> 00:02:17,000
+operator overloads so that someone else doesn't come along and look at your operator overload and go, what?
+
+25
+00:02:17,000 --> 00:02:24,000
+What? That's not what you return from that. Make it right. A real program, a program that doesn't just
+
+26
+00:02:24,000 --> 00:02:29,000
+count to 10 or print someone's name out over and over again, or the kinds of demos we've been writing,
+
+27
+00:02:29,000 --> 00:02:35,000
+real programs involve long-lived objects. When the program starts running somebody creates an object and
+
+28
+00:02:35,000 --> 00:02:40,000
+many other parts of the application interact with that object throughout a long and healthy life, and that
+
+29
+00:02:40,000 --> 00:02:46,000
+long and healthy life is almost certainly spent on the free store, which some developers call the heap.
+
+30
+00:02:46,000 --> 00:02:50,000
+In order to allocate memory on the free store you have to call new.
+
+31
+00:02:50,000 --> 00:02:53,000
+That gives you a pointer and then you have to live with pointers.
+
+32
+00:02:53,000 --> 00:02:59,000
+You can't live a pointer-free life because you're going to need to get stuff living on the free store
+
+33
+00:02:59,000 --> 00:03:03,000
+and that means you're going to have to be comfortable working with pointers.
+
+34
+00:03:03,000 --> 00:03:11,000
+The thing is, it's not a done deal that that means you have to do memory management by hand.
+
+35
+00:03:11,000 --> 00:03:17,000
+If you new something you must either then take responsibility of following it around for the rest of its
+
+36
+00:03:17,000 --> 00:03:24,000
+life to see if you should delete it or, the smart thing, immediately put it in a shared_ptr or a unique_ptr,
+
+37
+00:03:24,000 --> 00:03:30,000
+a smart pointer from the Standard Library. When you immediately put it in a smart pointer you never have to
+
+38
+00:03:30,000 --> 00:03:37,000
+delete it. The scope and the lifetime of that smart pointer, which is just a local object, an object on the
+
+39
+00:03:37,000 --> 00:03:46,000
+stack, will control the lifetime of your free store memory and the destructor and all of the things
+
+40
+00:03:46,000 --> 00:03:50,000
+associated with cleaning up. That's the smart thing to do.
+
+41
+00:03:50,000 --> 00:03:54,000
+Smart developers use smart pointers. Manual memory management is hard.
+
+42
+00:03:54,000 --> 00:04:00,000
+Smart pointers make your life simpler. I've shown you the hard way because I think you should know,
+
+43
+00:04:00,000 --> 00:04:06,000
+not because I think you should run out and write the big three in all your classes for the rest of time.
+
+44
+00:04:06,000 --> 00:59:00,000
+The smart thing to do is not to have to do that.
+

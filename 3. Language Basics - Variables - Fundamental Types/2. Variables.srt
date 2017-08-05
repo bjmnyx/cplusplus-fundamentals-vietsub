@@ -1,0 +1,108 @@
+1
+00:00:03,000 --> 00:00:10,000
+When you're working with variables in C++, one of things that's just an underpinning of the way the whole thing
+
+2
+00:00:10,000 --> 00:00:17,000
+works is that every variable has a type and C++ is a strongly typed language.
+
+3
+00:00:17,000 --> 00:00:21,000
+That means that the type doesn't change over the lifetime of the program.
+
+4
+00:00:21,000 --> 00:00:29,000
+If x is an integer, it can hold integers and integers only, and something else will have to hold dates or strings,
+
+5
+00:00:29,000 --> 00:00:37,000
+or other kinds of information. Before you can put a value into a variable you must declare it anywhere before
+
+6
+00:00:37,000 --> 00:00:43,000
+you use it including even really right on you put a value into it and when you declare it specify its type and
+
+7
+00:00:43,000 --> 00:00:48,000
+then that's it, that's its type. Why do I say the complier is your friend?
+
+8
+00:00:48,000 --> 00:00:56,000
+Because in a strongly typed language you can't put a string into a variable that's expecting a number or number
+
+9
+00:00:56,000 --> 00:01:03,000
+into a variable that's expecting a string and these kinds of errors where you forget to convert things are caught
+
+10
+00:01:03,000 --> 00:01:07,000
+for you by the complier and it says wait, those things are compatible, what are you doing?
+
+11
+00:01:07,000 --> 00:01:11,000
+Other times maybe it says you are throwing away some information.
+
+12
+00:01:11,000 --> 00:01:17,000
+I'll do this but I'm going to have to make a conversion and you'll lose some precision and these warnings often
+
+13
+00:01:17,000 --> 00:01:22,000
+cause you to realize --- I wasn't thinking, I didn't even want to put that value into that variable, so that's
+
+14
+00:01:22,000 --> 00:01:30,000
+how the compiler can kind of save you from trouble. Now I'm talking first about fundamental types and by this
+
+15
+00:01:30,000 --> 00:01:37,000
+I mean types that are built into the language. Things to hold numbers, true or false, and C++ also has a type
+
+16
+00:01:37,000 --> 00:01:44,000
+called character that can be used to hold either a small number or a single character like the letter a.
+
+17
+00:01:44,000 --> 00:01:53,000
+There are also user defined types in C++, defined by you personally or by some library that you're using.
+
+18
+00:01:53,000 --> 00:01:59,000
+In fact, the very first Hello World demo that I showed in this material, we had a string to put someone's name into
+
+19
+00:01:59,000 --> 00:02:05,000
+you could write your own string if you wanted to, not a lot of value in that, the one that comes with the
+
+20
+00:02:05,000 --> 00:02:10,000
+standard library is very good, but you could write something that represented an employee, or a bank account, or
+
+21
+00:02:10,000 --> 00:02:19,000
+an insurance policy, or a nuclear reactor if you liked, and those would be user defined types.
+
+22
+00:02:19,000 --> 00:02:24,000
+User defined types in C++ can be either structs or classes.
+
+23
+00:02:24,000 --> 00:02:32,000
+I'm going to talk about those a little later on, not in this module, but you'll see that they are first class citizens
+
+24
+00:02:32,000 --> 00:02:37,000
+and they can do everything that the fundamental types can do.
+
+25
+00:02:37,000 --> 00:02:41,000
+That's an important thing that sets C++ apart for some other languages.
+
+26
+00:02:41,000 --> 00:02:46,000
+So when I'm telling you what can be done for fundamental types, remember that that same suite of possibilities is
+
+27
+00:02:46,000 --> 00:59:00,000
+also there for types you define or types that are defined in a library that you're using.
+

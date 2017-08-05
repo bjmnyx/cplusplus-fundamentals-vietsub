@@ -1,0 +1,52 @@
+1
+00:00:01,000 --> 00:00:11,000
+I mentioned it's very non C++ to say if x = true return true else return false, you would just say return x
+
+2
+00:00:11,000 --> 00:00:17,000
+and similarly, certain kinds of constructs around if's where all you're doing is setting the value of a single
+
+3
+00:00:17,000 --> 00:00:24,000
+variable, they set some C++ developers teeth on edge and they prefer to use an immediate if.
+
+4
+00:00:24,000 --> 00:00:35,000
+So this isn't wrong. If whatever result = 7 else result = 302, the complier will like it, it'll execute just fine
+
+5
+00:00:35,000 --> 00:00:44,000
+there's no speed hit from doing it, but many people prefer to use this notation, result = something?, that's how
+
+6
+00:00:44,000 --> 00:00:50,000
+you're supposed to pronounce it, 7 and then the : you can pronounce else 302.
+
+7
+00:00:50,000 --> 00:00:56,000
+These mean exactly the same thing. If something evaluates to true, result will get set to 7.
+
+8
+00:00:56,000 --> 00:01:05,000
+If something evaluates to false, result will get set to 302 and it just takes a single line instead of four lines
+
+9
+00:01:05,000 --> 00:01:12,000
+to get your expression across. There's not constraints on what you can put in there.
+
+10
+00:01:12,000 --> 00:01:16,000
+You could say 7, but you could also call something along function.
+
+11
+00:01:16,000 --> 00:01:21,000
+You can say 302, but you could again call some big long function if calculations whatever you want.
+
+12
+00:01:21,000 --> 00:01:30,000
+As a best practice, it's more readable if at least one of them is just a simple literal, but you can use the same
+
+13
+00:01:30,000 --> 00:59:00,000
+kinds of things that you could use if you wrote it out the long way, it's simply a matter of syntax.
+

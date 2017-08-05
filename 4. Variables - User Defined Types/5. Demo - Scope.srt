@@ -1,0 +1,128 @@
+1
+00:00:01,000 --> 00:00:04,000
+I'm going to come back into
+
+2
+00:00:04,000 --> 00:00:09,000
+Visual C++ Express and come into the Person class
+
+3
+00:00:09,000 --> 00:00:15,000
+and I'm going to add a line to the constructor that just prints out a statement that we're in constructor, that'll
+
+4
+00:00:15,000 --> 00:00:22,000
+help to be able to track when the constructor runs and after we add a destructor, we'll also be able to check
+
+5
+00:00:22,000 --> 00:00:38,000
+when the destructor runs. I'd like to print something out on the screen, so that means I need to include iostream.
+
+6
+00:00:38,000 --> 00:00:46,000
+Then I can just come in here and say, in the standard library I'd like to use cout and I'll send it constructing
+
+7
+00:00:46,000 --> 00:01:04,000
+and just so I can tell them apart, I'll send the firstname and a space and the lastname and then an endline character.
+
+8
+00:01:04,000 --> 00:01:11,000
+Now every time we construct something, they'll put output written out that we can take a look at.
+
+9
+00:01:11,000 --> 00:01:16,000
+I'm now going to add a destructor to this class. It doesn't really have any genuine work to do, we don't allocate
+
+10
+00:01:16,000 --> 00:01:22,000
+or acquire any resources when we're initializing a person, so we don't need to clean any up, but I'm just going
+
+11
+00:01:22,000 --> 00:01:29,000
+to add one so that we can have an out statement and the rules for a destructor is that the name is this ~ followed
+
+12
+00:01:29,000 --> 00:01:34,000
+by the name of the class and it doesn't take any parameters
+
+13
+00:01:34,000 --> 00:01:39,000
+and then in here, I'm going to implement the destructor. When writing the constructor, we have to start with saying
+
+14
+00:01:39,000 --> 00:01:47,000
+the name of the class and then the name here of the destructor and it doesn't take any arguments and it has an
+
+15
+00:01:47,000 --> 00:01:58,000
+open and a close. I'm just going to Copy this line
+
+16
+00:01:58,000 --> 00:02:02,000
+and now we're going to print out when the destructor goes off.
+
+17
+00:02:02,000 --> 00:02:03,000
+I could just
+
+18
+00:02:03,000 --> 00:02:09,000
+run this code as is, I'm going to make one small change, I mentioned that scope ends when control reaches a brace
+
+19
+00:02:09,000 --> 00:02:13,000
+bracket, you can have a brace bracket for whatever reason you want.
+
+20
+00:02:13,000 --> 00:02:19,000
+You might have them as part of some ifs and loops and things we haven't covered yet, but you can also just
+
+21
+00:02:19,000 --> 00:02:30,000
+randomly have them and what happens when I do this is as we go through, first p1 will be constructed, then p2 will
+
+22
+00:02:30,000 --> 00:02:37,000
+be constructed, then when we hit this closed brace, p2 will go out of scope and be cleaned up and the destructor
+
+23
+00:02:37,000 --> 00:02:45,000
+will go off. Then we'll return from the function and that will cleanup p1, p1 will get destructed.
+
+24
+00:02:45,000 --> 00:02:59,000
+Let me prove this to you. I don't need to do this under the debugger, I'll just use Ctrl+F5, let it Build.
+
+25
+00:02:59,000 --> 00:03:04,000
+First we constructed p1, which is me, then p2 which is someone else.
+
+26
+00:03:04,000 --> 00:03:11,000
+Then because we reached that closed brace, we destructed p2 and finally, destructed p1.
+
+27
+00:03:11,000 --> 00:03:17,000
+Understanding the scope of objects that you allocate is important to know.
+
+28
+00:03:17,000 --> 00:03:25,000
+The constructor goes off when control reaches that line. The destructor goes off when the object goes out of scope.
+
+29
+00:03:25,000 --> 00:03:31,000
+I didn't need to keep track of these Person objects myself and clean them up, destructors went off simply because
+
+30
+00:03:31,000 --> 00:03:38,000
+control reached this closed brace and that took the object out of scope.
+
+31
+00:03:38,000 --> 00:03:42,000
+The important thing to understand is that much of this is done for you automatically and it's an important part of
+
+32
+00:03:42,000 --> 00:59:00,000
+thinking like a C++ developer.
+

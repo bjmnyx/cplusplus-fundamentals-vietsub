@@ -1,0 +1,116 @@
+1
+00:00:01,000 --> 00:00:09,000
+When I covered the syntax for if, while, and for we were pretty repetitive in terms of the condition that
+
+2
+00:00:09,000 --> 00:00:14,000
+went in those brackets. Very often we're just comparing that X was greater than something, because I didn't
+
+3
+00:00:14,000 --> 00:00:19,000
+feel like explaining all the different comparison operators, so now let's do that just for the sake of
+
+4
+00:00:19,000 --> 00:00:24,000
+completeness. We have, or course, less than, greater than, less than or equal to, and greater than or equal
+
+5
+00:00:24,000 --> 00:00:33,000
+to. Hopefully those are familiar from other languages. Not equal to in C++ is != and the exclamation mark
+
+6
+00:00:33,000 --> 00:00:39,000
+in general is a not -- I'll show you that shortly -- and equal to, super important, two equal signs.
+
+7
+00:00:39,000 --> 00:00:45,000
+A single one means that you are assigning a value, two when you are comparing.
+
+8
+00:00:45,000 --> 00:00:53,000
+You can combine your comparisons with the and and or operators. Boolean and and Boolean or, which are always
+
+9
+00:00:53,000 --> 00:01:01,000
+spelled, if you will, with the double character, so two capital sevens or two or bars to get a Boolean and or
+
+10
+00:01:01,000 --> 00:01:07,000
+Boolean or. Now the Boolean and ors are what we call shortcutting operators, so the sample you see here
+
+11
+00:01:07,000 --> 00:01:17,000
+we say, if x and foo edx, if x is false there is no way for this expression to work out true.
+
+12
+00:01:17,000 --> 00:01:22,000
+False and anything is always going to come out false and C++, which is all about power and efficiency and
+
+13
+00:01:22,000 --> 00:01:28,000
+everything else, will not evaluate the other half of the expression.
+
+14
+00:01:28,000 --> 00:01:34,000
+It can't be important. No matter what it is the thing's going to come out to false and so we say it's a
+
+15
+00:01:34,000 --> 00:01:39,000
+shortcutting operator, foo will not get called. This may or may not matter from a performance point of view,
+
+16
+00:01:39,000 --> 00:01:45,000
+but if foo has any side-effects this is super important. It's super important that you don't think foo
+
+17
+00:01:45,000 --> 00:01:52,000
+always gets called, but also, this is a popular idiom to protect bad things happening.
+
+18
+00:01:52,000 --> 00:01:58,000
+If foo is some function that will blow up when you pass false to it, this will guarantee that it will never
+
+19
+00:01:58,000 --> 00:02:03,000
+be passed false. That may seem silly, why would you write a function that blows up when you pass false to
+
+20
+00:02:03,000 --> 00:02:09,000
+it, but remember that 0 matches false, everything else matches true and it's quite likely to write functions
+
+21
+00:02:09,000 --> 00:02:15,000
+that blow up when they're past 0 and this is a way to protect that function from being called.
+
+22
+00:02:15,000 --> 00:02:20,000
+You also have shortcutting like this with the or. If the first one is true it doesn't matter what the second
+
+23
+00:02:20,000 --> 00:02:27,000
+one is, true or anything will come out true and again, it won't call the second one, but it's more common
+
+24
+00:02:27,000 --> 00:02:34,000
+to see as an idiom the protection with a and. They both shortcut however.
+
+25
+00:02:34,000 --> 00:02:40,000
+The not operator, as I mentioned, is the exclamation mark. You can use this just to negate something you
+
+26
+00:02:40,000 --> 00:02:46,000
+already have. So you could say if not X -- you can write weird stuff like if not brackets X is less than 3,
+
+27
+00:02:46,000 --> 00:02:51,000
+but it would make more sense to rewrite that using the greater than or greater than or equal to operators,
+
+28
+00:02:51,000 --> 00:02:57,000
+but you'll quite often see it for functions that return true or false using not to flip around the return
+
+29
+00:02:57,000 --> 00:59:00,000
+value from that function.
+

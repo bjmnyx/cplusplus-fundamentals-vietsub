@@ -1,0 +1,96 @@
+1
+00:00:01,000 --> 00:00:10,000
+I want you to be able to read and understand C++ code that come across and C++ code that I show you and in order
+
+2
+00:00:10,000 --> 00:00:17,000
+to do that, I really want to minimize the times when I say, don't worry about this little magic invocation, we'll
+
+3
+00:00:17,000 --> 00:00:22,000
+cover it later and when I have to do that, I want to come and close that loop up again as soon as I can.
+
+4
+00:00:22,000 --> 00:00:27,000
+A couple things therefore that I want to talk about now because I think you're going to be able to understand the
+
+5
+00:00:27,000 --> 00:00:32,000
+code I show you better, if you've seen these things. First I want to mention struct.
+
+6
+00:00:32,000 --> 00:00:36,000
+Struct is a lot like a class. It's a user defined type.
+
+7
+00:00:36,000 --> 00:00:42,000
+It's often used for what we call plain old data or POD classes. They don't really have any business logic.
+
+8
+00:00:42,000 --> 00:00:48,000
+Take a point for example, it has and x and a y, it doesn't have a method to validate it and make sure that it's
+
+9
+00:00:48,000 --> 00:00:56,000
+legitimate point, or to put it in the database, or to update it for a new fiscal year, it's just an x and a y.
+
+10
+00:00:56,000 --> 00:00:59,000
+Struct however can have everything that classes cam have.
+
+11
+00:00:59,000 --> 00:01:05,000
+They can have functions in them, include a constructor and a destructor, but they only have one difference,
+
+12
+00:01:05,000 --> 00:01:11,000
+literally once difference. I mentioned that if you don't say public versus private in a class the default is private.
+
+13
+00:01:11,000 --> 00:01:16,000
+In a struct, the default is public, that's the only difference and you should never use the default anyway you
+
+14
+00:01:16,000 --> 00:01:21,000
+should always say the following stuff is private, the following stuff is public and then that turns into there being
+
+15
+00:01:21,000 --> 00:01:25,000
+no difference whatsoever between a struct and a class.
+
+16
+00:01:25,000 --> 00:01:33,000
+As a matter of practice, most developers like to use structs for POD classes and classes for full on classes, but
+
+17
+00:01:33,000 --> 00:01:40,000
+it could go either way. I've shown you how to write classes. I should show you at least the syntax for inheritance.
+
+18
+00:01:40,000 --> 00:01:45,000
+Some of the significances and importantance of inheritance will really only come into play as we move into doing
+
+19
+00:01:45,000 --> 00:01:51,000
+more with our classes, but I'll show you how inheritance works to get you started for that and I wanted to talk
+
+20
+00:01:51,000 --> 00:02:00,000
+about namespaces. We've been using the std namespace on and saying std:: string to day this is a standard class
+
+21
+00:02:00,000 --> 00:02:07,000
+from the standard library. A little bit more about namespaces and a little less typing, just so that your code
+
+22
+00:02:07,000 --> 00:02:14,000
+will be a little more , the way everyone else's cod is and then enum, which is a concept in a lot of languages
+
+23
+00:02:14,000 --> 00:02:19,000
+just a way to give names to constants. The C++ enum is a little bit different from some other languages enum,
+
+24
+00:02:19,000 --> 00:59:00,000
+so I want you to see it and know how it works.
+

@@ -1,0 +1,60 @@
+1
+00:00:01,000 --> 00:00:06,000
+Flow of Control is just about which lines in your program execute in what order.
+
+2
+00:00:06,000 --> 00:00:14,000
+Normally speaking, control flows from one line to the next, integer x = 2, x = 3, print something out showing the
+
+3
+00:00:14,000 --> 00:00:20,000
+value of x and they all just happen in that order, but just about every programming language has some way to
+
+4
+00:00:20,000 --> 00:00:27,000
+change that around and you should probably recognize things like if, and while, you can also call a function.
+
+5
+00:00:27,000 --> 00:00:36,000
+They're pretty simple things to get, the trick maybe is the syntax and the C++ syntax I'll show you in working code,
+
+6
+00:00:36,000 --> 00:00:41,000
+so that you can see how it's done and remember as I like to say, the complier is your friend so that if you mess
+
+7
+00:00:41,000 --> 00:00:47,000
+up and leave off some brackets, you'll get an error message, then you'll know what to do about it.
+
+8
+00:00:47,000 --> 00:00:52,000
+Things that are a little difficult in C++, there are a for loop, not every language has a for loop.
+
+9
+00:00:52,000 --> 00:00:58,000
+The switch statement and the Immediate if. I also want to talk about the break, which is relevant in while and
+
+10
+00:00:58,000 --> 00:01:02,000
+for and a few other places and I'm just going to mention that goto exists.
+
+11
+00:01:02,000 --> 00:01:11,000
+I don't have a goto demo, I don't want you to use goto, it's there if you happen to read, is a goto, but all those
+
+12
+00:01:11,000 --> 00:01:17,000
+years ago we said goto is considered harmful and for those who aren't in on the joke consider harmful has really
+
+13
+00:01:17,000 --> 00:01:22,000
+become the nastiest insult you can give a language feature.
+
+14
+00:01:22,000 --> 00:01:28,000
+I'm not going to show you how to use it, I don't want you to use it, it does just for the sake of technical
+
+15
+00:01:28,000 --> 00:59:00,000
+accuracy, does exist, that's all I want to say about goto.
+

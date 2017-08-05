@@ -1,0 +1,276 @@
+1
+00:00:01,000 --> 00:00:09,000
+I'm going to add a class into this project. It needs to be a special kind of person, something that can inherit
+
+2
+00:00:09,000 --> 00:00:14,000
+from person but add capability and noun that some people are, but not all people are.
+
+3
+00:00:14,000 --> 00:00:21,000
+I'm just going to choose to represent someone who is on Twitter, a Tweeter if you will, and a Tweeter will be a
+
+4
+00:00:21,000 --> 00:00:24,000
+person with some extra capabilities or some extra member variables.
+
+5
+00:00:24,000 --> 00:00:31,000
+In our case specifically, a twitterhandle. Now I could create this class the same way I created the Person class,
+
+6
+00:00:31,000 --> 00:00:37,000
+by hand adding a cpp file, and an h file and typing some code into them.
+
+7
+00:00:37,000 --> 00:00:42,000
+I want to show you another way to add a class into a project and to be honest, it's the way you'll probably use
+
+8
+00:00:42,000 --> 00:00:47,000
+most often. I wanted you to see it how to do it by hand first and then how Visual Studio helps you.
+
+9
+00:00:47,000 --> 00:00:55,000
+So I'll come up here to the Project, right click, choose Add, and now scroll down here to class.
+
+10
+00:00:55,000 --> 00:01:01,000
+I'll choose a C++ Class
+
+11
+00:01:01,000 --> 00:01:06,000
+and this brings up a Class Wizard to help you add classes into your system.
+
+12
+00:01:06,000 --> 00:01:13,000
+You give it a Name, let's say Tweeter, and you can see that it's naming the h file and the cpp files that it's
+
+13
+00:01:13,000 --> 00:01:20,000
+going to generate for you. I want Tweeter to be inheriting from Person, so to have a Base class, that's the C++
+
+14
+00:01:20,000 --> 00:01:29,000
+terminology of person, and we'll leave this Access as public for now and leave these things unchecked because
+
+15
+00:01:29,000 --> 00:01:36,000
+that way I don't have to explain them just yet. I'll click Finish
+
+16
+00:01:36,000 --> 00:01:43,000
+and you can see that it adds the header file Tweeter.h and the cpp file, Tweeter.cpp to my project.
+
+17
+00:01:43,000 --> 00:01:46,000
+It generates a constructor and a destructor for me
+
+18
+00:01:46,000 --> 00:01:53,000
+and implementations with nothing in the of those two methods and you can see the appropriate includes have also
+
+19
+00:01:53,000 --> 00:01:59,000
+been put in my file for me.
+
+20
+00:01:59,000 --> 00:02:06,000
+I want to have strings, I'm going to make the Person's twitterhandle for example a string, so let's and include
+
+21
+00:02:06,000 --> 00:02:25,000
+of string (typing) and I'll add a private section (typing) and a member variable for their twitterhandle.
+
+22
+00:02:25,000 --> 00:02:32,000
+This constructor that has been generated for me, doesn't take any parameters, but if a Tweeter is a person and a
+
+23
+00:02:32,000 --> 00:02:38,000
+person has a firstname, a lastname, and an arbitrarynumber then a Tweeter has a firstname, a lastname, and a
+
+24
+00:02:38,000 --> 00:02:43,000
+arbitrarynumber, that's the whole point of inheriting and we'd like to have a constructor that can set them and
+
+25
+00:02:43,000 --> 00:02:47,000
+as well a Tweeter has a twitterhandle. So I'm going to take
+
+26
+00:02:47,000 --> 00:02:57,000
+these three parameters from our Person.h
+
+27
+00:02:57,000 --> 00:03:10,000
+Put them in here along with a fourth parameter for the handle and then these will be the four parameters to the
+
+28
+00:03:10,000 --> 00:03:12,000
+constructor in the implementation
+
+29
+00:03:12,000 --> 00:03:23,000
+file and again, I'm going to use the initialization syntax and initialize the parts of Tweeter that are a person,
+
+30
+00:03:23,000 --> 00:03:29,000
+as well as the part that is special in a Tweeter. You might think the way to do that would be the way we did it
+
+31
+00:03:29,000 --> 00:03:35,000
+over in Person. So I'd say initialize firstname to first, firstname is part of person.
+
+32
+00:03:35,000 --> 00:03:43,000
+We have a perfectly good way to get a person object initialized, and that is with its constructor, and that's what
+
+33
+00:03:43,000 --> 00:04:01,000
+I'm going to use here. So I'll say, I want to use the Person constructor and pass in first, last, and arbitrary
+
+34
+00:04:01,000 --> 00:04:10,000
+and I will also initialize twitterhandle using handle.
+
+35
+00:04:10,000 --> 00:04:18,000
+So with this approach, I'm relying on the Person constructor to handle initializing the Person part of Tweeter and
+
+36
+00:04:18,000 --> 00:04:23,000
+I'm using this syntax to initialize the twitterhandle part of Tweeter.
+
+37
+00:04:23,000 --> 00:04:24,000
+I will Copy from
+
+38
+00:04:24,000 --> 00:04:27,000
+this implementation, print statement
+
+39
+00:04:27,000 --> 00:04:31,000
+to put some stuff on the screen and in order for that to work
+
+40
+00:04:31,000 --> 00:04:39,000
+I'm going to need this include line
+
+41
+00:04:39,000 --> 00:04:47,000
+and I'm going to add the word tweeter here and instead of putting out the firstname and the lastname, is just
+
+42
+00:04:47,000 --> 00:04:59,000
+put out their twitterhandle and then we'll put that down here in the destructor. Let's come back into the
+
+43
+00:04:59,000 --> 00:05:13,000
+main class and instead of having some Person only, we're going to also have some Tweeters so I'll include Tweeter.h.
+
+44
+00:05:13,000 --> 00:05:18,000
+Now for reasons I'll explain very shortly, I'm going to comment out the include of Person.
+
+45
+00:05:18,000 --> 00:05:31,000
+I'm going to leave Person p1 as myself and change this Person to being a Tweeter and we need to pass this fourth
+
+46
+00:05:31,000 --> 00:05:40,000
+parameter into the constructor, I don't actually know someone else's handle so we'll use whoever and apologizes
+
+47
+00:05:40,000 --> 00:05:49,000
+if that's someone real Twitter handle. Just to really clarify what's happening with scope, I'm going to add another
+
+48
+00:05:49,000 --> 00:06:09,000
+line here (typing)
+
+49
+00:06:09,000 --> 00:06:21,000
+which will work best if it has the header. So we're going to construct a Person.
+
+50
+00:06:21,000 --> 00:06:26,000
+We're going to construct a Tweeter, when we hit this closed brace, we're going to destruct the Tweeter, then we're
+
+51
+00:06:26,000 --> 00:06:31,000
+going to print out this line, then we'll destruct the person.
+
+52
+00:06:31,000 --> 00:06:40,000
+Let's let his run with Ctrl+F5
+
+53
+00:06:40,000 --> 00:06:46,000
+and you can see what happens. Let's pull this over
+
+54
+00:06:46,000 --> 00:06:53,000
+a bit and let you compare the code to the output.
+
+55
+00:06:53,000 --> 00:06:58,000
+First we constructed the Person object, then we constructed the Tweeter object.
+
+56
+00:06:58,000 --> 00:07:03,000
+As part of constructing the Tweeter object, the Person part of its constructor went off and said constructing
+
+57
+00:07:03,000 --> 00:07:11,000
+Someone Else and after that was complete the derived class, the Tweeter part of the constructor went off, put the
+
+58
+00:07:11,000 --> 00:07:17,000
+twitterhandle value basically in. We hit this closed brace and the destruction happened in the opposite order.
+
+59
+00:07:17,000 --> 00:07:25,000
+First we ran the derived class destructor which said destructing tweeter@whoever and then the compiler ran the
+
+60
+00:07:25,000 --> 00:07:28,000
+Person part of the destructor which said destructing someone else.
+
+61
+00:07:28,000 --> 00:07:35,000
+Then we printed out this line that says after innermost block and finally, the destructor went off for p1.
+
+62
+00:07:35,000 --> 00:07:44,000
+This sort of order of operations that the base part constructor happens first and then the derived part constructor
+
+63
+00:07:44,000 --> 00:07:50,000
+is really important. It means that code in a derived constructor and count on its based class part being fully
+
+64
+00:07:50,000 --> 00:07:57,000
+initialized already and it also means that when you're destructing that the derived part cleans up its own stuff
+
+65
+00:07:57,000 --> 00:08:01,000
+and then relaxes and lets the base class cleanup it's part.
+
+66
+00:08:01,000 --> 00:08:08,000
+So if the base class managed a file, the derived class would know the file was still open during its destructor
+
+67
+00:08:08,000 --> 00:08:14,000
+and then base class might close the file for example and this is a really important aspect of understanding scope
+
+68
+00:08:14,000 --> 00:08:17,000
+and of understanding resources acquisition is initialization.
+
+69
+00:08:17,000 --> 00:59:00,000
+It's taken care of for you and it's taken care of you in a specific order every time.
+

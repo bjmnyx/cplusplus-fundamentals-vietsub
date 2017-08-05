@@ -1,0 +1,144 @@
+1
+00:00:04,000 --> 00:00:11,000
+Templates are the way that C++ implements genericity. Genericity meaning that you write a piece of code once
+
+2
+00:00:11,000 --> 00:00:18,000
+and it can be used in a variety of contexts. There are generics in C# and in Java, as well as some other
+
+3
+00:00:18,000 --> 00:00:24,000
+languages, different names for the same concept. However, templates are fundamentally different from just
+
+4
+00:00:24,000 --> 00:00:33,000
+about everybody else's implementation. Templates are resolved at compile time, not at runtime.
+
+5
+00:00:33,000 --> 00:00:40,000
+This has some benefits and some drawbacks. The number one benefit is speed.
+
+6
+00:00:40,000 --> 00:00:47,000
+All of the performance hit is taken at compile time. There is zero performance hit at runtime.
+
+7
+00:00:47,000 --> 00:00:53,000
+The compiler actually generates versions of the code for the various types that you're using it with.
+
+8
+00:00:53,000 --> 00:01:01,000
+In languages that do runtime checks everything happens at runtime. There is a performance cost at runtime.
+
+9
+00:01:01,000 --> 00:01:07,000
+This may give you a little more flexibility. It does, however, slow your application down.
+
+10
+00:01:07,000 --> 00:01:14,000
+A generic-based solution can never be as fast as a template-based solution.
+
+11
+00:01:14,000 --> 00:01:19,000
+The idea is that you write something, maybe it's a class, maybe it's a free function, and it can be used with
+
+12
+00:01:19,000 --> 00:01:25,000
+a variety of different types. Imagine math work like finding the largest something --
+
+13
+00:01:25,000 --> 00:01:31,000
+could be the largest integer, could be the largest floating point, could be the largest bank account.
+
+14
+00:01:31,000 --> 00:01:38,000
+Finding the average of a whole pile of things or keeping a collection, an ordinary array, a linked list, a
+
+15
+00:01:38,000 --> 00:01:45,000
+queue, a hash table, a dictionary, every data structure probably that you learned as an undergraduate.
+
+16
+00:01:45,000 --> 00:01:51,000
+You can have a linked list of integers or a linked list of floating points or a linked list of bank accounts
+
+17
+00:01:51,000 --> 00:01:57,000
+or a linked list of employees and it doesn't really matter. The code about keeping track of the next node
+
+18
+00:01:57,000 --> 00:02:04,000
+and the code for insert and the code for delete is identical regardless of what it is that you keep in there,
+
+19
+00:02:04,000 --> 00:02:09,000
+but these are type safe collections, meaning that if I have a linked list of employees I can't add a bank
+
+20
+00:02:09,000 --> 00:02:17,000
+account to that list. Type safety is a huge part of C++. This is how you achieve a type safe, high-
+
+21
+00:02:17,000 --> 00:02:23,000
+performing collection, and algorithms that work across those collections, sorting them, searching them, that
+
+22
+00:02:23,000 --> 00:02:30,000
+kind of thing. Operator overloads are big part of how many of these templates are actually implemented and
+
+23
+00:02:30,000 --> 00:02:35,000
+that's what makes it easy to mix and match so that the same code can be used for say, integers and bank
+
+24
+00:02:35,000 --> 00:02:43,000
+accounts. I find that other languages tend not to do that. Their general solutions often can only take user-
+
+25
+00:02:43,000 --> 00:02:48,000
+defined types and not the fundamental types that often rely on the existence of member functions with names
+
+26
+00:02:48,000 --> 00:02:55,000
+like add or compare that are not defined for fundamental types like integers.
+
+27
+00:02:55,000 --> 00:03:00,000
+Using operator overloads gives you compact code and highly readable code.
+
+28
+00:03:00,000 --> 00:03:06,000
+It is also what makes the same templates work for both fundamental types and user-defined types.
+
+29
+00:03:06,000 --> 00:03:11,000
+We've mentioned the Standard Library a number of times throughout this material and I'm sure you're already
+
+30
+00:03:11,000 --> 00:03:17,000
+convinced that it's full of rich goodness even though all we've really seen so far are strings and writing
+
+31
+00:03:17,000 --> 00:03:23,000
+to the screen and reading from the keyboard. The old name of the Standard Library was the Standard Template
+
+32
+00:03:23,000 --> 00:03:30,000
+Library, or STL, and old school C++ developers like me still often call it STL in casual chit chat.
+
+33
+00:03:30,000 --> 00:03:35,000
+Yes, I have casual chit chat about compiler libraries; that's who I am.
+
+34
+00:03:35,000 --> 00:03:42,000
+It's rich in templates, collections, algorithms, and a lot more besides, and as you move forward along your
+
+35
+00:03:42,000 --> 00:03:48,000
+C++ path you're going to meet a lot of the things in the Standard Library and you'll understand them better
+
+36
+00:03:48,000 --> 00:59:00,000
+if you understand templates.
+

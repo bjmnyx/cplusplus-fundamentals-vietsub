@@ -1,0 +1,132 @@
+1
+00:00:01,000 --> 00:00:11,000
+You saw in the demo how objects can be created. What you saw without realizing that you saw it also, was objects
+
+2
+00:00:11,000 --> 00:00:21,000
+going away. Objects have a lifetime and when you declare an object like that, Person p1, we say that's allocated
+
+3
+00:00:21,000 --> 00:00:28,000
+on the stack. The constructor is called, memory is allocated for the object, the object is initialized and it
+
+4
+00:00:28,000 --> 00:00:35,000
+just generally comes into being, when the flow of the control reaches the particular line on which the
+
+5
+00:00:35,000 --> 00:00:41,000
+object is declared. So at the moment that we're on that line, Person p1 and we step over it in the debugger and
+
+6
+00:00:41,000 --> 00:00:47,000
+having stepped over it, we've allocated the memory, we've used the constructor to initialize the object and the
+
+7
+00:00:47,000 --> 00:00:54,000
+objects sitting there alive, but p2 is not yet. Then we go over the next line in the debugger and now p2 is allocated
+
+8
+00:00:54,000 --> 00:01:00,000
+and constructed. When those two objects what we say go out scope, which means reaching a closed brace bracket
+
+9
+00:01:00,000 --> 00:01:08,000
+in most cases, then the memory is freed and the opposite of a constructor, known as a destructor, runs.
+
+10
+00:01:08,000 --> 00:01:14,000
+Destructors don't have to be written, they don't have to do anything.
+
+11
+00:01:14,000 --> 00:01:23,000
+The case of Person, there's no need to write a destructor to clean up at the end of the objects lifetime.
+
+12
+00:01:23,000 --> 00:01:30,000
+There are some kinds of objects for which you do need to write a destructor and in C++ we have this saying or
+
+13
+00:01:30,000 --> 00:01:38,000
+this idiom RAII, Resource Acquisition is Initialization and that's a way of thinking that says, if I have a
+
+14
+00:01:38,000 --> 00:01:46,000
+resources that needs to be managed, let's say an open file or a database connection, or even something like the
+
+15
+00:01:46,000 --> 00:01:53,000
+Windows cursor. In the constructor I will acquire the resource, that is I'll open the file, I'll open the
+
+16
+00:01:53,000 --> 00:02:02,000
+database connection, I'll change the Windows Cursor to a weight symbol and I'll do the opposite and release the
+
+17
+00:02:02,000 --> 00:02:07,000
+acquisition and cleanup in the destructor. So I'll close the file in the destructor.
+
+18
+00:02:07,000 --> 00:02:14,000
+I'll close the database connection in the destructor. I'll put the cursor back to where it should be in the destructor.
+
+19
+00:02:14,000 --> 00:02:20,000
+and this pairing up the resources are required in the course something and released in the destructor, means that
+
+20
+00:02:20,000 --> 00:02:27,000
+developers really don't need to think about it. They create an object on the stack, constructor goes off, stuff
+
+21
+00:02:27,000 --> 00:02:34,000
+gets acquired. Later it goes out of scope, destructor goes off, stuff gets released and in the old school days,
+
+22
+00:02:34,000 --> 00:02:40,000
+if you're a person who ever worked in C, where you have to say now remember to close things when you're done with
+
+23
+00:02:40,000 --> 00:02:47,000
+them, remember to open things before you use them. This approach says, look relax, when you construct the object
+
+24
+00:02:47,000 --> 00:02:50,000
+we will acquire whatever needs to be acquired in order for you to use the object.
+
+25
+00:02:50,000 --> 00:02:55,000
+We'll open the file, or we'll open the connection, or whatever and when you're done with it, when it goes out of
+
+26
+00:02:55,000 --> 00:03:02,000
+scope, it will cleanup itself. You may have heard that in C++ you have all this complicated difficult memory
+
+27
+00:03:02,000 --> 00:03:08,000
+management and you have to delete things and all this, that's just not true.
+
+28
+00:03:08,000 --> 00:03:13,000
+There are some ways of programming in C++ that puts a tremendous burden on the developers to just remember a million
+
+29
+00:03:13,000 --> 00:03:21,000
+things, but the RAII approach which says, when you make an object the constructor gives it to you ready to use
+
+30
+00:03:21,000 --> 00:03:26,000
+whatever needs to be opened is opened, whatever needs to allocated is allocated and the destructor will close it
+
+31
+00:03:26,000 --> 00:03:32,000
+up and clean it up for you. That way, when people especially when you get to use objects from a library, they
+
+32
+00:03:32,000 --> 00:03:42,000
+just work, they do what they need to do. I'm going to stay away from opening files, making connections to databases,
+
+33
+00:03:42,000 --> 00:59:00,000
+changing Windows cursors because they're reasonable difficult tasks to do, but I am going to show you how this works.
+

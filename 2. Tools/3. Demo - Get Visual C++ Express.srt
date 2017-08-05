@@ -1,0 +1,36 @@
+1
+00:00:01,000 --> 00:00:06,000
+To get your own copy of Visual C++ Express, you can follow this
+
+2
+00:00:06,000 --> 00:00:17,000
+URL: www.microsoft.com/express/vc/ for Visual C++, and that will redirect you depending on your location to a
+
+3
+00:00:17,000 --> 00:00:25,000
+more complicated URL, which you can ignore, and you can see here the giant INSTALL NOW button for English,
+
+4
+00:00:25,000 --> 00:00:30,000
+or if you wish to install for a different language, you can choose it and click INSTALL NOW.
+
+5
+00:00:30,000 --> 00:00:36,000
+And there is a web based installer that runs relatively quickly, downloads about 70 MB,
+
+6
+00:00:36,000 --> 00:00:40,000
+starts to run and then installs Express on your machine.
+
+7
+00:00:40,000 --> 00:00:47,000
+And Visual C++ Express will coexist with Visual Studio 2010 if you have it installed as I do, but if you have
+
+8
+00:00:47,000 --> 00:00:53,000
+Visual Studio 2010 installed, go right ahead and use that, you don't need to download Express,
+
+9
+00:00:53,000 --> 00:59:00,000
+just follow along with what we're doing.
+

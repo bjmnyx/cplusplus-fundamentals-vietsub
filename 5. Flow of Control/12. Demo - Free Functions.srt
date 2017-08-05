@@ -1,0 +1,292 @@
+1
+00:00:03,000 --> 00:00:07,000
+I'll start with the demo of some free functions.
+
+2
+00:00:07,000 --> 00:00:15,000
+Here I have a console application, just like all these other console applications, and I've taken the logic for
+
+3
+00:00:15,000 --> 00:00:22,000
+determining whether something was prime or not and moved it off into a little helper function called is prime.
+
+4
+00:00:22,000 --> 00:00:29,000
+You can probably guess that it's declared in Utility.h because here's Utility.h, but just to show you how Visual
+
+5
+00:00:29,000 --> 00:00:36,000
+Studio can help you out, I can right click on this function and Go to the Declaration or the Definition of the function.
+
+6
+00:00:36,000 --> 00:00:39,000
+If I choose Go to Declaration
+
+7
+00:00:39,000 --> 00:00:46,000
+you can see here in Utility.h the declaration of the function, it just says there's this function called IsPrime,
+
+8
+00:00:46,000 --> 00:00:51,000
+it takes an integer, and it returns a Boolean. It doesn't tell you the actual code for it, that would be the
+
+9
+00:00:51,000 --> 00:00:58,000
+implementation. I can now right click either back in original functions or here and choose Go to Definition
+
+10
+00:00:58,000 --> 00:01:00,000
+instead of Go to Declaration
+
+11
+00:01:00,000 --> 00:01:04,000
+and that opens Utility.cpp where the actual implementation of function.
+
+12
+00:01:04,000 --> 00:01:13,000
+The code for it, it's the for loop from the for demo and it simple returns prime instead of setting a variable
+
+13
+00:01:13,000 --> 00:01:21,000
+the way the old code did. So this takes an integer, figures out whether it's prime or not, and returns true or false.
+
+14
+00:01:21,000 --> 00:01:27,000
+Now it has a side effect that it prints on the screen, it's not normal behavior for a function, but this is a demo
+
+15
+00:01:27,000 --> 00:01:31,000
+it's nice for you to see what's going on, so I left it in there. We go back into
+
+16
+00:01:31,000 --> 00:01:38,000
+our Main, you can see that we say if IsPrime at x, so that's going to pass x by value down to function which will
+
+17
+00:01:38,000 --> 00:01:44,000
+return by value true or false back. If I got true back, I'll print out that it's prime, if I got false back I'll
+
+18
+00:01:44,000 --> 00:01:52,000
+print out that it's not prime. I have a second function called Is2MorePrime and as you can probably guess by looking
+
+19
+00:01:52,000 --> 00:01:59,000
+at the print outs, it takes x adds 2 to it and sees if that is prime or not.
+
+20
+00:01:59,000 --> 00:02:02,000
+Why would I write a function like that? Well, I have my reasons. First,
+
+21
+00:02:02,000 --> 00:02:07,000
+here's the declaration in Utility.h is Is2MorePrime, takes an integer x
+
+22
+00:02:07,000 --> 00:02:16,000
+and here's the code for it. It makes x 2 larger than it currently is and then passes that down to IsPrime and I
+
+23
+00:02:16,000 --> 00:02:27,000
+wanted to show you this C++ way of thinking. You don't sort of say Bool 2MoreIsPrime is = to false, 2MoreIsPrime
+
+24
+00:02:27,000 --> 00:02:37,000
+is = to IsPrime at x and heaven help us, if 2MoreIsPrime is true return true else return false.
+
+25
+00:02:37,000 --> 00:02:43,000
+You know IsPrime returns a Bool we can just return that ourselves and this sort of chaining up, is a really
+
+26
+00:02:43,000 --> 00:02:50,000
+common behavior in little helper functions. So return IsPrime at x will call IsPrime passing in the new larger
+
+27
+00:02:50,000 --> 00:02:58,000
+value of x and get back to our false which will then immediately be returned by Is2MorePrime.
+
+28
+00:02:58,000 --> 00:03:06,000
+I could have called this whole thing a single line return IsPrime x+2, but I have a second thing I want to show
+
+29
+00:03:06,000 --> 00:03:14,000
+with this function and that's why it's split out twice. So I'm going to Run it so you can watch it work
+
+30
+00:03:14,000 --> 00:03:24,000
+and let's try 7. 7 is prime, but as part of processing 7+2 which is 9, we found a factor 3 and so it prints out
+
+31
+00:03:24,000 --> 00:03:30,000
+7+2 is not prime. This is all good, it's correct behavior.
+
+32
+00:03:30,000 --> 00:03:37,000
+Now notice that Is2MorePrime changed the value of x to x+2, but when we came back to the
+
+33
+00:03:37,000 --> 00:03:46,000
+calling code and printed out x it still had the value of 7 and everybody kind of expected that and that was because
+
+34
+00:03:46,000 --> 00:03:55,000
+x was being passed by value. I'm going to show you how to pass by reference just so that you see the difference.
+
+35
+00:03:55,000 --> 00:03:57,000
+I have to change here
+
+36
+00:03:57,000 --> 00:04:05,000
+and say that Is2MorePrime takes an integer reference that's a capital 7 if you're not in the habit of typing them
+
+37
+00:04:05,000 --> 00:04:14,000
+and that Utility.cpp I have to change in the implementation that it takes an integer reference.
+
+38
+00:04:14,000 --> 00:04:24,000
+What this means is that the code in Is2MorePrime will actually be working with the same memory slot for x
+
+39
+00:04:24,000 --> 00:04:29,000
+that this guy is. Not because they have same name, but because it's a reference and so that when it changes it
+
+40
+00:04:29,000 --> 00:04:40,000
+it will be changing this x and you'll see that if I Run it
+
+41
+00:04:40,000 --> 00:04:46,000
+if I again enter 7, it correctly finds the factor, it's clearly working with 9, but when we come back it says
+
+42
+00:04:46,000 --> 00:04:56,000
+9+2 is not prime, which by coincidence 9+2 makes 11, which is prime, but that's not the point, it was testing 9.
+
+43
+00:04:56,000 --> 00:04:58,000
+The reason it's saying 9+2 is
+
+44
+00:04:58,000 --> 00:05:04,000
+because it's actually permanently changed x and is now printing out 9 for x.
+
+45
+00:05:04,000 --> 00:05:06,000
+In this particular case,
+
+46
+00:05:06,000 --> 00:05:10,000
+we don't want to pass x by reference.
+
+47
+00:05:10,000 --> 00:05:16,000
+I wanted to show you the consequences of doing it, I'll just build that, but there are times when you do and there
+
+48
+00:05:16,000 --> 00:05:23,000
+are two times when you want to pass a variable by reference. One is when you want the function to actually change it.
+
+49
+00:05:23,000 --> 00:05:31,000
+For example, people who write string code, very often want to take a string and maybe capitalize it or change all
+
+50
+00:05:31,000 --> 00:05:36,000
+e's to w's or whatever and they want to sort of take the string and call this function on it and have the string
+
+51
+00:05:36,000 --> 00:05:43,000
+end up being changed. The other time you would use pass by reference is when the copy is really expensive, when
+
+52
+00:05:43,000 --> 00:05:50,000
+you're passing some really large thing and you just don't want to pay for the cost of copying it and then you can
+
+53
+00:05:50,000 --> 00:05:56,000
+use a reference and there is actually a way to tell the compiler, well yes I am going to take it by reference, but
+
+54
+00:05:56,000 --> 00:06:04,000
+I promise I won't change it and that will save you from these kinds of accidental mistakes.
+
+55
+00:06:04,000 --> 00:06:12,000
+We'll be talking about that const, keyword a little later, I just want you to know for now that it exists.
+
+56
+00:06:12,000 --> 00:06:17,000
+Now I have one more thing going on in here and it's commented out because it is bad and I'm going to uncomment it
+
+57
+00:06:17,000 --> 00:06:18,000
+out so that you can see
+
+58
+00:06:18,000 --> 00:06:26,000
+what's bad about it. So I have a function here called BadFunction, which returns and integer reference and I have
+
+59
+00:06:26,000 --> 00:06:33,000
+the code for it here. I'm using the comment and uncomment buttons in Visual C++ Express, which are super handy
+
+60
+00:06:33,000 --> 00:06:43,000
+for this kind of thing. It declares this local variable a and returns a reference to a which is to access to the
+
+61
+00:06:43,000 --> 00:06:51,000
+memory and then when we hit this brace bracket, a goes out of scope and this is what we call a dangling reference
+
+62
+00:06:51,000 --> 00:06:59,000
+and code that tries to call a BadFunction and use the return value from it, may mostly work, but then on other
+
+63
+00:06:59,000 --> 00:07:05,000
+occasions it won't work and that's why dangling references can be hard to spot because they don't always fail.
+
+64
+00:07:05,000 --> 00:07:11,000
+They sort of tend to fail when other code writes over that same address and so you say, wow the value of my variable
+
+65
+00:07:11,000 --> 00:07:17,000
+changed without me changing it. That's usually caused by problems like a dangling reference.
+
+66
+00:07:17,000 --> 00:07:26,000
+Compiler as I said on many occasions is your friend. If I just build this using the keystrokes, it's got a warning here,
+
+67
+00:07:26,000 --> 00:07:31,000
+let's scroll along, returning address of local variable or temporary.
+
+68
+00:07:31,000 --> 00:07:38,000
+If you see that warning you know you're being warned about a dangling reference and you shouldn't do that.
+
+69
+00:07:38,000 --> 00:07:45,000
+In this particular case, there's no real reason why this shouldn't just return an integer, integers are cheap to copy.
+
+70
+00:07:45,000 --> 00:07:52,000
+If you had a different problem there are ways to return references to things that have longer lifetimes, we just haven't
+
+71
+00:07:52,000 --> 00:07:53,000
+covered that yet,
+
+72
+00:07:53,000 --> 00:08:00,000
+so it could be possibly correct to return a reference, but never just a reference to a local variable like
+
+73
+00:08:00,000 --> 00:59:00,000
+a here which you just declared and then it's going to go out of scope when it hits the brace bracket.
+

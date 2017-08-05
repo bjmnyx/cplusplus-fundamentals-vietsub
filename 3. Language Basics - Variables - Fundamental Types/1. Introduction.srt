@@ -1,0 +1,20 @@
+1
+00:00:01,000 --> 00:00:10,000
+Welcome back to Introduction to C++. My name is Kate Gregory and I'm introducing you to the most popular general
+
+2
+00:00:10,000 --> 00:00:17,000
+purpose programming language C++. In this module, I'll begin a discussion of variables by talking about fundamental
+
+3
+00:00:17,000 --> 00:00:21,000
+types and showing you how to work with variables of different types.
+
+4
+00:00:21,000 --> 00:00:26,000
+One of my favorite sayings is the compiler is your friend and I'm going to show you how the complier can save
+
+5
+00:00:26,000 --> 00:59:00,000
+you from mistakes that you might not have spotted yourself.
+

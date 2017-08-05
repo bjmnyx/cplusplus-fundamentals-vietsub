@@ -1,0 +1,116 @@
+1
+00:00:02,000 --> 00:00:10,000
+In this course, I am going to teach you to how to write C++ applications using Visual Studio exclusively.
+
+2
+00:00:10,000 --> 00:00:13,000
+Visual Studio is what's called an Integrated Development Environment.
+
+3
+00:00:13,000 --> 00:00:20,000
+It has an editor where you can type your code, a compiler that transforms the code you typed into something
+
+4
+00:00:20,000 --> 00:00:25,000
+that can be executed, and a debugger that helps you observe it executing and learn where you may have a
+
+5
+00:00:25,000 --> 00:00:30,000
+problem and fix that problem, and a whole pile of other related tools as well.
+
+6
+00:00:30,000 --> 00:00:36,000
+Now, there are other ways to compile your applications, you can get standalone compilers, Microsoft has a
+
+7
+00:00:36,000 --> 00:00:40,000
+number of free ones that it distributes as part of its SDK, and other people
+
+8
+00:00:40,000 --> 00:00:44,000
+make and either give away or sell C++ compilers.
+
+9
+00:00:44,000 --> 00:00:51,000
+But Visual Studio is more than just a compiler, and you won't be typing a lot of commands at the command line
+
+10
+00:00:51,000 --> 00:00:59,000
+and learning some strange syntax in order to pull your projects and applications together if you use Visual Studio.
+
+11
+00:00:59,000 --> 00:01:05,000
+Specifically, I am going to use Visual Studio Express, which is one of many different additions of Visual Studio.
+
+12
+00:01:05,000 --> 00:01:13,000
+Now Express is not a single thing, there is Visual C++ Express, Visual C# Express, and so on, as a version for
+
+13
+00:01:13,000 --> 00:01:21,000
+Visual Basic for web development, for phone development and Express is completely and totally free.
+
+14
+00:01:21,000 --> 00:01:28,000
+It's free, even if you use it to make applications that you sell for money, that is all fine.
+
+15
+00:01:28,000 --> 00:01:35,000
+There is a little functionality in some of the other additions of Vision Studio, that is not in Express.
+
+16
+00:01:35,000 --> 00:01:41,000
+I won't be showing any of that functionality in this material, so to follow along in these demos
+
+17
+00:01:41,000 --> 00:01:44,000
+you can just get Express and use it.
+
+18
+00:01:44,000 --> 00:01:51,000
+And should the time come when you find, oh I do need something that's in Professional, which costs roughly
+
+19
+00:01:51,000 --> 00:01:57,000
+around $1,000, a little bit less maybe. And then maybe you discover, oh there is something that I need that's
+
+20
+00:01:57,000 --> 00:02:03,000
+in Premium, which costs about five times as much as professional or wow, I love this feature in Ultimate and
+
+21
+00:02:03,000 --> 00:02:07,000
+I am willing to pay double what Premium costs to get Ultimate.
+
+22
+00:02:07,000 --> 00:02:10,000
+That's fine, that's your choice, but in order to follow along in this material,
+
+23
+00:02:10,000 --> 00:02:15,000
+you do not need to go out and get one of those versions of Visual Studio.
+
+24
+00:02:15,000 --> 00:02:20,000
+Now if you happen to own a version of Visual Studio, perhaps because you work in another language and you are
+
+25
+00:02:20,000 --> 00:02:26,000
+considering adding C++ to your arsenal, you can of course follow along in all of the demos I am going to
+
+26
+00:02:26,000 --> 00:02:33,000
+show you, using your copy of Visual Studio. Things may look a little different, because Express is a simpler,
+
+27
+00:02:33,000 --> 00:02:40,000
+stripped down UI with less menus and less options, so my screens may look a little simpler than your screens,
+
+28
+00:02:40,000 --> 00:02:45,000
+but all the code that works in Express will work in other editions of Visual Studio.
+
+29
+00:02:45,000 --> 00:59:00,000
+So that's not going to be a problem at all.
+

@@ -1,0 +1,228 @@
+1
+00:00:04,000 --> 00:00:10,000
+I love ripping out code. I think every developer loves ripping out code. (Typing)
+
+2
+00:00:10,000 --> 00:00:17,000
+Less code to test, less code to worry about. I'm going to go into Person
+
+3
+00:00:17,000 --> 00:00:25,000
+and change this Resource pointer (Typing)
+
+4
+00:00:25,000 --> 00:00:32,000
+to a shared_ptr (Typing) to a Resource.
+
+5
+00:00:32,000 --> 00:00:34,000
+Now, that's not going to compile as is, obviously.
+
+6
+00:00:34,000 --> 00:00:45,000
+I've got to put include in here of memory and I need to call it by its full name, (Typing)
+
+7
+00:00:45,000 --> 00:00:53,000
+std::shared_ptr. Let's talk for a minute about why I chose shared_ptr.
+
+8
+00:00:53,000 --> 00:01:03,000
+It implements a reference counted sharing, so that when you copy or assign a Person around, the new Person is
+
+9
+00:01:03,000 --> 00:01:09,000
+pointing to the same Resource as the old Person. I don't know, let's say it was the char and you changed
+
+10
+00:01:09,000 --> 00:01:13,000
+some aspect of the char. Everybody, all the Person objects that were copied from each other, they would all
+
+11
+00:01:13,000 --> 00:01:20,000
+now still be pointing to the same changed Resource. The old semantics that we implemented by hand were that
+
+12
+00:01:20,000 --> 00:01:25,000
+each Person had their own individual copy of the Resource. I don't think there was necessarily a business
+
+13
+00:01:25,000 --> 00:01:29,000
+reason for it; it was just, how else were you going to do it?
+
+14
+00:01:29,000 --> 00:01:32,000
+We weren't about to implement reference counting inside person.
+
+15
+00:01:32,000 --> 00:01:37,000
+In many cases, a reference counted shared_ptr is a really good way to deal with copying.
+
+16
+00:01:37,000 --> 00:01:44,000
+If people are making copies of a policy or an employee record or whatever, it should still be
+
+17
+00:01:44,000 --> 00:01:50,000
+referring to the same other things that it needs to refer to, and as long as one of those copies is still in
+
+18
+00:01:50,000 --> 00:01:53,000
+scope we shouldn't be deleting the stuff out on the free store.
+
+19
+00:01:53,000 --> 00:01:57,000
+So I'm going to use a shared_ptr to Resource here inside Person.
+
+20
+00:01:57,000 --> 00:02:03,000
+Here's the fun part. I don't need the copy constructor anymore. (Typing)
+
+21
+00:02:03,000 --> 00:02:10,000
+A copy that copies the shared_ptr to Resource in one Person into the shared_ptr to Resource in
+
+22
+00:02:10,000 --> 00:02:14,000
+another is just fine. The reference count will get incremented.
+
+23
+00:02:14,000 --> 00:02:25,000
+The sharing will happen. I do not need to write this code, so I can get rid of my copy constructor. (Typing)
+
+24
+00:02:25,000 --> 00:02:34,000
+Similarly, I can get rid of my operator=. (Typing) When the assignment happens and it just lands on the old
+
+25
+00:02:34,000 --> 00:02:42,000
+pResource, that's fine. It will do the right thing, send things out of scope if they need to go out of scope,
+
+26
+00:02:42,000 --> 00:02:52,000
+(Typing) so I can get rid of my operator=. Here, where I'm initializing it's a nullptr --
+
+27
+00:02:52,000 --> 00:02:57,000
+remember how strings just initialize themselves to "" and you don't need to remember to do it?
+
+28
+00:02:57,000 --> 00:03:04,000
+Shared_ptr's initialize themselves to empty, so I don't need to initialize pResource, another thing not to
+
+29
+00:03:04,000 --> 00:03:09,000
+worry about, and I sure as heck don't need to delete it in the destructor.
+
+30
+00:03:09,000 --> 00:03:16,000
+When Person's destructor goes off all of its member variables will be cleaned away, the strings,
+
+31
+00:03:16,000 --> 00:03:21,000
+arbitrarynumber, all of them, including the shared_ptr, and the shared_ptr's destructor will go off
+
+32
+00:03:21,000 --> 00:03:27,000
+and the shared_ptr's destructor, assuming that this is the last person who cares about this particular
+
+33
+00:03:27,000 --> 00:03:35,000
+Resource, will delete the memory out on the free store. I don't even need to have a destructor. (Typing)
+
+34
+00:03:35,000 --> 00:03:48,000
+I told you. Love ripping out code. (Typing) Now in AddResource I do need to worry about the old one.
+
+35
+00:03:48,000 --> 00:03:57,000
+If there was one already I need to tell it, the shared_ptr, to let go of that Resource, and I do that
+
+36
+00:03:57,000 --> 00:04:02,000
+instead of using delete like this. The error message, by the way, is -- you can't delete that; it's not a
+
+37
+00:04:02,000 --> 00:04:08,000
+pointer, and it's true. Despite the fact its name starts with p, it's a solid object whose type is what we
+
+38
+00:04:08,000 --> 00:04:16,000
+call a smart pointer, and it has a member function called reset. (Typing)
+
+39
+00:04:16,000 --> 00:04:24,000
+Resetting a shared_ptr has it let go of its hold on something out on the free store.
+
+40
+00:04:24,000 --> 00:04:30,000
+It decrements the reference count and if that takes the reference count to 0, it will delete it --
+
+41
+00:04:30,000 --> 00:04:36,000
+all done behind the scenes for you, not your problem. Now, you can't initialize a shared_ptr by just
+
+42
+00:04:36,000 --> 00:04:40,000
+passing it something that you got from new, like this with the equals sign.
+
+43
+00:04:40,000 --> 00:04:45,000
+The best way to get a value into this shared_ptr is to use the make_shared.
+
+44
+00:04:45,000 --> 00:04:54,000
+It's again a C++ 11, all of this is C++ 11. Visual C++ 2010 supports the C++ 11 language changes.
+
+45
+00:04:54,000 --> 00:05:06,000
+So here I'm going to use the make_shared function. It's a templated function and I need to tell it,
+
+46
+00:05:06,000 --> 00:05:15,000
+I need you to make me a Resource, and then I just pass along the arguments to be given to the constructor
+
+47
+00:05:15,000 --> 00:05:21,000
+and make_shared will take those arguments, give them to constructor for Resource, get itself a pointer,
+
+48
+00:05:21,000 --> 00:05:26,000
+put in the member variable, do all the right things, and this smart pointer will be smart.
+
+49
+00:05:26,000 --> 00:05:31,000
+I've made Person a lot simpler. I ripped out all that code that just took me so long to put in and that was
+
+50
+00:05:31,000 --> 00:05:37,000
+knowing what I'm doing, but what is going to happen when I run this diabolical main that's running around
+
+51
+00:05:37,000 --> 00:05:45,000
+copying things and calling AddResource twice, and so on? Let's find out. (Typing)
+
+52
+00:05:45,000 --> 00:05:54,000
+It's all good. I have two constructs, two destructs, and I'm not making endless copies of the same Resource
+
+53
+00:05:54,000 --> 00:05:59,000
+for each individual copy of the person. There's a lot of Persons being constructed that you're not seeing
+
+54
+00:05:59,000 --> 00:06:05,000
+and they're all sharing the same Resource and only when the last one goes out of scope then the Resource is
+
+55
+00:06:05,000 --> 00:06:09,000
+destructed. No memory leak, no blowing up,
+
+56
+00:06:09,000 --> 00:06:12,000
+no rule of three because you don't have a raw pointer in Person
+
+57
+00:06:12,000 --> 00:59:00,000
+anymore, you have a smart pointer in Person and, as you can see, smart developers use smart pointers.
+

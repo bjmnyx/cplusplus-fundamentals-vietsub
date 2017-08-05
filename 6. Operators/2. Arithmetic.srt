@@ -1,0 +1,140 @@
+1
+00:00:02,000 --> 00:00:09,000
+Most applications perform calculations of some kind. They add, multiply, and divide numbers and C++ has
+
+2
+00:00:09,000 --> 00:00:15,000
+the operators you'd expect to do that. Hopefully no one's really surprised to see this list, but one of the
+
+3
+00:00:15,000 --> 00:00:22,000
+interesting things about C++, and this goes back to its C heritage, is that it has operators that other
+
+4
+00:00:22,000 --> 00:00:28,000
+languages may or may not have and the reason that they are in C++ is because they are a single instruction on
+
+5
+00:00:28,000 --> 00:00:37,000
+some of the chips the language was designed to run on. The plus equals and minus equals operators are
+
+6
+00:00:37,000 --> 00:00:43,000
+actually quicker, in the absence of an optimizer of course, than the long way.
+
+7
+00:00:43,000 --> 00:00:53,000
+X+=2 and X is equal to X+2 are the same in terms of the answer you get, but in a time before optimizers
+
+8
+00:00:53,000 --> 00:01:00,000
+X+=2 could actually be quicker. These days the issue isn't about the performance, but it is about
+
+9
+00:01:00,000 --> 00:01:06,000
+readability and about typo prevention. If your variable's not called X, it's called number of units that I
+
+10
+00:01:06,000 --> 00:01:14,000
+need to ship, then being able to write += amount in new order is shorter line of text and less chance to make
+
+11
+00:01:14,000 --> 00:01:21,000
+mistakes than if you have to repeat that really long variable name a couple of times.
+
+12
+00:01:21,000 --> 00:01:28,000
+If you want to add just one or take away just one there is also the increment operator, and there are two
+
+13
+00:01:28,000 --> 00:01:34,000
+variants of each of the increment and decrement, and they're known as prefix and postfix depending on whether
+
+14
+00:01:34,000 --> 00:01:40,000
+the symbol comes before or after the variable that you're incrementing or decrementing.
+
+15
+00:01:40,000 --> 00:01:45,000
+The difference between them has to do with what this operator returns.
+
+16
+00:01:45,000 --> 00:01:51,000
+You know all operators have a return value, so 2 + 3 returns 5.
+
+17
+00:01:51,000 --> 00:01:57,000
+In C++ even the equals operator has a return value. If I write X = 2 that expression actually returns the
+
+18
+00:01:57,000 --> 00:02:09,000
+value 2. i++ returns the old value of i and then increments it, whereas ++i increments i and then returns
+
+19
+00:02:09,000 --> 00:02:19,000
+the new value and the same for the decrement. i-- returns the old value of i and then decrements it; --i
+
+20
+00:02:19,000 --> 00:02:26,000
+decrements i and then returns the new smaller value. Why would anybody care about this distinction or even
+
+21
+00:02:26,000 --> 00:02:30,000
+want this operator? I'll show you that when we get to the demo.
+
+22
+00:02:30,000 --> 00:02:35,000
+The percent symbol is the modulo operator. That's your remainder after you divide things so
+
+23
+00:02:35,000 --> 00:02:46,000
+in this example here 17 divided by 2 is 8 remainder 1 and the modulo 17 % 2 is 1, that remainder that's left over
+
+24
+00:02:46,000 --> 00:02:53,000
+after you divide. Quite often you'll see people testing modules against 0 as a quick way of showing whether
+
+25
+00:02:53,000 --> 00:03:01,000
+or not something is a multiple of the smaller number. The one operator that seems to be missing is the
+
+26
+00:03:01,000 --> 00:03:09,000
+exponent operator, no X to the power of Y. You can't invent your own.
+
+27
+00:03:09,000 --> 00:03:15,000
+You have to settle for using the pow function, which is in math.h.
+
+28
+00:03:15,000 --> 00:03:19,000
+One of the reasons you can't invent your own has to do with the order of operations.
+
+29
+00:03:19,000 --> 00:03:27,000
+C++ knows the rules that you probably learned in grade school about order of operations, so if somebody
+
+30
+00:03:27,000 --> 00:03:34,000
+writes 3 * 2 + 1, you're supposed to do 3 * 2 first and then add 1 to the result.
+
+31
+00:03:34,000 --> 00:03:40,000
+I don't recommend learning them. I recommend you use round brackets to gather things up because even if you
+
+32
+00:03:40,000 --> 00:03:45,000
+learn them all, does the person who's going to read your code know them all?
+
+33
+00:03:45,000 --> 00:03:49,000
+It's often a good idea to express your intent really clearly with brackets.
+
+34
+00:03:49,000 --> 00:03:54,000
+I tell people brackets are free, and they really make sure that everybody understands the order of operations
+
+35
+00:03:54,000 --> 00:59:00,000
+for these calculations that you're doing.
+

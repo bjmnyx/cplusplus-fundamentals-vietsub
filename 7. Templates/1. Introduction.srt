@@ -1,0 +1,32 @@
+1
+00:00:01,000 --> 00:00:10,000
+Welcome back to Introduction to C++. My name is Kate Gregory and I'm introducing you to the most popular
+
+2
+00:00:10,000 --> 00:00:16,000
+general purpose programming language, C++. In this module you'll learn about templates.
+
+3
+00:00:16,000 --> 00:00:23,000
+Templates in C++ are similar to generics in other languages, but different in some very important ways.
+
+4
+00:00:23,000 --> 00:00:28,000
+When you first get started in C++ you can use templates right from the very beginning.
+
+5
+00:00:28,000 --> 00:00:32,000
+In fact, sometimes you use them without even knowing it. It's less common to write them.
+
+6
+00:00:32,000 --> 00:00:37,000
+I'm going to show you how to write them, but just so we have some simple templates we can use in the demos.
+
+7
+00:00:37,000 --> 00:00:42,000
+Understanding how they work takes the magic factor out of using them and I want you to know what a powerful
+
+8
+00:00:42,000 --> 00:59:00,000
+technique templates are in C++.
+

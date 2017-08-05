@@ -1,0 +1,24 @@
+1
+00:00:01,000 --> 00:00:08,000
+Welcome back to Introduction to C++. My name is Kate Gregory and I'm introducing you to the most popular
+
+2
+00:00:08,000 --> 00:00:13,000
+general purpose programming language, C++. In this module you'll meet the rather amazing number of
+
+3
+00:00:13,000 --> 00:00:18,000
+operators that C++ has for performing arithmetic, comparing, and so on.
+
+4
+00:00:18,000 --> 00:00:23,000
+There are some pitfalls waiting for you and I'll show you what often trips up beginners to C++.
+
+5
+00:00:23,000 --> 00:00:28,000
+You'll also learn how your own classes can get in on the operator story by writing your own overloads of
+
+6
+00:00:28,000 --> 00:59:00,000
+common operators for your code.
+

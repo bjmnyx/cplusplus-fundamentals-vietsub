@@ -1,0 +1,140 @@
+1
+00:00:02,000 --> 00:00:09,000
+Const is a C++ keyword and as the keyword it's spelled with a lowercase c.
+
+2
+00:00:09,000 --> 00:00:17,000
+It means that you promise you won't change a value. That might be because you simply want to impose a little
+
+3
+00:00:17,000 --> 00:00:23,000
+rigor on yourself or it might be that you're being given a value that you're not allowed to change and you
+
+4
+00:00:23,000 --> 00:00:31,000
+have to promise that you won't. You can declare a local variable like this, const int zero = 0, and any code
+
+5
+00:00:31,000 --> 00:00:39,000
+that tries to set 0 to 10 or -3 will trigger a compiler error. It's not allowed to be changed.
+
+6
+00:00:39,000 --> 00:00:48,000
+You can take a function, foo here can take a const int i. That's a semi-pointless thing to do, right,
+
+7
+00:00:48,000 --> 00:00:54,000
+because i here is being passed by value and any changes you make you'll only be changing inside foo
+
+8
+00:00:54,000 --> 00:00:58,000
+and who cares because they'll be thrown away when foo goes out of scope.
+
+9
+00:00:58,000 --> 00:01:04,000
+But the second line, something takes a const Person reference p and we've said a couple times,
+
+10
+00:01:04,000 --> 00:01:08,000
+when you pass something by reference someone can reach through the reference and change the
+
+11
+00:01:08,000 --> 00:01:14,000
+value back in the call in code. Taking a const reference says, actually I won't.
+
+12
+00:01:14,000 --> 00:01:19,000
+It means, I'm taking this by reference because the cost of a copy might be expensive.
+
+13
+00:01:19,000 --> 00:01:26,000
+You know, when you take a function parameter by value, that integer or that person or that insurance policy
+
+14
+00:01:26,000 --> 00:01:29,000
+or whatever, is copied into a temporary that's given to the function and that may be
+
+15
+00:01:29,000 --> 00:01:38,000
+a very expensive copy. Passing by reference prevents the copy, but it enables someone to change the real
+
+16
+00:01:38,000 --> 00:01:44,000
+object back in the call in code and if you don't want that then you write const person reference p.
+
+17
+00:01:44,000 --> 00:01:50,000
+What will happen now is when the compiler compiles something, if any code in it changes p you'll get a
+
+18
+00:01:50,000 --> 00:01:56,000
+compiler error, so it's a very safe way to say, I'm giving you a reference to spare the copy, but this
+
+19
+00:01:56,000 --> 00:02:01,000
+doesn't mean that you can actually make changes back in my code.
+
+20
+00:02:01,000 --> 00:02:08,000
+Imagine that I take that Person p as a const reference and I call some member function on it like GetName or
+
+21
+00:02:08,000 --> 00:02:15,000
+GetNumber. Unless the compiler knows that those member functions don't change any of the member variables of
+
+22
+00:02:15,000 --> 00:02:21,000
+person it won't allow you to make the function call. You have to give it that reassurance and you do that
+
+23
+00:02:21,000 --> 00:02:28,000
+this way. This says that the GetName function won't change any of the member variables of the class.
+
+24
+00:02:28,000 --> 00:02:35,000
+That makes them safe to call on a const reference. If we have a const Person or a const Person reference or
+
+25
+00:02:35,000 --> 00:02:40,000
+whatever called p and we want to call p.GetName. That's safe to do as long as the compiler knows
+
+26
+00:02:40,000 --> 00:02:45,000
+that GetName is a const function. It won't change any of the member variables of p.
+
+27
+00:02:45,000 --> 00:02:51,000
+As you can imagine, getting all your consts lined up can be a challenge.
+
+28
+00:02:51,000 --> 00:02:57,000
+It's called const correctness, so if our function something takes a const Person reference and the code for
+
+29
+00:02:57,000 --> 00:03:04,000
+something calls p.GetName, GetName has to be const. Well GetName's really simple.
+
+30
+00:03:04,000 --> 00:03:08,000
+You've met Person in lots of these demos. You know that all it does is return the first name and the last
+
+31
+00:03:08,000 --> 00:03:12,000
+name tag together, but what if it called another member function?
+
+32
+00:03:12,000 --> 00:03:19,000
+Well than that member function would have to have const on it and some of the functions may take parameters
+
+33
+00:03:19,000 --> 00:03:24,000
+that need to be labeled as const whatever reference to make sure they're not getting changed.
+
+34
+00:03:24,000 --> 00:03:30,000
+If you leave const correctness till the end of your development it can just drive you crazy, but if you do it
+
+35
+00:03:30,000 --> 00:59:00,000
+as you're writing it can actually be a supportive framework that helps you to write higher quality code.
+

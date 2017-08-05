@@ -1,0 +1,100 @@
+1
+00:00:01,000 --> 00:00:08,000
+Let's elaborate on this. You create something up on the free store with new and you get given a pointer.
+
+2
+00:00:08,000 --> 00:00:15,000
+Somebody has to call delete on that pointer to give that memory back to the free store.
+
+3
+00:00:15,000 --> 00:00:21,000
+In its simplest form you have beginning of a function new employee, do something with employee pointer, at
+
+4
+00:00:21,000 --> 00:00:26,000
+the end of the function, delete the employee pointer, but that's kind of pointless.
+
+5
+00:00:26,000 --> 00:00:29,000
+You could've just used a local variable. Why did you bother newing something up?
+
+6
+00:00:29,000 --> 00:00:35,000
+Probably this pointer is going to go into a member variable of a class and you need to keep track and call
+
+7
+00:00:35,000 --> 00:00:41,000
+delete when everybody's done, but along the way some strange things can happen like, someone could copy your
+
+8
+00:00:41,000 --> 00:00:48,000
+pointer and maybe they still have the copy when you think you're done with the original pointer.
+
+9
+00:00:48,000 --> 00:00:54,000
+If you delete the pointer, the copy they have is pointing to memory that's not available for use.
+
+10
+00:00:54,000 --> 00:01:01,000
+That's a blow-up-your-application situation or if you keep your pointer in some local variable that goes
+
+11
+00:01:01,000 --> 00:01:07,000
+out of scope and you don't have the pointer anymore to call delete with.
+
+12
+00:01:07,000 --> 00:01:15,000
+Manual memory management is flat-out hard. You can delete things too soon and then other code tries to use
+
+13
+00:01:15,000 --> 00:01:20,000
+them and they're not there. You can delete twice and you can never delete, which is a memory leak.
+
+14
+00:01:20,000 --> 00:01:26,000
+It's actually quite difficult. The good news is you almost never have to do it.
+
+15
+00:01:26,000 --> 00:01:32,000
+Library writers have solved this problem for you, but to convince you that you want to use what the library
+
+16
+00:01:32,000 --> 00:01:39,000
+writers have written I'm going to show you how to do it yourself by hand so that you know what you're being
+
+17
+00:01:39,000 --> 00:01:45,000
+saved and so that you maybe understand where some of the eye rolling and stories have come from, from people
+
+18
+00:01:45,000 --> 00:01:53,000
+who say, oh my gosh, C++ pointers, new, delete, memory leaks. You have to do it yourself by hand.
+
+19
+00:01:53,000 --> 00:01:57,000
+I'll show you what they're talking about, but the whole time I'm doing it I want you to remember you
+
+20
+00:01:57,000 --> 00:02:03,000
+probably don't have to do this. Okay? I'm going to teach you something called the Rule of Three.
+
+21
+00:02:03,000 --> 00:02:08,000
+The Rule of Three says, if you write a destructor that really does something bad, because remember delete
+
+22
+00:02:08,000 --> 00:02:14,000
+doesn't just give the memory back it also runs the destructor, you should also write a Copy Constructor and
+
+23
+00:02:14,000 --> 00:02:19,000
+a Copy Assignment Operator. I have a demo for you in which we're going to deliberately trigger all kinds of
+
+24
+00:02:19,000 --> 00:02:26,000
+chaos and mayhem and slowly bring it under control by writing the big three: Copy Constructor, Copy
+
+25
+00:02:26,000 --> 00:59:00,000
+Assignment Operator, and Destructor.
+

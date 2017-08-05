@@ -1,0 +1,104 @@
+1
+00:00:03,000 --> 00:00:08,000
+There's another thing that sets C++ templates apart from the way just about every other language does
+
+2
+00:00:08,000 --> 00:00:16,000
+generics and that's specialization. The compiler will generate the code using the template for any type you
+
+3
+00:00:16,000 --> 00:00:24,000
+pass it, but you can say, here's the code I want you to generate for this particular type.
+
+4
+00:00:24,000 --> 00:00:29,000
+In other words, write the template once generically, here's how to find the max of any two things, and then
+
+5
+00:00:29,000 --> 00:00:36,000
+again, specifically, here's how to find the max of two employees or two bank accounts.
+
+6
+00:00:36,000 --> 00:00:42,000
+Why would you need to do that? Well, the thing is that sometimes templates don't work for certain classes.
+
+7
+00:00:42,000 --> 00:00:49,000
+You saw that max relied on operator&lt; and Accum relies on operator+.
+
+8
+00:00:49,000 --> 00:00:55,000
+If you haven't overloaded the operator for those classes how could you use the template with those classes --
+
+9
+00:00:55,000 --> 00:01:01,000
+or if someone has overloaded the operator, but it doesn't do what you want the template to have that operator
+
+10
+00:01:01,000 --> 00:01:08,000
+mean. When we are working with the simple classes that you see here it's really simple to decide what plus
+
+11
+00:01:08,000 --> 00:01:13,000
+means. Want to add two people? I guess the only thing that makes sense would be to add their arbitrary
+
+12
+00:01:13,000 --> 00:01:22,000
+numbers, but what does it mean to add two bank accounts or to compare two employees?
+
+13
+00:01:22,000 --> 00:01:27,000
+The best thing to do is to add the missing operator. As you know, you can write any operator overload as a
+
+14
+00:01:27,000 --> 00:01:34,000
+free function, so even if you're not the developer of BankAccount or Employee or Person you could add the
+
+15
+00:01:34,000 --> 00:01:41,000
+missing operator as a free function. That's an excellent choice and may have other benefits in other parts
+
+16
+00:01:41,000 --> 00:01:48,000
+of the application as well. It doesn't work if someone's already written it and there are other times when
+
+17
+00:01:48,000 --> 00:01:53,000
+it's not an option either, so you do have a second choice, which is to specialize the template.
+
+18
+00:01:53,000 --> 00:02:00,000
+This means you write a version of the template that doesn't have the placeholder in it and that says, here's
+
+19
+00:02:00,000 --> 00:02:07,000
+how to specifically do the work I want to do for this incompatible class, for this Employee or BankAccount or
+
+20
+00:02:07,000 --> 00:02:18,000
+Person object. Once upon a time the number one motivation for template specialization was C-style strings,
+
+21
+00:02:18,000 --> 00:02:24,000
+strings very different from the ones we are using in this material, that were just awkward and horrible and
+
+22
+00:02:24,000 --> 00:02:31,000
+always needed a special template done for them. It's a little harder to come up with a good reason for
+
+23
+00:02:31,000 --> 00:02:37,000
+template specialization when our sample templates are so simple, but I want you to see the technique, so I'm
+
+24
+00:02:37,000 --> 00:02:44,000
+going to show you how to do it. You will need to do it at some point because templates are just such a huge
+
+25
+00:02:44,000 --> 00:02:50,000
+time-saver and proactivity boost for developers that when you find one that isn't quite right you need to
+
+26
+00:02:50,000 --> 00:59:00,000
+know how to make it fit your situation.
+

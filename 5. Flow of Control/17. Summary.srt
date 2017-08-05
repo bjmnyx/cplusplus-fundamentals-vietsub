@@ -1,0 +1,156 @@
+1
+00:00:01,000 --> 00:00:07,000
+C++ Flow of Control expressions really aren't that complicated, but you can build really complicated applications
+
+2
+00:00:07,000 --> 00:00:16,000
+out of them. The existence of an if of a loop of some kind, that's common throughout languages.
+
+3
+00:00:16,000 --> 00:00:21,000
+Maybe different languages call them different things, but they all pretty much exist.
+
+4
+00:00:21,000 --> 00:00:26,000
+If you are muddled up a little bit on where do the brace brackets go, how come sometimes I have to have them and
+
+5
+00:00:26,000 --> 00:00:29,000
+sometimes I don't? Remember the compiler is your friend.
+
+6
+00:00:29,000 --> 00:00:32,000
+So in the for loop, the three parts are separated with semicolon.
+
+7
+00:00:32,000 --> 00:00:36,000
+If you separate them with something else, you'll get message saying that some of them are missing.
+
+8
+00:00:36,000 --> 00:00:41,000
+You'll have to interpret that, that because I don't have semicolon's it thinks this is all just the initializer
+
+9
+00:00:41,000 --> 00:00:44,000
+and it's yelling me about the other pieces no being there.
+
+10
+00:00:44,000 --> 00:00:50,000
+Typically, commas is what people do wrong there. Switch your commas to semicolons and your error messages will go away.
+
+11
+00:00:50,000 --> 00:00:56,000
+Same if you leave out your braces or some other part of the syntax of your switch statement.
+
+12
+00:00:56,000 --> 00:01:01,000
+You can build a for loop with a while. You say that they were pretty much interchangeable.
+
+13
+00:01:01,000 --> 00:01:05,000
+You can build a switch out of a bunch of if's and else's.
+
+14
+00:01:05,000 --> 00:01:11,000
+You can certainly build an immediate if out of an if and an else, and in fact, especially if you were to drag the
+
+15
+00:01:11,000 --> 00:01:18,000
+dreaded goto into the mix, you could get by without anyone of them replacing them with the other instead.
+
+16
+00:01:18,000 --> 00:01:26,000
+So use them in the way that's most readable, and in the way that most C++ developers use them.
+
+17
+00:01:26,000 --> 00:01:32,000
+So for example, if you know how many time you're going to go through a loop, you should use for.
+
+18
+00:01:32,000 --> 00:01:40,000
+For int i=0, i &lt; 10 increment i by 1, that's just a common or guarded loop.
+
+19
+00:01:40,000 --> 00:01:45,000
+You can do it with a while, but people would think you were kind of strange.
+
+20
+00:01:45,000 --> 00:01:49,000
+When you don't know how many time you're going to through in advance because you're processing a whole file or
+
+21
+00:01:49,000 --> 00:01:55,000
+you're keeping going until the user presses 0, use a while.
+
+22
+00:01:55,000 --> 00:01:59,000
+The complier couldn't care less what you use, but humans who read your code do.
+
+23
+00:01:59,000 --> 00:02:05,000
+Should you use a switch or a bunch of if's, assume there's just more than three possibilities or even really three
+
+24
+00:02:05,000 --> 00:02:10,000
+go with the switch. If there's just two, don't make a switch for just two, that's kind of weird, that's like an
+
+25
+00:02:10,000 --> 00:02:17,000
+if and it's else. You don't need that. Should you use an immediate if?
+
+26
+00:02:17,000 --> 00:02:21,000
+Well the minute your immediate if has to spend multiple lines, you're probably doing it wrong.
+
+27
+00:02:21,000 --> 00:02:26,000
+The whole point of the immediate if is it took that for line construct and turned it into a one line construct.
+
+28
+00:02:26,000 --> 00:02:32,000
+If your conditions and your values that you're setting the variable to are so long that the whole thing has to be
+
+29
+00:02:32,000 --> 00:02:36,000
+broken up with line breaks, it should probably be a regular if.
+
+30
+00:02:36,000 --> 00:02:39,000
+We also talked about functions, about free functions and member functions.
+
+31
+00:02:39,000 --> 00:02:44,000
+Taking parameters by values or by reference and return by value or by reference.
+
+32
+00:02:44,000 --> 00:02:50,000
+The demos I've showed you where all the parameters are return types are things like integers, you know what, just
+
+33
+00:02:50,000 --> 00:02:55,000
+always do it by value, but there will be times when taking by reference is appropriate and you've seen the syntax
+
+34
+00:02:55,000 --> 00:03:01,000
+now that capital 7 that &amp; after the type integer reference.
+
+35
+00:03:01,000 --> 00:03:06,000
+You can also have string reference, or person reference, we just didn't happen to demo them.
+
+36
+00:03:06,000 --> 00:03:09,000
+Functions are what your application is built up, functions and classes.
+
+37
+00:03:09,000 --> 00:03:16,000
+Your functions are built out of these Flow of Control constructs, out of loops, out of conditionals, out of checking
+
+38
+00:03:16,000 --> 00:03:20,000
+to see if something is found or done, or good enough, or needs special handling.
+
+39
+00:03:20,000 --> 00:59:00,000
+You're almost complete versed in all of the C++ syntax and ready to start putting this all into action.
+

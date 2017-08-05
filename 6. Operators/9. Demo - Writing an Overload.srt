@@ -1,0 +1,464 @@
+1
+00:00:01,000 --> 00:00:05,000
+I've written some overloads of the comparison operator so that you can take a look at
+
+2
+00:00:05,000 --> 00:00:10,000
+how they're actually coded. First though, I want you to see how they're used because it's pretty simple and
+
+3
+00:00:10,000 --> 00:00:18,000
+intuitive. I've got two people here, p1 and p2, and if you remember how these objects work, they have a
+
+4
+00:00:18,000 --> 00:00:24,000
+first name, a last name, and an arbitrarynumber, and these constructors are setting their arbitrary numbers
+
+5
+00:00:24,000 --> 00:00:33,000
+to 123 and 456 respectively. Then I'm going to test whether or not p1 is less than p2 and if it's
+
+6
+00:00:33,000 --> 00:00:38,000
+not I'm going to print out the word not, so this'll pump out either p1 is less than p2 or p1 is not less than
+
+7
+00:00:38,000 --> 00:00:45,000
+p2. If we look at the values, if we're going alphabetically, k is before s in the alphabet.
+
+8
+00:00:45,000 --> 00:00:51,000
+If we are going by numerical value of the arbitrarynumber, 123 is less than 456, so I'd expect this to print
+
+9
+00:00:51,000 --> 00:01:01,000
+out p1 is less than p2. Now I'm going to compare p1 to a number, an integer, 300.
+
+10
+00:01:01,000 --> 00:01:05,000
+That sort of tells us, just by reading the code, that it's probably the arbitrarynumber that's being
+
+11
+00:01:05,000 --> 00:01:12,000
+compared. Pretty much the identical code, except this says 300 here instead of p2.
+
+12
+00:01:12,000 --> 00:01:19,000
+Well 123 is less than 300, so I'm guessing to see that this would say p1 is less than 300, and then we flip
+
+13
+00:01:19,000 --> 00:01:25,000
+it around and ask is 300 less than p1. This isn't just about getting the opposite answer, as you saw on the
+
+14
+00:01:25,000 --> 00:01:31,000
+slide, this also means we actually get a different function called.
+
+15
+00:01:31,000 --> 00:01:37,000
+When the compiler needs to deal with this line of code it's going to call a function, which is a member of
+
+16
+00:01:37,000 --> 00:01:46,000
+the Person class, called operator&lt;, that takes a person as its single argument.
+
+17
+00:01:46,000 --> 00:01:51,000
+When it comes time to deal with this line of code it's going to call a member function of person, called
+
+18
+00:01:51,000 --> 00:02:01,000
+operator&lt;, that takes an integer for its single argument. When it needs to deal with this line of code it
+
+19
+00:02:01,000 --> 00:02:08,000
+can't find a member function of integer, so it's going to look for a free function called operator&lt;, that
+
+20
+00:02:08,000 --> 00:02:14,000
+isn't in any class at all, whose first argument is an integer, and whose second argument is a person, and as
+
+21
+00:02:14,000 --> 00:02:18,000
+the person developer you sort of have to cross your fingers that nobody else feels like writing that
+
+22
+00:02:18,000 --> 00:02:26,000
+function. I've written those three and I've declared them all in person.h and implemented them all in
+
+23
+00:02:26,000 --> 00:02:30,000
+person.cpp, so let me show them to you now.
+
+24
+00:02:30,000 --> 00:02:36,000
+The two member functions, one that takes a person and one that takes an integer, are inside the person class.
+
+25
+00:02:36,000 --> 00:02:42,000
+I've defined these as member functions of Person. Person class starts here, ends here, and these are public
+
+26
+00:02:42,000 --> 00:02:49,000
+member functions. Now I decided to make this one take a Person reference rather than a person.
+
+27
+00:02:49,000 --> 00:02:53,000
+When we were talking about functions and about passing by value versus passing by reference,
+
+28
+00:02:53,000 --> 00:02:55,000
+it's a little quicker to pass by reference.
+
+29
+00:02:55,000 --> 00:02:59,000
+In fact, there are a series of idioms and patterns that we use when we're writing
+
+30
+00:02:59,000 --> 00:03:05,000
+operator overloads and we use references for a number of reasons, actually have a pattern to use const
+
+31
+00:03:05,000 --> 00:03:09,000
+reference, but since we haven't talked about const yet I'm not going to bring that in, but I have written it
+
+32
+00:03:09,000 --> 00:03:17,000
+to take a person reference, and this one takes an integer. The third function, same name, operator&lt;, same
+
+33
+00:03:17,000 --> 00:03:23,000
+return type, bool, but it takes two parameters, the integer first and then the person, and that's the one
+
+34
+00:03:23,000 --> 00:03:33,000
+that's used in this comparison here. Now the three functions are all implemented in the Person.cpp class.
+
+35
+00:03:33,000 --> 00:03:37,000
+There's no particular rule about where you have to put free functions.
+
+36
+00:03:37,000 --> 00:03:41,000
+I would never take all my free functions from throughout my application and stick them all in one big file
+
+37
+00:03:41,000 --> 00:03:48,000
+called functions. This overload, it may not be part of the Person class, but it should be maintained by the
+
+38
+00:03:48,000 --> 00:03:54,000
+Person developer. It should be written by someone who knows how Person works, and it really belongs in
+
+39
+00:03:54,000 --> 00:03:59,000
+Person.h because anyone who includes Person.h is probably going to need this function.
+
+40
+00:03:59,000 --> 00:04:05,000
+Similarly, the code for it belongs in Person.cpp. We start with functions that you've seen before from the
+
+41
+00:04:05,000 --> 00:04:08,000
+other demos using Person. Let's come down here to the new ones.
+
+42
+00:04:08,000 --> 00:04:14,000
+This operator&lt; is part of the Person class. We call it by its full name, Person:: and it takes a person
+
+43
+00:04:14,000 --> 00:04:21,000
+reference and it just returns whether or not the arbitrarynumber of the person instance the method was
+
+44
+00:04:21,000 --> 00:04:28,000
+called on, that is to say the guy before the operator, is less than the other guy's arbitrarynumber.
+
+45
+00:04:28,000 --> 00:04:31,000
+You could add a more complicated application, but I have to tell you, when I look at comparison operators
+
+46
+00:04:31,000 --> 00:04:35,000
+in the wild they're generally all like this. They're a single line long.
+
+47
+00:04:35,000 --> 00:04:40,000
+They say, return whether the person's salary is greater than the other person's salary.
+
+48
+00:04:40,000 --> 00:04:46,000
+Return whether or not the order total, how that compares to the other order's total or the ship date or the
+
+49
+00:04:46,000 --> 00:04:52,000
+due date or some other single variable. Sometimes you might see a little tie-breaking or a tiny bit of a
+
+50
+00:04:52,000 --> 00:04:59,000
+calculation, but it's common as dirt for these comparison operators to be just really one line of code.
+
+51
+00:04:59,000 --> 00:05:07,000
+(Typing) The one that takes an integer, so we were saying if p1 is less than 300, just compares the member
+
+52
+00:05:07,000 --> 00:05:13,000
+variable of the instance that was before the operator to the number.
+
+53
+00:05:13,000 --> 00:05:16,000
+And the free function, notice its name does not start person::,
+
+54
+00:05:16,000 --> 00:05:22,000
+it just compares the two parameters that it was given, in this case, the integer and
+
+55
+00:05:22,000 --> 00:05:28,000
+the arbitrarynumber of the person. You see that I'm using this public function, GetNumber.
+
+56
+00:05:28,000 --> 00:05:33,000
+That's because this operator&lt; is a free function. It's not in the Person class.
+
+57
+00:05:33,000 --> 00:05:41,000
+It can't access arbitrarynumber directly. arbitrarynumber is private, so I have to use this public GetNumber.
+
+58
+00:05:41,000 --> 00:05:45,000
+Let's run this to show that it works.
+
+59
+00:05:45,000 --> 00:05:54,000
+p1, which was 123, is less than p2, which was 456. Yep. p1 is less than 300; yes, 123 is less than 300,
+
+60
+00:05:54,000 --> 00:05:59,000
+and 300 is not less than p1, also correct, so all of these operators work.
+
+61
+00:05:59,000 --> 00:06:07,000
+It's a good sign. As a rule of thumb, if you're going to implement less than you should probably also
+
+62
+00:06:07,000 --> 00:06:12,000
+implement greater than. You should consider implementing less than or equal to, greater than or equal to, is
+
+63
+00:06:12,000 --> 00:06:18,000
+equal to, and so on. People will be very confused if they can only use one operator and not all the rest of
+
+64
+00:06:18,000 --> 00:06:22,000
+them and it's quite common to implement these in terms of each other.
+
+65
+00:06:22,000 --> 00:06:27,000
+I'm not going to show you all of that, just in the interest of time.
+
+66
+00:06:27,000 --> 00:06:36,000
+I do want to consider the possibility, what would you do if there was no public GetNumber function in Person?
+
+67
+00:06:36,000 --> 00:06:41,000
+This is a completely fake and arbitrary thing, so you know, we stuck a public function in it a long time ago
+
+68
+00:06:41,000 --> 00:06:48,000
+for demo purposes, but it's quite common to write business objects that do not reveal their individual
+
+69
+00:06:48,000 --> 00:06:53,000
+components. If there's a business need for it elsewhere within the application then you would add that
+
+70
+00:06:53,000 --> 00:06:58,000
+public function, but there may not be a business need for it.
+
+71
+00:06:58,000 --> 00:07:05,000
+Would you add a public GetNumber function for no other reason than to let this operator work, and if you
+
+72
+00:07:05,000 --> 00:07:14,000
+didn't, what would be your alternative? Well, in C++, and many other languages don't give this capability,
+
+73
+00:07:14,000 --> 00:07:22,000
+there is a way around this and the motivation for having a way around it has to do with this unfortunate
+
+74
+00:07:22,000 --> 00:07:27,000
+circumstance that some of your operator overloads have to be free functions.
+
+75
+00:07:27,000 --> 00:07:34,000
+They have to be free functions because you can't go into integer and add a method to it, but really,
+
+76
+00:07:34,000 --> 00:07:40,000
+emotionally, spiritually if you will, this is part of Person. It's here in the same files as all the rest of
+
+77
+00:07:40,000 --> 00:07:48,000
+the Person code. It's written by the same developer and yes, if I change this variable's name I'm going to
+
+78
+00:07:48,000 --> 00:07:54,000
+have to rewrite all the Person code. I get that and you know what, I'll rewrite this at the same time,
+
+79
+00:07:54,000 --> 00:08:02,000
+right. Given that I can make an exception to the public private rules for this particular function and copy
+
+80
+00:08:02,000 --> 00:08:09,000
+this line, come up here and say friend, and then paste the line.
+
+81
+00:08:09,000 --> 00:08:13,000
+This doesn't declare a function. I still have to declare it down here.
+
+82
+00:08:13,000 --> 00:08:20,000
+What it does is it says, this is an exception to the rules about what is private and what is public.
+
+83
+00:08:20,000 --> 00:08:26,000
+It doesn't make operator&lt;, that takes an integer and a person somehow a member function of Person,
+
+84
+00:08:26,000 --> 00:08:32,000
+but it does give it those privileges and once those privileges have been given to it,
+
+85
+00:08:32,000 --> 00:08:40,000
+instead of calling this public function GetNumber, I can use this private arbitrarynumber, and I'll
+
+86
+00:08:40,000 --> 00:08:46,000
+just build this to prove to you that it compiles (Typing)
+
+87
+00:08:46,000 --> 00:08:58,000
+and indeed, it does. Without the friend statement (Typing)
+
+88
+00:08:58,000 --> 00:09:04,000
+I get error messages, basically saying I can't access that private member, arbitrarynumber.
+
+89
+00:09:04,000 --> 00:09:08,000
+The friend statement was what made the exception and that made it possible for that
+
+90
+00:09:08,000 --> 00:09:16,000
+operator to access the private variable. You may have heard that the friend keyword in C++ breaks
+
+91
+00:09:16,000 --> 00:09:22,000
+encapsulation and there's no denying it; it does. There I am letting a free function that is not part of
+
+92
+00:09:22,000 --> 00:09:28,000
+Person access Person's private member variables, but it's not part of Person because of a quirk of the way
+
+93
+00:09:28,000 --> 00:09:34,000
+the compiler has you write overloads. We've got the header for it here in Person's header.
+
+94
+00:09:34,000 --> 00:09:41,000
+We've got the code for it here in Person.cpp and if someone comes along and changes the design of Person,
+
+95
+00:09:41,000 --> 00:09:47,000
+they have a to-do-list of things they need to fix. They need to fix all of the methods that are already in
+
+96
+00:09:47,000 --> 00:09:52,000
+Person and yeah, they need to fix this one too, and in case they don't happen to see it down here after the
+
+97
+00:09:52,000 --> 00:09:57,000
+end of the class definition, they'll certainly see it here. This friend forms your to-do-list if you happen
+
+98
+00:09:57,000 --> 00:10:04,000
+to change some of the private insides. The friend keyword has other uses that are less defendable than this
+
+99
+00:10:04,000 --> 00:10:11,000
+one. This is 100% A-OK. It's less okay when you have two classes that share a lot of work and golly this is
+
+100
+00:10:11,000 --> 00:10:14,000
+annoying writing these get things; I think I'll just make them a friend.
+
+101
+00:10:14,000 --> 00:10:19,000
+That's generally a sign that you have misdesigned your pair of classes.
+
+102
+00:10:19,000 --> 00:10:25,000
+Don't let what people tell you about that use of friend mess up this use of friend, which is entirely
+
+103
+00:10:25,000 --> 00:10:30,000
+appropriate and a good practice. If you're writing an operator overload, the only way to write overloads
+
+104
+00:10:30,000 --> 00:10:37,000
+where your type is not before the operator is to write free functions and in many cases, if you don't have
+
+105
+00:10:37,000 --> 00:10:42,000
+public functions available to write those free functions with, you're going to use the friend statement to
+
+106
+00:10:42,000 --> 00:10:46,000
+gain access to the private member variables. It's not wrong.
+
+107
+00:10:46,000 --> 00:10:53,000
+Let's focus back, not on the complexity of the friend statement, but on the simplicity of this code.
+
+108
+00:10:53,000 --> 00:10:59,000
+Because you take the time to write those overloads, which are admittedly a little funny,
+
+109
+00:10:59,000 --> 00:11:06,000
+operator&lt; is a weird function name, you get this super-readable code that uses your object.
+
+110
+00:11:06,000 --> 00:11:11,000
+You put a little effort into writing your class and now the code that uses your class
+
+111
+00:11:11,000 --> 00:11:15,000
+makes perfect sense, as much as it can make sense to ask whether one person is less than another, based on the
+
+112
+00:11:15,000 --> 00:11:20,000
+value of an arbitrarynumber, but imagine you're doing something real, you know dates and purchase orders and
+
+113
+00:11:20,000 --> 00:11:28,000
+things. Using the &lt; here is more readable and more understandable than using a member function like compare
+
+114
+00:11:28,000 --> 00:11:36,000
+or is less than all spelled out i-s-l-e-s-s-t-h-a-n. I love operator overloading.
+
+115
+00:11:36,000 --> 00:11:42,000
+It puts a little effort on the author of a class, but produces very compact and readable code, which is a
+
+116
+00:11:42,000 --> 00:59:00,000
+good thing.
+

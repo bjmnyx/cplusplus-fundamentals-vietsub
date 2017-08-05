@@ -1,0 +1,104 @@
+1
+00:00:01,000 --> 00:00:11,000
+An object is an instance of a class. You might define the class of it might be defined in a library like the string
+
+2
+00:00:11,000 --> 00:00:18,000
+class that we've been using from the standard library. You define your own classes with the class keyword and
+
+3
+00:00:18,000 --> 00:00:23,000
+if you know how to do it in some other languages like java or C#, you may believe you know how to do it in C++.
+
+4
+00:00:23,000 --> 00:00:29,000
+You'll mostly right, the first thing that trips up a lot of people with experience in other languages is there's
+
+5
+00:00:29,000 --> 00:00:36,000
+a trialing semicolon, so it's class, then the name of the class open brace bracket, all of the definition of the class,
+
+6
+00:00:36,000 --> 00:00:40,000
+closed brace bracket and then a semicolon after that last closed bracket.
+
+7
+00:00:40,000 --> 00:00:46,000
+A lot of people forget that one and I mention it because it can cause some really weird error messages that happen
+
+8
+00:00:46,000 --> 00:00:55,000
+on the line after where you define the class. As well, the inside of the class you don't go line by line this
+
+9
+00:00:55,000 --> 00:00:59,000
+element is public, this element is private, this element is private, private, private.
+
+10
+00:00:59,000 --> 00:01:05,000
+Instead you have a section, you say from here down its public and then you hit the private keyword and from
+
+11
+00:01:05,000 --> 00:01:12,000
+here down its private and if you don't say anything, the default is that it's private.
+
+12
+00:01:12,000 --> 00:01:17,000
+C++ won't stop you from declaring public member variables, but you shouldn't, you should have private member
+
+13
+00:01:17,000 --> 00:01:23,000
+variables and a mix of public and private functions depending on your design, you're architecture, what they're
+
+14
+00:01:23,000 --> 00:01:30,000
+used for. So functions that you're offering to other classes to use will be public and those that are your own
+
+15
+00:01:30,000 --> 00:01:38,000
+convenience functions will generally be private. I've mentioned before that one of the hallmarks of C++ is that
+
+16
+00:01:38,000 --> 00:01:44,000
+your classes and classes from libraries you're using really have the same rights and responsibilities and
+
+17
+00:01:44,000 --> 00:01:52,000
+abilities as the fundamental types. So you declare instances of employees or insurance policy or whatever your
+
+18
+00:01:52,000 --> 00:02:00,000
+business objects are just the same way that you declare instances of integers or any of the other fundamental
+
+19
+00:02:00,000 --> 00:02:04,000
+types that we went through in the fundamental types module.
+
+20
+00:02:04,000 --> 00:02:13,000
+When you want to use that object, chances are what you want to do is call some member function of the object or
+
+21
+00:02:13,000 --> 00:02:21,000
+possibly if you made a public variable access a member variable of the object and you would do that using a . syntax.
+
+22
+00:02:21,000 --> 00:02:28,000
+You've seen the scope resolution operator before, the :: between the namespace std and the classname string
+
+23
+00:02:28,000 --> 00:02:38,000
+for example. It also is used for static member variable and static member functions classname:: and then the
+
+24
+00:02:38,000 --> 00:02:45,000
+element that you want to access. We're going to start simpler than that though because before you can start to
+
+25
+00:02:45,000 --> 00:02:51,000
+access member variables and functions of objects we need to be clear about how to define a class and that's
+
+26
+00:02:51,000 --> 00:59:00,000
+where we need to start.
+

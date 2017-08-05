@@ -1,0 +1,904 @@
+1
+00:00:01,000 --> 00:00:06,000
+I'm going to start by showing you manual memory management when there
+
+2
+00:00:06,000 --> 00:00:13,000
+aren't member variables, when you're just working with local storage that has pointers to something on the
+
+3
+00:00:13,000 --> 00:00:18,000
+free store, and those pointers can go out of scope when your local function ends.
+
+4
+00:00:18,000 --> 00:00:21,000
+That will be the start of our complications.
+
+5
+00:00:21,000 --> 00:00:27,000
+Here I'm using a class called Resource. It's very simple. It just has a string in it.
+
+6
+00:00:27,000 --> 00:00:33,000
+It has a constructor that takes a string and I'll show you the code in a second, but it sticks it in this
+
+7
+00:00:33,000 --> 00:00:38,000
+variable, not surprisingly, and a destructor, and it has a GetName that gives you that string back.
+
+8
+00:00:38,000 --> 00:00:42,000
+The constructor does initialize the string, as I mentioned, and it also prints something out, and the
+
+9
+00:00:42,000 --> 00:00:47,000
+destructor prints something out, so we can do some lifecycle tracking.
+
+10
+00:00:47,000 --> 00:00:53,000
+First, I'm going to create a Resource locally on the stack, as it were, and I'll call its GetName using the
+
+11
+00:00:53,000 --> 00:00:58,000
+dot notation and then when we hit this brace it'll go out of scope and you'll see it go out of scope and the
+
+12
+00:00:58,000 --> 00:01:05,000
+destructor run. Just a reminder of how local variables go out of scope when they hit their close brace.
+
+13
+00:01:05,000 --> 00:01:10,000
+Then, I'm going to create a Resource on the free store using operator new.
+
+14
+00:01:10,000 --> 00:01:15,000
+That gives me back a Resource pointer, which I'm putting in as variable pResource, and I'm going to use the
+
+15
+00:01:15,000 --> 00:01:20,000
+arrow notation to call this member function GetName on pResource.
+
+16
+00:01:20,000 --> 00:01:26,000
+Then, I'm going to start doing bad things. The first bad thing I'm going to do is I'm going to make a copy
+
+17
+00:01:26,000 --> 00:01:33,000
+of pResource, put it in this other Resource pointer called p2, and I'll call GetName on that to prove it's
+
+18
+00:01:33,000 --> 00:01:39,000
+still working and then I'll use delete to delete pResource. The first thing I'm going to do is try to use a
+
+19
+00:01:39,000 --> 00:01:47,000
+pointer that I just called delete on, let you see what happens. Then, I'm going to set that to nullptr and
+
+20
+00:01:47,000 --> 00:01:55,000
+delete it again, and then I'm going to try calling p2, and p2 is pointed to some memory on which delete has
+
+21
+00:01:55,000 --> 00:02:00,000
+already been run. This is quite a collection of badness. What's going to happen is I'm going to run it;
+
+22
+00:02:00,000 --> 00:02:06,000
+it's going to blow up; we'll look at the error; I'll comment out the bad line; we'll go like one line further
+
+23
+00:02:06,000 --> 00:02:12,000
+and get the error again, and so on, so let's begin.
+
+24
+00:02:12,000 --> 00:02:16,000
+Free store has stopped working. How far did we get before we stop working?
+
+25
+00:02:16,000 --> 00:02:23,000
+Well, you notice we constructed the local and then destructed it, and we constructed the created with new
+
+26
+00:02:23,000 --> 00:02:28,000
+and then we destructed it.
+
+27
+00:02:28,000 --> 00:02:38,000
+In other words, we got past here. It was no problem trying to get these values from p2 or pResource into
+
+28
+00:02:38,000 --> 00:02:45,000
+these local strings. We deleted this pResource. That caused the destructor to print out that it had cleaned
+
+29
+00:02:45,000 --> 00:02:52,000
+it up, and then when we tried to do this it blew up, and I can prove that quickly with the debugger.
+
+30
+00:02:52,000 --> 00:02:59,000
+I'll put the break point right here and just run to the break point.
+
+31
+00:02:59,000 --> 00:03:01,000
+Okay, we're fine to here.
+
+32
+00:03:01,000 --> 00:03:07,000
+There's some very small output there and when I step over
+
+33
+00:03:07,000 --> 00:03:13,000
+this is where we blow up. When you do this under the debugger the error messages are a little different.
+
+34
+00:03:13,000 --> 00:03:19,000
+You get unhandled exception, bad_alloc. It can be a little harder to read, so I've been trying not to get it
+
+35
+00:03:19,000 --> 00:03:24,000
+to blow up under the debugger, but that's where we were when it blew up.
+
+36
+00:03:24,000 --> 00:03:25,000
+I'm going to stop debugging
+
+37
+00:03:25,000 --> 00:03:27,000
+and close the random piece of the
+
+38
+00:03:27,000 --> 00:03:31,000
+Standard Library that we ended up in. We blew up because of this line,
+
+39
+00:03:31,000 --> 00:03:36,000
+of trying to call GetName on pResource when pResource has been deleted.
+
+40
+00:03:36,000 --> 00:03:45,000
+Let's do that and I'll run it again. (Typing)
+
+41
+00:03:45,000 --> 00:03:49,000
+Oh, this is quite bad, right? We got into a destructor, obviously.
+
+42
+00:03:49,000 --> 00:03:56,000
+It's printing out, destructing, but when it tried to get a hold of the name that's when it blew up.
+
+43
+00:03:56,000 --> 00:04:04,000
+I happen to know which of these two deletes caused the problem and again, I can show you which by using the
+
+44
+00:04:04,000 --> 00:04:08,000
+debugger. (Typing)
+
+45
+00:04:08,000 --> 00:04:16,000
+Okay, we're fine till here. We set pResource to a nullptr. We try to delete a nullptr; that's harmless.
+
+46
+00:04:16,000 --> 00:04:21,000
+You can do that all you want. Delete basically says, is it already nullptr, okay never mind and returns.
+
+47
+00:04:21,000 --> 00:04:26,000
+Nothing bad happens, but when we go to delete p2
+
+48
+00:04:26,000 --> 00:04:29,000
+that's when the bad thing happens and it's simply that
+
+49
+00:04:29,000 --> 00:04:31,000
+p2
+
+50
+00:04:31,000 --> 00:04:32,000
+is pointing to memory that's
+
+51
+00:04:32,000 --> 00:04:36,000
+already been cleaned up and calling delete on it again, it is bad.
+
+52
+00:04:36,000 --> 00:04:42,000
+Now just to prove that it's not the copy that's the problem, I'm going to comment out this line that sets
+
+53
+00:04:42,000 --> 00:04:52,000
+pResource to nullptr. And now if I run, let's move the breakpoint, (Typing)
+
+54
+00:04:52,000 --> 00:05:01,000
+this lines going to make it go boom, and it does.
+
+55
+00:05:01,000 --> 00:05:07,000
+Deleting something that's already been deleted is a bad and dangerous thing to do.
+
+56
+00:05:07,000 --> 00:05:15,000
+If you set it to nullptr it's safe. Here, p2 points to the same place that pResource points to and so, once
+
+57
+00:05:15,000 --> 00:05:21,000
+you've deleted pResource, trying to delete p2 is exactly the same as trying to delete pResource twice.
+
+58
+00:05:21,000 --> 00:05:29,000
+You might think that you would never make these mistakes, trying to talk to an object after you've already
+
+59
+00:05:29,000 --> 00:05:34,000
+deleted it, deleting it twice, those sorts of things. Alright, I'll believe that.
+
+60
+00:05:34,000 --> 00:05:43,000
+Let's comment out all this weirdness (Typing) and just run this to prove that we are currently a balanced
+
+61
+00:05:43,000 --> 00:05:48,000
+application. (Typing)
+
+62
+00:05:48,000 --> 00:05:52,000
+We construct the local one on the stack and then destruct it when it goes out of scope.
+
+63
+00:05:52,000 --> 00:06:00,000
+We construct the free store one by calling new and it gets deleted exactly once; nobody blows up;
+
+64
+00:06:00,000 --> 00:06:03,000
+everybody's happy. Huh. Who said this memory management stuff was tough?
+
+65
+00:06:03,000 --> 00:06:09,000
+I don't know what you're talking about. Well I tell you what, let's just do something relatively mild here.
+
+66
+00:06:09,000 --> 00:06:15,000
+I'm going to make myself an integer and I'm going to make a test to see if that integers 3, and you can tell
+
+67
+00:06:15,000 --> 00:06:21,000
+that it is, and I'm going to return from my function early if it's 3.
+
+68
+00:06:21,000 --> 00:06:30,000
+It could happen. Here's what's going to happen. We will call new and then we will return and we will never
+
+69
+00:06:30,000 --> 00:06:36,000
+delete it. If I run this (Typing)
+
+70
+00:06:36,000 --> 00:06:39,000
+there's no error; there's no blowing up, but do you see what happened?
+
+71
+00:06:39,000 --> 00:06:44,000
+We constructed and destructed local, but we only constructed the created with new.
+
+72
+00:06:44,000 --> 00:06:50,000
+We never destructed it. That's a memory leak. Now this application is about to end,
+
+73
+00:06:50,000 --> 00:06:56,000
+so you know, what harm did the memory leak do? But in a real application if this wasn't my main, but a
+
+74
+00:06:56,000 --> 00:07:06,000
+function that processed something, and if Resource was 1,000 bytes, 10,000 bytes, could easily be, and I leak
+
+75
+00:07:06,000 --> 00:07:11,000
+that many bytes out of the free store, sooner or later when another part of my code tries to get memory from
+
+76
+00:07:11,000 --> 00:07:19,000
+the free store it's going to be told, there isn't any, and that's when the application hangs, and well,
+
+77
+00:07:19,000 --> 00:07:23,000
+back in the day we used to have to reboot the whole machine, but you're still at least going to have to end
+
+78
+00:07:23,000 --> 00:07:29,000
+task your application. Memory leaks can be really crippling and memory leaks happen when you don't delete
+
+79
+00:07:29,000 --> 00:07:34,000
+something. We have code to delete it, but that code doesn't execute because we bailed out in the middle of
+
+80
+00:07:34,000 --> 00:07:39,000
+the function and occasionally, in this material, I refer to exceptions.
+
+81
+00:07:39,000 --> 00:07:43,000
+You may say I'm never going to write return in the middle of a function.
+
+82
+00:07:43,000 --> 00:07:48,000
+Exceptions can do that to you, so you have to think about how can you write your code in such a way
+
+83
+00:07:48,000 --> 00:07:52,000
+that it works even if someone bails out in the middle of a function?
+
+84
+00:07:52,000 --> 00:07:58,000
+Now here, my pointers, pResource, p2, they're local variables, not going anywhere.
+
+85
+00:07:58,000 --> 00:08:03,000
+They don't have a long life themselves, although they point to long-lived things out on the free store.
+
+86
+00:08:03,000 --> 00:08:08,000
+Things get a little weirder when you put a pointer as a member variable of a class.
+
+87
+00:08:08,000 --> 00:08:14,000
+Here, I'm working with the Person class again, but this Person is a little bit changed from the Person that's
+
+88
+00:08:14,000 --> 00:08:20,000
+been kicking around for so long and I want to show you how it looks.
+
+89
+00:08:20,000 --> 00:08:25,000
+Person, in addition to a first name, a last name, and an arbitrarynumber now has a Resource pointer.
+
+90
+00:08:25,000 --> 00:08:31,000
+When I construct a Person I set their Resource pointer to nullptr.
+
+91
+00:08:31,000 --> 00:08:36,000
+Now this particular idiom is one that you would use if something is optional.
+
+92
+00:08:36,000 --> 00:08:42,000
+You might have a Resource or you might not. When you don't have a Resource the pointer is nullptr.
+
+93
+00:08:42,000 --> 00:08:47,000
+When you do have a Resource the pointer points to the one Resource that you have.
+
+94
+00:08:47,000 --> 00:08:53,000
+We have a member variable in Person
+
+95
+00:08:53,000 --> 00:09:00,000
+called AddResource and this member function
+
+96
+00:09:00,000 --> 00:09:07,000
+creates a new Resource and puts that resulting pointer into this member variable, pResource.
+
+97
+00:09:07,000 --> 00:09:14,000
+Here, I make myself a local Person. I'm going to call AddResource and then I guess my work is done.
+
+98
+00:09:14,000 --> 00:09:17,000
+Let's see what happens.
+
+99
+00:09:17,000 --> 00:09:22,000
+Constructing Resource for Kate Gregory and we're done, so this is a memory leak.
+
+100
+00:09:22,000 --> 00:09:26,000
+We never destructed it. That was foolish.
+
+101
+00:09:26,000 --> 00:09:32,000
+Now there's nothing wrong with allocating my Resource out on the free store with new.
+
+102
+00:09:32,000 --> 00:09:37,000
+In fact, it's the only way that I can get a Resource that lives longer than this function.
+
+103
+00:09:37,000 --> 00:09:48,000
+If I just created some local variable (Typing)
+
+104
+00:09:48,000 --> 00:09:55,000
+and then said the pResource (Typing) is equal to the address of r,
+
+105
+00:09:55,000 --> 00:10:05,000
+the minute we come out of scope here, (Typing) r goes out of scope.
+
+106
+00:10:05,000 --> 00:10:08,000
+It's cleaned up, and pResource is now pointing to something that's been cleaned up
+
+107
+00:10:08,000 --> 00:10:13,000
+and you saw how badly that worked out in the other demo where trying to talk to something that's already been
+
+108
+00:10:13,000 --> 00:10:19,000
+cleaned up causes crashing. You can't do this.
+
+109
+00:10:19,000 --> 00:10:26,000
+You want a Resource that lives out on the free store so that it lives longer than AddResource function runs.
+
+110
+00:10:26,000 --> 00:10:31,000
+So the solution to the memory leak is there needs to be a delete somewhere, so we can
+
+111
+00:10:31,000 --> 00:10:42,000
+go into the destructor for Person and say, (Typing) cleanup that pResource pointer.
+
+112
+00:10:42,000 --> 00:10:49,000
+That's all. I don't need to check to see if it's okay to delete it or not because it started out as nullptr,
+
+113
+00:10:49,000 --> 00:10:54,000
+and as I mentioned, you can call delete on nullptr and it's harmless.
+
+114
+00:10:54,000 --> 00:11:01,000
+So I'll just call delete on it because nullptr nothing will happen, but if it was set with AddResource
+
+115
+00:11:01,000 --> 00:11:07,000
+it'll call delete on it. Let's run this.
+
+116
+00:11:07,000 --> 00:11:12,000
+One constructing, one destructing. We're back in balance. Hooray.
+
+117
+00:11:12,000 --> 00:11:18,000
+That works, but only because the person who wrote the main hasn't done anything bad yet.
+
+118
+00:11:18,000 --> 00:11:25,000
+What I want to do is to write a Person class that is thoroughly robust to people doing, well bad's not the
+
+119
+00:11:25,000 --> 00:11:30,000
+right word, ordinary stuff that happens to be dangerous, running with scissors as it were.
+
+120
+00:11:30,000 --> 00:11:34,000
+Here's one thing a person might do, they might call AddResource twice.
+
+121
+00:11:34,000 --> 00:11:38,000
+Probably not on consecutive lines like this, but if it's a big, complicated application with lots of code
+
+122
+00:11:38,000 --> 00:11:43,000
+passed through it, and it happens to come across the AddResource call more than once, what is my app going to
+
+123
+00:11:43,000 --> 00:11:56,000
+do about that? And here, to make it easier to tell them apart, let's call SetName, (Typing)
+
+124
+00:11:56,000 --> 00:12:00,000
+so that the Resources, they build their name from the name of the Person
+
+125
+00:12:00,000 --> 00:12:04,000
+and we'll be able to tell them apart. I'll run these,
+
+126
+00:12:04,000 --> 00:12:10,000
+and we're back to having a memory leak. We constructed the first one for Kate, then we constructed a second
+
+127
+00:12:10,000 --> 00:12:15,000
+one for Kate2, and we ended up only cleaning up the one for Kate2.
+
+128
+00:12:15,000 --> 00:12:20,000
+The one for Kate is just sitting out there still on the free store forever, causing a memory leak.
+
+129
+00:12:20,000 --> 00:12:25,000
+Why? Because we gave this the name AddResource and that's what it does.
+
+130
+00:12:25,000 --> 00:12:32,000
+It just adds another Resource out on the free store for us. It should probably have a different name.
+
+131
+00:12:32,000 --> 00:12:34,000
+I'm going to leave its name alone, but I'm going to fix its code.
+
+132
+00:12:34,000 --> 00:12:40,000
+If there is an existing pResource already, we need to get rid of it; clean it up.
+
+133
+00:12:40,000 --> 00:12:48,000
+I'm just going to copy this line from the destructor. (Typing)
+
+134
+00:12:48,000 --> 00:12:50,000
+Again, if pResource is nullptr this is harmless,
+
+135
+00:12:50,000 --> 00:12:54,000
+but if there is a pResource this'll clean it up and then we'll new up a fresh one.
+
+136
+00:12:54,000 --> 00:12:57,000
+Let's test it.
+
+137
+00:12:57,000 --> 00:13:03,000
+Much better. We're back in balance. We construct the Kate, clean it up, construct the Kate2, and,
+
+138
+00:13:03,000 --> 00:13:07,000
+eventually, clean that up when the Person object goes out of scope and its destructor cleans up its
+
+139
+00:13:07,000 --> 00:13:09,000
+Resource.
+
+140
+00:13:09,000 --> 00:13:15,000
+Okay, we're starting to create a person class that is managing this Resource appropriately,
+
+141
+00:13:15,000 --> 00:13:16,000
+but again, we need to be
+
+142
+00:13:16,000 --> 00:13:20,000
+robust to the sorts of things that people might do when they're consuming our Person class, so
+
+143
+00:13:20,000 --> 00:13:27,000
+here's another behavior that maybe you didn't count on. I am making a copy of Kate and putting it in another
+
+144
+00:13:27,000 --> 00:13:33,000
+Person object called Kate2. The compiler will actually construct a Kate2 object and copy each member
+
+145
+00:13:33,000 --> 00:13:38,000
+variable over from Kate to Kate2. That's the default behavior.
+
+146
+00:13:38,000 --> 00:13:43,000
+The first name will get copied over, the last name, the arbitrarynumber, and the pResource pointer,
+
+147
+00:13:43,000 --> 00:13:47,000
+and then you know what's going to happen? When we hit this close brace right here
+
+148
+00:13:47,000 --> 00:13:53,000
+this Person object's going to go out of scope and this Person object is going to go out of scope.
+
+149
+00:13:53,000 --> 00:13:58,000
+The first one who goes out of scope will delete pResource. That's great.
+
+150
+00:13:58,000 --> 00:14:03,000
+Clean up the free store; life is good. Then, the other one will go out of scope and will also
+
+151
+00:14:03,000 --> 00:14:08,000
+attempt to clean up the very same thing. It's just like over here
+
+152
+00:14:08,000 --> 00:14:14,000
+in this example where we deleted pResource and then we deleted the copy of it, p2.
+
+153
+00:14:14,000 --> 00:14:21,000
+Here, on code you don't see, when Kate and Kate2 go out of scope they will each try to delete their own copy
+
+154
+00:14:21,000 --> 00:14:29,000
+of that pointer. The second one, well, it's not going to be good.
+
+155
+00:14:29,000 --> 00:14:37,000
+There we go. We're tucking along nicely, but we have that extra destructing and it's blown up -- exactly the
+
+156
+00:14:37,000 --> 00:14:41,000
+same problem. We're trying to delete something twice.
+
+157
+00:14:41,000 --> 00:14:48,000
+What can we do to protect ourself against somebody doing this? You could say, no copying people.
+
+158
+00:14:48,000 --> 00:14:52,000
+The Person class is not for copying and there's even a way that you can get the compiler to help you with
+
+159
+00:14:52,000 --> 00:14:58,000
+that, but I'm going to guess that that's probably not a rule you want to impose.
+
+160
+00:14:58,000 --> 00:15:03,000
+After all, it would make it impossible to pass it to a function by value, for example.
+
+161
+00:15:03,000 --> 00:15:12,000
+We have to teach the system how to copy Person objects safely and we do that by writing what's called a copy
+
+162
+00:15:12,000 --> 00:15:16,000
+constructor. I'm going to go into Person
+
+163
+00:15:16,000 --> 00:15:24,000
+and here, with the existing constructor that we already have, I'm going to add another constructor. (Typing)
+
+164
+00:15:24,000 --> 00:15:34,000
+You know it's a constructor. It doesn't have a return type and it takes a const Person reference p.
+
+165
+00:15:34,000 --> 00:15:37,000
+Now I need to implement my
+
+166
+00:15:37,000 --> 00:15:40,000
+copy constructor. (Typing)
+
+167
+00:15:40,000 --> 00:15:50,000
+I'm going to copy this one, but my parameters is not all these individual bits and pieces, (Typing)
+
+168
+00:15:50,000 --> 00:15:58,000
+so const Person reference p. (Typing)
+
+169
+00:15:58,000 --> 00:16:13,000
+And I'm going to initialize using the member variables of p. (Typing)
+
+170
+00:16:13,000 --> 00:16:20,000
+Finally, for pResource, I don't want to copy over p's pResource.
+
+171
+00:16:20,000 --> 00:16:23,000
+I could, but that's the problem that got us here, right?
+
+172
+00:16:23,000 --> 00:16:27,000
+This is what the compiler generated for me automatically. I need to do something better.
+
+173
+00:16:27,000 --> 00:16:34,000
+In fact, what I need to do is make my own Resource up on the free store and have a different pointer that
+
+174
+00:16:34,000 --> 00:16:39,000
+points to that different resource on the free store. Now that different Resource can have the same values
+
+175
+00:16:39,000 --> 00:16:49,000
+in it, so what I'm going to initialize this to is a new Resource, and remember it takes a string.
+
+176
+00:16:49,000 --> 00:17:00,000
+I'm going to get the string by calling old p's pResource's GetName. (Typing)
+
+177
+00:17:00,000 --> 00:17:06,000
+This copy constructor will just bitwise copy over the other three member variables; they're harmless, they're
+
+178
+00:17:06,000 --> 00:17:14,000
+just strings of numbers. And for pResource I'm going to ask the old pResource for its name and pass that in
+
+179
+00:17:14,000 --> 00:17:23,000
+when constructing a brand new pResource of my own. Okay. Let's give it a whirl.
+
+180
+00:17:23,000 --> 00:17:28,000
+You can see that we are paired up nice and neat -- constructing, destructing,
+
+181
+00:17:28,000 --> 00:17:31,000
+two constructing's, two destructing's. Everything's in balance. There's no leak.
+
+182
+00:17:31,000 --> 00:17:33,000
+We're not blowing up,
+
+183
+00:17:33,000 --> 00:17:40,000
+so we got through this person choosing to construct a fresh Person object from the Person object we already
+
+184
+00:17:40,000 --> 00:17:46,000
+had. That's not the only kind of copying that happens. There's also, what's called the Copy Assignment, so
+
+185
+00:17:46,000 --> 00:17:54,000
+if I take my existing, fully-constructed Kate, which has a Resource, and assign it to Kate2, which is also
+
+186
+00:17:54,000 --> 00:18:00,000
+fully-constructed and has a Resource, the copy constructor is not what makes this happen.
+
+187
+00:18:00,000 --> 00:18:07,000
+What makes this happen is the assignment operator. That's an overloaded operator just like operator&lt; or
+
+188
+00:18:07,000 --> 00:18:12,000
+operator &gt; or operator += and the other operators we've talked about, and that, by default _____ a
+
+189
+00:18:12,000 --> 00:18:17,000
+bitwise copy, and I guess you know what that means. It'll copy the pointer over and when they go out of
+
+190
+00:18:17,000 --> 00:18:20,000
+scope they'll both have the same pointer
+
+191
+00:18:20,000 --> 00:18:23,000
+and we'll well go boom.
+
+192
+00:18:23,000 --> 00:18:27,000
+Just like that.
+
+193
+00:18:27,000 --> 00:18:33,000
+In order to protect against this behavior we have to write an overload of assignment operator.
+
+194
+00:18:33,000 --> 00:18:39,000
+I'll put that down here with the other operators and the signature, rather like the signature of
+
+195
+00:18:39,000 --> 00:18:44,000
+the copy constructor, it's not yours to choose. This is the signature of an assignment operator.
+
+196
+00:18:44,000 --> 00:18:54,000
+It returns a Person reference, that's so you can write x = y = zed, and its name is operator= and it takes a
+
+197
+00:18:54,000 --> 00:19:08,000
+const Person reference p. Now let's implement it. (Typing)
+
+198
+00:19:08,000 --> 00:19:17,000
+I need to get the pieces over and this is a handy way to do it. (Typing)
+
+199
+00:19:17,000 --> 00:19:23,000
+I can't use the initializer syntax in an operator overload the way I can in a constructor,
+
+200
+00:19:23,000 --> 00:19:54,000
+but I can just reduce my typing this way. (Typing)
+
+201
+00:19:54,000 --> 00:20:00,000
+Here I'm copying the three member variables over, p.firstname, p.lastname, p.arbitrarynumber being copied
+
+202
+00:20:00,000 --> 00:20:06,000
+into the appropriate member variables here, and I can new up a pResource, but there's something I have to do
+
+203
+00:20:06,000 --> 00:20:09,000
+first. In the case where we were using the copy
+
+204
+00:20:09,000 --> 00:20:16,000
+constructor, here, Kate2 was not already constructed and obviously didn't have a pResource.
+
+205
+00:20:16,000 --> 00:20:23,000
+But here, where we're going in the other direction, Kate has a pResource that's pointing to something
+
+206
+00:20:23,000 --> 00:20:26,000
+on the free store and if I wipe that
+
+207
+00:20:26,000 --> 00:20:32,000
+value of pResource out, putting in the pointer I get from this second called a new, I'm never going to free
+
+208
+00:20:32,000 --> 00:20:41,000
+the old stuff. So before, I new up something to put into pResource I've got to delete what is already in
+
+209
+00:20:41,000 --> 00:20:46,000
+There. And again, remember if it was a nullptr that's fine; that's harmless.
+
+210
+00:20:46,000 --> 00:20:55,000
+Almost forgot, we have to return something and the equals operator always returns *this.
+
+211
+00:20:55,000 --> 00:21:02,000
+We've come all this way and never talked about this yet. This is a pointer that all member functions have
+
+212
+00:21:02,000 --> 00:21:08,000
+secretly available, but because we haven't been living a very pointery life we haven't used it yet, that
+
+213
+00:21:08,000 --> 00:21:12,000
+represents the object itself. When this line of code runs
+
+214
+00:21:12,000 --> 00:21:19,000
+Kate = Kate2, this will point to Kate. When Kate.SetFirstName runs
+
+215
+00:21:19,000 --> 00:21:24,000
+this will point to Kate and when Kate.AddResource runs it will point to Kate.
+
+216
+00:21:24,000 --> 00:21:32,000
+If somebody called Kate2.SetName, this would point to Kate2 during that execution of SetName.
+
+217
+00:21:32,000 --> 00:21:37,000
+It's, in fact, the mechanism by which member functions can get to the right member variable.
+
+218
+00:21:37,000 --> 00:21:42,000
+This is a pointer. We don't return a pointer; we return a reference, so we dereference it with star.
+
+219
+00:21:42,000 --> 00:21:48,000
+Star this, that's what usually return from an operator equals. Now let's run it. (Typing)
+
+220
+00:21:48,000 --> 00:21:54,000
+We have four pairs and they match up. We construct and destruct here.
+
+221
+00:21:54,000 --> 00:22:01,000
+Then we have two constructs, one destruct, so a net of one, another construct, so for a net of two, and then
+
+222
+00:22:01,000 --> 00:22:05,000
+two destructs. No leaks. No booms.
+
+223
+00:22:05,000 --> 00:22:10,000
+We have finally constructed a fully robust Person class.
+
+224
+00:22:10,000 --> 00:22:18,000
+Because Person had a meaningful destructor, we had to write a meaningful copy constructor,
+
+225
+00:22:18,000 --> 00:22:23,000
+and a meaningful operator= or assignment operator, two names for the
+
+226
+00:22:23,000 --> 00:59:00,000
+same thing, and I will not deny to you, this is totally work.
+

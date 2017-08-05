@@ -1,0 +1,112 @@
+1
+00:00:02,000 --> 00:00:09,000
+Let's add some casts to the demo, to make the warnings go away.
+
+2
+00:00:09,000 --> 00:00:19,000
+I'll just Rebuild the Solution, so that you can see the warnings.
+
+3
+00:00:19,000 --> 00:00:30,000
+Now I've commented out all of the character code again, so these warnings are putting that double 2.2 into i4.
+
+4
+00:00:30,000 --> 00:00:37,000
+Forcing our Boolean to take an integer and forcing our Boolean to take a double.
+
+5
+00:00:37,000 --> 00:00:42,000
+If I go to each of these in turn and cast, here's how it's done.
+
+6
+00:00:42,000 --> 00:00:47,000
+Say round bracket, the type you would like to turn it to, close round bracket.
+
+7
+00:00:47,000 --> 00:00:54,000
+This says, take d1 convert it to an integer and I asked for it so please don't warn me about what the consequences
+
+8
+00:00:54,000 --> 00:00:59,000
+might be and now that that's an integer, go ahead and stick that into i4, which will of course trigger no warning
+
+9
+00:00:59,000 --> 00:01:03,000
+because sticking an integer into an integer is fine.
+
+10
+00:01:03,000 --> 00:01:12,000
+Let's try doing the same thing here with our flag. Take i1 and cast it to a bool and we'll take d1 and we'll cast it
+
+11
+00:01:12,000 --> 00:01:28,000
+a bool also and I'll Build the project again. Now interestingly, the casts don't really make the bool any happier
+
+12
+00:01:28,000 --> 00:01:34,000
+because you're still taking the number and converting it to a bool and there's still a possible performance
+
+13
+00:01:34,000 --> 00:01:41,000
+warning associated with it, but you notice that the other warning has gone away and there's a better way to solve
+
+14
+00:01:41,000 --> 00:01:48,000
+this problem when we get into flow of control and infrastructure and so on, you'll see how to do that.
+
+15
+00:01:48,000 --> 00:01:56,000
+Here, we have at least gotten rid of the warning that came from this possible loss of data and so you can see that
+
+16
+00:01:56,000 --> 00:02:00,000
+putting casts in takes some of your compiler error messages away.
+
+17
+00:02:00,000 --> 00:02:04,000
+Now if I run the application using Ctrl+F5
+
+18
+00:02:04,000 --> 00:02:08,000
+the output is exactly the same as on all of the other runs.
+
+19
+00:02:08,000 --> 00:02:17,000
+You still have the truncated value 2 put into i4, nothing in casting suddenly enables us to stick doubles into
+
+20
+00:02:17,000 --> 00:02:21,000
+integers and have them stick around as doubles, they get truncated into integers.
+
+21
+00:02:21,000 --> 00:02:28,000
+We've only made the compiler behavior change, we haven't made any of the runtime behavior change at all.
+
+22
+00:02:28,000 --> 00:02:34,000
+So casts are really just a way of telling the compiler, I know what I'm doing, please don't bother me about it anymore
+
+23
+00:02:34,000 --> 00:02:41,000
+and I said I'd show you the L suffix, let's just go here and stick an L on that.
+
+24
+00:02:41,000 --> 00:02:48,000
+So now, I'm going to initialize out integer i1 to a long 1.
+
+25
+00:02:48,000 --> 00:02:52,000
+Now normally longs don't fit in integers, but because 1 is small the compiler actually isn't going to have an
+
+26
+00:02:52,000 --> 00:03:03,000
+opinion about this. So is just compile with the keystroke, and you see I just get the same two warnings about the
+
+27
+00:03:03,000 --> 00:03:10,000
+bool as before. So it's perfectly happy to 1 into our integer and 1L is a number despite the fact that it doesn't
+
+28
+00:03:10,000 --> 00:59:00,000
+really look like 1 and it wouldn't be 1 if you wrote it on a piece of paper.
+

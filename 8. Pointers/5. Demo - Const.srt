@@ -1,0 +1,300 @@
+1
+00:00:01,000 --> 00:00:07,000
+Here I have an ordinary console application and I'm using the Person class once again, and I've also declared
+
+2
+00:00:07,000 --> 00:00:11,000
+a little function here up above the main. Let's take a look at what the main does --
+
+3
+00:00:11,000 --> 00:00:17,000
+starts really simple. I make a local integer called i, then I make a constant integer called ci.
+
+4
+00:00:17,000 --> 00:00:19,000
+They both happen to have the same value in them.
+
+5
+00:00:19,000 --> 00:00:26,000
+I'm allowed to change the value of i, but if I try to change the value of ci I get wigglies.
+
+6
+00:00:26,000 --> 00:00:30,000
+Error. Expression must be a modifiable lvalue.
+
+7
+00:00:30,000 --> 00:00:35,000
+Const variables aren't modifiable, so modifying them gets you an error message.
+
+8
+00:00:35,000 --> 00:00:40,000
+Let's take a look at this function DoubleIt. Right now it takes its parameter by value.
+
+9
+00:00:40,000 --> 00:00:48,000
+Let's change it so that it takes it's parameter by reference. This causes an error here.
+
+10
+00:00:48,000 --> 00:00:59,000
+Why? Because 10 is not modifiable. If I have code in here that I don't know, makes x 4, that's allowed
+
+11
+00:00:59,000 --> 00:01:05,000
+and it would change what was passed to it, so here when we called it with j it would change j and in here it
+
+12
+00:01:05,000 --> 00:01:10,000
+would try to change the 10, which is just weird. Now, there's no particular reason to take an integer by
+
+13
+00:01:10,000 --> 00:01:14,000
+Reference. The cost of copying an integer is not important,
+
+14
+00:01:14,000 --> 00:01:19,000
+but many people are in the habit of taking things by reference, just, it's a habit and they do it.
+
+15
+00:01:19,000 --> 00:01:24,000
+When you take something by reference then you should try to take it by const reference.
+
+16
+00:01:24,000 --> 00:01:28,000
+Now making that change makes this line happy, but now you notice it's made this
+
+17
+00:01:28,000 --> 00:01:32,000
+line unhappy and this unhappiness here is, well, what are you doing?
+
+18
+00:01:32,000 --> 00:01:37,000
+It must be modifiable, right? Because once you've said it's a const reference you can't change it.
+
+19
+00:01:37,000 --> 00:01:41,000
+Let's take that away. Now we have, generally, a happy compiler.
+
+20
+00:01:41,000 --> 00:01:46,000
+Any time you're going to write a function that takes something by reference and you might pass a literal,
+
+21
+00:01:46,000 --> 00:01:52,000
+like 10, to it it needs to take it by a const reference, and that's what you saw in the template.
+
+22
+00:01:52,000 --> 00:01:59,000
+We had const t ref. We take those things by reference because operators should take their parameters by
+
+23
+00:01:59,000 --> 00:02:06,000
+reference for a variety of reasons and if you're going to pass literal constants like 33 and 44
+
+24
+00:02:06,000 --> 00:02:10,000
+then it has to be a const reference.
+
+25
+00:02:10,000 --> 00:02:17,000
+Now I've got some code that's going to work with objects. I have a Person object called Kate, and I can call
+
+26
+00:02:17,000 --> 00:02:22,000
+SetNumber on that, and then I have a const Person called cKate and I have some commented out code that's
+
+27
+00:02:22,000 --> 00:02:30,000
+going to try to talk to it. Let's uncomment this one, (Typing) trying to call SetNumber, and see I get an
+
+28
+00:02:30,000 --> 00:02:34,000
+error message, and it's not quite as good as the error message when you were trying to change the value of
+
+29
+00:02:34,000 --> 00:02:40,000
+the constant int, but the object has type qualifiers that are not compatible with the member function.
+
+30
+00:02:40,000 --> 00:02:44,000
+It's a constant; I'm trying to set its number; that's a bad thing.
+
+31
+00:02:44,000 --> 00:02:50,000
+You know what, if I uncomment this line I also get an error here.
+
+32
+00:02:50,000 --> 00:02:53,000
+Same thing: type qualifiers that are not compatible with the member function.
+
+33
+00:02:53,000 --> 00:02:58,000
+We look at GetNumber and we're like, that doesn't change any member variables.
+
+34
+00:02:58,000 --> 00:03:01,000
+Let's take a look at the definition of it.
+
+35
+00:03:01,000 --> 00:03:03,000
+It just returns number. It doesn't change anything.
+
+36
+00:03:03,000 --> 00:03:08,000
+How could this possibly be a problem? Well here's the deal.
+
+37
+00:03:08,000 --> 00:03:13,000
+When the compiler has this line to process it doesn't go and look at all the code for GetNumber.
+
+38
+00:03:13,000 --> 00:03:17,000
+In fact, it doesn't have access to all the code for GetNumber in some cases.
+
+39
+00:03:17,000 --> 00:03:22,000
+Right?, that may be off in some cpp. For the particular case of Person the code is
+
+40
+00:03:22,000 --> 00:03:26,000
+inline in the header file, but you can't count on that, and even if it was available, it's not a good use of
+
+41
+00:03:26,000 --> 00:03:33,000
+the compiler's time to be rooting through your code to look and see if it changes any member variables.
+
+42
+00:03:33,000 --> 00:03:41,000
+Instead, the way that you say this function doesn't change any member variables is you put the word const in
+
+43
+00:03:41,000 --> 00:03:49,000
+your declaration. Now notice, if I put const here I have to build in order to get my header file parsed, but
+
+44
+00:03:49,000 --> 00:03:55,000
+I get errors. (Typing)
+
+45
+00:03:55,000 --> 00:04:01,000
+Specifically here, arbitrarynumber cannot be modified because it is being accessed through a const object.
+
+46
+00:04:01,000 --> 00:04:05,000
+By saying its SetNumber was const now my code won't compile because you know what,
+
+47
+00:04:05,000 --> 00:04:11,000
+SetNumber's not a const function of Person. It changes a member variable of person.
+
+48
+00:04:11,000 --> 00:04:18,000
+Compiler won't let you lie here, so take that away. The compiler will let me say that GetNumber is const.
+
+49
+00:04:18,000 --> 00:04:24,000
+Well, it will also let me say that GetName is const and when you have something declared in the cpp
+
+50
+00:04:24,000 --> 00:04:30,000
+you need to put the const in both places
+
+51
+00:04:30,000 --> 00:04:35,000
+here. Now GetName is const because I put it in both places.
+
+52
+00:04:35,000 --> 00:04:38,000
+GetNumber's only in the header, so I only need to put it there.
+
+53
+00:04:38,000 --> 00:04:44,000
+SetNumber isn't const. It changes member variables of Person.
+
+54
+00:04:44,000 --> 00:04:50,000
+If you look down the rest of these operators you can probably also put some const correctness in here
+
+55
+00:04:50,000 --> 00:04:55,000
+relatively simply. You know that the operator&lt; doesn't change the Person
+
+56
+00:04:55,000 --> 00:05:00,000
+that you're comparing to and doesn't change this person either.
+
+57
+00:05:00,000 --> 00:05:05,000
+This is not by reference, so it's harmless, but we'll put that it doesn't change this.
+
+58
+00:05:05,000 --> 00:05:13,000
+And the friend, the free function, can't have a const modifier out here because it's a free function.
+
+59
+00:05:13,000 --> 00:05:20,000
+It doesn't have access to member variables of Person, but I can say that it takes a const ref.
+
+60
+00:05:20,000 --> 00:05:21,000
+Then, for those that are
+
+61
+00:05:21,000 --> 00:05:25,000
+implemented here in the cpp, while they don't match I'll get warnings
+
+62
+00:05:25,000 --> 00:05:29,000
+saying, uh I don't know why you're telling me about the operator&lt; that takes a Person reference.
+
+63
+00:05:29,000 --> 00:05:34,000
+As far as I know you don't have one of those. It's true. I only have an operator&lt; the text of const Person
+
+64
+00:05:34,000 --> 00:05:41,000
+reference. I also need to add this here that it doesn't change it, any of the member variables of the class,
+
+65
+00:05:41,000 --> 00:05:54,000
+and here. And this isn't a member function, so I wouldn't put the const out on the end there.
+
+66
+00:05:54,000 --> 00:06:00,000
+I have red wigglies here. They tell me that I'm not allowed to access arbitrarynumber.
+
+67
+00:06:00,000 --> 00:06:03,000
+It's a little confusing because, didn't we make it a friend?
+
+68
+00:06:03,000 --> 00:06:09,000
+No, we made this one a friend. (Typing) Now that one's a friend.
+
+69
+00:06:09,000 --> 00:06:14,000
+If you think, as you go to write the function, do I change the things I'm passed
+
+70
+00:06:14,000 --> 00:06:18,000
+if I'm taking them by reference? Immediately put that const in there.
+
+71
+00:06:18,000 --> 00:06:22,000
+You don't have to go through this process of fixing it up afterwards.
+
+72
+00:06:22,000 --> 00:06:28,000
+Let's go back now. Notice we have red wigglies underneath call to SetNumber, but not to GetNumber, and
+
+73
+00:06:28,000 --> 00:06:35,000
+that's really what you would expect. GetNumber doesn't change the person; it's a perfectly safe thing to
+
+74
+00:06:35,000 --> 00:06:42,000
+call on a const Person. SetNumber does, and no amount of adding the word const is going to fix that.
+
+75
+00:06:42,000 --> 00:59:00,000
+In fact, when we tried making SetNumber a const function it failed.
+

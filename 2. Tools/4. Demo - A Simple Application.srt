@@ -1,0 +1,380 @@
+1
+00:00:02,000 --> 00:00:09,000
+Once you have Visual C++ Express installed, you need to learn how to use it.
+
+2
+00:00:09,000 --> 00:00:18,000
+I am going to show you around it using some code that is already written and that I know runs.
+
+3
+00:00:18,000 --> 00:00:28,000
+This is the Visual C++ Express product, and there are a lot of, kind of moving parts here that I want to show you.
+
+4
+00:00:28,000 --> 00:00:36,000
+First, this large or at least largest of them all window, is the sort of main editor pane where you edit your code.
+
+5
+00:00:36,000 --> 00:00:42,000
+And then there are various tool windows that each have their name, like this one is the output window,
+
+6
+00:00:42,000 --> 00:00:49,000
+and you can close them with the X, or just unpin them with this pin so that they are down here on a little pane
+
+7
+00:00:49,000 --> 00:00:54,000
+and you can click them to make them come back up, or close them completely.
+
+8
+00:00:54,000 --> 00:01:01,000
+This sort of standard configuration, here's the editor and here's my Solution Explorer, is what most people
+
+9
+00:01:01,000 --> 00:01:10,000
+have open when they're working on a C++ application. Now if you are using a product other than Visual C++ Express,
+
+10
+00:01:10,000 --> 00:01:14,000
+if you are using some other copy of Visual Studio that you had around, your Solution Explorer may
+
+11
+00:01:14,000 --> 00:01:18,000
+not be on the left like this, it may be over here on the right.
+
+12
+00:01:18,000 --> 00:01:23,000
+If you want, you can change your settings in that other application to C++ settings,
+
+13
+00:01:23,000 --> 00:01:29,000
+and then it will look more like this. Or you can just kind of map between the two as you follow along.
+
+14
+00:01:29,000 --> 00:01:36,000
+Now there are less menus and tool bars in the Express additions of Visual Studio than in the Pro,
+
+15
+00:01:36,000 --> 00:01:40,000
+Premium, and Ultimate versions, but there's still plenty of menu items.
+
+16
+00:01:40,000 --> 00:01:46,000
+And I am not going to walk through all of these and explain them all in turn, I will just show you how to do
+
+17
+00:01:46,000 --> 00:01:52,000
+some things, and you will start to get comfortable with the menus and with the tool bar options as we go.
+
+18
+00:01:52,000 --> 00:02:00,000
+So what I have here in the editor window, is a very, very simple C++ application.
+
+19
+00:02:00,000 --> 00:02:05,000
+No doubt you have heard of the concept of saying hello world as your first application, this is slightly
+
+20
+00:02:05,000 --> 00:02:12,000
+more sophisticated. It will actually say hello to whoever introduces themselves to it.
+
+21
+00:02:12,000 --> 00:02:18,000
+And I am going to, before I show you any of the code, simply run it so that you can see how it works.
+
+22
+00:02:18,000 --> 00:02:26,000
+And in order to run it, I need to use a command that's actually not in the menus for Visual C++ Express,
+
+23
+00:02:26,000 --> 00:02:29,000
+and that's the run without debugging command.
+
+24
+00:02:29,000 --> 00:02:35,000
+You can see that there is a perhaps familiar green triangle here labeled Start Debugging (F5).
+
+25
+00:02:35,000 --> 00:02:39,000
+I don't want to debug this application, I just want to run it, and that's Control+F5,
+
+26
+00:02:39,000 --> 00:02:44,000
+so I am going to hold Control and press F5.
+
+27
+00:02:44,000 --> 00:02:49,000
+And my application runs, this is a very large DOS prompt for this size of screen, let me just shrink it a little.
+
+28
+00:02:49,000 --> 00:02:56,000
+So this DOS prompt or command box is what console applications run in, and it's put some letters on the
+
+29
+00:02:56,000 --> 00:03:04,000
+screen, it says Type your name. If I type my name and press enter, it says Hello Kate, Press any key to continue.
+
+30
+00:03:04,000 --> 00:03:10,000
+This is what we call a console application, and all of the IO is in the form of text, either text the program
+
+31
+00:03:10,000 --> 00:03:16,000
+types to me, or texts that I type back to the program. So I am just going to press a key,
+
+32
+00:03:16,000 --> 00:03:23,000
+and we have finished running the application and we are now back in Visual C++ Express.
+
+33
+00:03:23,000 --> 00:03:28,000
+In a little while I am going to explain this code to you in slightly more detail.
+
+34
+00:03:28,000 --> 00:03:36,000
+But I'd like to start by just kind of taking this as a given and showing you some of what Vision Studio can
+
+35
+00:03:36,000 --> 00:03:42,000
+do for you before you have to start to learn what all of the different pieces of this code mean.
+
+36
+00:03:42,000 --> 00:03:48,000
+Programs in C++ are made up of statements, and statements generally speaking, end with a semi-colon, just as
+
+37
+00:03:48,000 --> 00:03:56,000
+they do in C# and Java and the other languages that we often call semi-colon brace bracket languages.
+
+38
+00:03:56,000 --> 00:04:01,000
+So I would like to show you what happens if I take the semi-colon off the end of a line where it belongs.
+
+39
+00:04:01,000 --> 00:04:09,000
+So for example here, if I delete this semi-colon, one thing that happens is that this margin color here
+
+40
+00:04:09,000 --> 00:04:18,000
+becomes yellow. Green in the margin indicates a saved change and yellow indicates an unsaved change.
+
+41
+00:04:18,000 --> 00:04:23,000
+So if I click the Save icon up here, it goes back to being green.
+
+42
+00:04:23,000 --> 00:04:29,000
+The other lines are green because I edited them just before this demo started.
+
+43
+00:04:29,000 --> 00:04:36,000
+But you may also notice that there is a little red underline here underneath this closed brace bracket.
+
+44
+00:04:36,000 --> 00:04:42,000
+And if you hover over it, it actually says Error: expected a semi-colon, and this is a compiler error,
+
+45
+00:04:42,000 --> 00:04:48,000
+happening in the editor before I have deliberately compiled my code.
+
+46
+00:04:48,000 --> 00:04:54,000
+Let's say for a moment that I didn't spot that red wiggly, I didn't know what it meant, or I just didn't see
+
+47
+00:04:54,000 --> 00:05:00,000
+it there and I'd like to try compiling my code. Compiling your application, takes your code
+
+48
+00:05:00,000 --> 00:05:04,000
+and prepares it to be an executable.
+
+49
+00:05:04,000 --> 00:05:09,000
+Technically speaking, in C++ we have a compile step and then a link step.
+
+50
+00:05:09,000 --> 00:05:15,000
+Compiling is done once to each of your source files and then linking pulls them all together into an executable.
+
+51
+00:05:15,000 --> 00:05:22,000
+We only have one source file in here, this Hello.cpp, so we will compile it and then immediately link it together.
+
+52
+00:05:22,000 --> 00:05:27,000
+And that combination of compiling all of your source files and then linking the resulting objects into an
+
+53
+00:05:27,000 --> 00:05:35,000
+executable, is known just as build the solution. So on the debug menu, there is this command to
+
+54
+00:05:35,000 --> 00:05:43,000
+Build Solution and I can select this command. Now you see that at the last line of by build output says
+
+55
+00:05:43,000 --> 00:05:52,000
+that one failed, 0 succeeded. I have a problem. Let's just pin this in place so that we can see.
+
+56
+00:05:52,000 --> 00:05:58,000
+In this line of output is my error message. So if I scroll past the path to the file, I can see it's a
+
+57
+00:05:58,000 --> 00:06:02,000
+syntax error missing semi-colon before brace bracket.
+
+58
+00:06:02,000 --> 00:06:07,000
+Now it tells you what line the problem happened on, happened on line 16.
+
+59
+00:06:07,000 --> 00:06:15,000
+And if I put my cursor on line 16, you can see down here that's line 15, column 10, for what that matters, and
+
+60
+00:06:15,000 --> 00:06:21,000
+the actual problem is on the next line because we hit the brace bracket without adding a semi-colon in between.
+
+61
+00:06:21,000 --> 00:06:26,000
+But that would be a very poor way to try to find your error messages and deal with them to look for line
+
+62
+00:06:26,000 --> 00:06:30,000
+numbers and then go in here and move the cursor around until the line number looked right.
+
+63
+00:06:30,000 --> 00:06:35,000
+All you need to do is just double-click the line with the error on it
+
+64
+00:06:35,000 --> 00:06:39,000
+and you are taken directly to that line here in the editor.
+
+65
+00:06:39,000 --> 00:06:46,000
+You also get the message repeated here, syntax error: missing semi-colon before brace bracket.
+
+66
+00:06:46,000 --> 00:06:56,000
+So if I fix the mistake by putting the semi-colon back and build again, you can see that it succeeded.
+
+67
+00:06:56,000 --> 00:07:06,000
+One succeeded, zero failed. I want to just keep making pretty much the same edit and carrying forward so
+
+68
+00:07:06,000 --> 00:07:11,000
+that you can see some of the things that Vision Studio does for you automatically.
+
+69
+00:07:11,000 --> 00:07:17,000
+If I edit away the semi-colon again, this time we have a little more time to look around and notice some other things.
+
+70
+00:07:17,000 --> 00:07:26,000
+There's a star that shows up here on the name of this file. If you have many files open at once, one of
+
+71
+00:07:26,000 --> 00:07:32,000
+them is sort of current at a time, and it is highlighted like this, but any with unsaved changes
+
+72
+00:07:32,000 --> 00:07:38,000
+will have this star on them. And if you save them by clicking the Save button,
+
+73
+00:07:38,000 --> 00:07:43,000
+then the changes will obviously be saved, the star will go away, the yellow will turn to green and so on.
+
+74
+00:07:43,000 --> 00:07:48,000
+What a lot of people don't know, is that when you build with unsaved changes like this,
+
+75
+00:07:48,000 --> 00:07:56,000
+it is saved for you automatically. So you saw the yellow turned green, the star went away,
+
+76
+00:07:56,000 --> 00:08:04,000
+and it automatically saved our change as part of the build process. So you don't need to save and then build.
+
+77
+00:08:04,000 --> 00:08:10,000
+If you are a really confident person or you've gotten used to looking for those red wiggly underlines and you
+
+78
+00:08:10,000 --> 00:08:15,000
+know that when they are not there you are pretty much going to run successfully,
+
+79
+00:08:15,000 --> 00:08:18,000
+you can just go straight to running without building first.
+
+80
+00:08:18,000 --> 00:08:24,000
+So if I use Control+F5 to run the application, it says all of this is out of date,
+
+81
+00:08:24,000 --> 00:08:29,000
+would you like to build it? And you can even say I want to always build it, don't show this again.
+
+82
+00:08:29,000 --> 00:08:32,000
+Whether you say yes or no, then that will be your answer for all time.
+
+83
+00:08:32,000 --> 00:08:37,000
+I am just going to say yes without ticking the box. So it saves everything, builds everything,
+
+84
+00:08:37,000 --> 00:08:45,000
+and it is going to work and then it will immediately run and greet me.
+
+85
+00:08:45,000 --> 00:08:52,000
+So at this point, you know how to edit code, you know how to build code, and you know how to run code without debugging.
+
+86
+00:08:52,000 --> 00:08:56,000
+I just want to take a moment and show you why I have been running without debugging.
+
+87
+00:08:56,000 --> 00:09:02,000
+If I just click the green triangle to start debugging, but I don't have any breakpoints or any places inside
+
+88
+00:09:02,000 --> 00:09:09,000
+my code for it to stop, the application will just run and then terminate because it is finished.
+
+89
+00:09:09,000 --> 00:09:19,000
+So I'll run it. I get a slightly smaller font here because my debug settings are a little different from my
+
+90
+00:09:19,000 --> 00:09:26,000
+non-debug ones, but I'll enter my name. And it's gone, and you are like, where did my app go?
+
+91
+00:09:26,000 --> 00:09:32,000
+I didn't get to see my output. Well because it just finished, you didn't have any breakpoints.
+
+92
+00:09:32,000 --> 00:09:38,000
+So there are some ways to get around this, like putting a breakpoint in your application for no other reason
+
+93
+00:09:38,000 --> 00:09:45,000
+than to give you a chance to read the output. Or putting a statement in your code that causes it to stop and wait.
+
+94
+00:09:45,000 --> 00:09:51,000
+The way I deal with this is I just use Control+F5, and then you automatically get that press any key to continue.
+
+95
+00:09:51,000 --> 00:59:00,000
+That's what works for me and that's what I am going to be doing in the demos for you.
+

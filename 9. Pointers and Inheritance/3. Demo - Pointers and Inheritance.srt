@@ -1,0 +1,376 @@
+1
+00:00:02,000 --> 00:00:07,000
+We've been using the Person and Tweeter hierarchy throughout this material.
+
+2
+00:00:07,000 --> 00:00:09,000
+Let's use it again.
+
+3
+00:00:09,000 --> 00:00:16,000
+Here I have a very simple console app that's going to create some pointers to Person objects and Tweeter
+
+4
+00:00:16,000 --> 00:00:22,000
+objects, and it's going to make a bunch of method calls on those pointers.
+
+5
+00:00:22,000 --> 00:00:27,000
+There are a lot of different versions of Person kicking around, depending on what I want to demonstrate.
+
+6
+00:00:27,000 --> 00:00:29,000
+Let me just quickly show you the
+
+7
+00:00:29,000 --> 00:00:33,000
+header file for Person. It just has firstname, lastname, arbitrarynumber,
+
+8
+00:00:33,000 --> 00:00:38,000
+doesn't really have any operator overloads or anything much going on, and has some Get and Set functions
+
+9
+00:00:38,000 --> 00:00:46,000
+here -- GetName, GetNumber, SetNumber, and SetFirstName -- and these are just easy functions for me to call
+
+10
+00:00:46,000 --> 00:00:51,000
+and see what happens within the class.
+
+11
+00:00:51,000 --> 00:00:54,000
+Tweeter
+
+12
+00:00:54,000 --> 00:01:02,000
+inherits from Person and has this overload of GetName. Any two functions with the same name we call
+
+13
+00:01:02,000 --> 00:01:09,000
+overloading, even if they're in entirely different and unrelated classes, so we have operator overloads and
+
+14
+00:01:09,000 --> 00:01:15,000
+this is certainly an overload. We have GetName here in Person and in Tweeter, and there's been a number of
+
+15
+00:01:15,000 --> 00:01:22,000
+objects and classes showing up over time in demos with GetName functions in them.
+
+16
+00:01:22,000 --> 00:01:27,000
+With GetName, in addition to being an overload, is also an override.
+
+17
+00:01:27,000 --> 00:01:36,000
+I want the Tweeter GetName to be somehow different from the Person GetName, so let's be reminded of what the
+
+18
+00:01:36,000 --> 00:01:43,000
+Person's GetName does. It just returns the firstname and then a space and then the lastname.
+
+19
+00:01:43,000 --> 00:01:49,000
+In here we have an attempt at writing a Tweeter GetName. We'll go with the firstname, the lastname, and the
+
+20
+00:01:49,000 --> 00:01:58,000
+twitterhandle, but you notice there are red wiggles. If I hover over them they say, Error, Personlastname
+
+21
+00:01:58,000 --> 00:02:05,000
+bla bla bla bla bla is inaccessible, and the same for Personfirstname, inaccessible.
+
+22
+00:02:05,000 --> 00:02:09,000
+Let's go back to Person.
+
+23
+00:02:09,000 --> 00:02:17,000
+Right. They're private. Private member variables are not accessible by any code outside the class.
+
+24
+00:02:17,000 --> 00:02:25,000
+I have a couple of options for how to make this right. One, would be to add individual GetFirstName and
+
+25
+00:02:25,000 --> 00:02:32,000
+GetLastName public functions to Person for no other reason than to let Tweeter call them.
+
+26
+00:02:32,000 --> 00:02:36,000
+That's a bad idea. I see people do it a lot, but it's a bad idea.
+
+27
+00:02:36,000 --> 00:02:41,000
+Another would be to change this private to protected. (Typing)
+
+28
+00:02:41,000 --> 00:02:47,000
+Protected is a language keyword that says it's private unless the code is in a class that inherits from this class,
+
+29
+00:02:47,000 --> 00:02:55,000
+then it can do what it likes and party on the data. I consider protected to be a to-do list.
+
+30
+00:02:55,000 --> 00:03:00,000
+Right now GetName returns firstname space lastname, but if you have a business requirement
+
+31
+00:03:00,000 --> 00:03:05,000
+to suddenly change that to lastname comma space firstname, if these variables are protected,
+
+32
+00:03:05,000 --> 00:03:11,000
+you're going to have to go looking for GetName elsewhere in classes that inherit from Person
+
+33
+00:03:11,000 --> 00:03:15,000
+and depending on your platform architecture it may be a challenge to find all the classes that inherit from
+
+34
+00:03:15,000 --> 00:03:21,000
+Person and change them to print out first names and last names the new, approved way.
+
+35
+00:03:21,000 --> 00:03:27,000
+My preference: leave this private and use this perfectly good GetName function that's already been
+
+36
+00:03:27,000 --> 00:03:32,000
+written. That way, if anyone ever changes GetName in the base class we'll get the changed behavior in the
+
+37
+00:03:32,000 --> 00:03:38,000
+derived class, much smarter. I'll just go back into Tweeter.cpp
+
+38
+00:03:38,000 --> 00:03:43,000
+take these, and what I want is to call Person's GetName. (Typing)
+
+39
+00:03:43,000 --> 00:03:51,000
+Where am I going to get a Person object to use the dot syntax on, some pdot GetName?
+
+40
+00:03:51,000 --> 00:03:59,000
+Well, I don't have one, but I can still call it from in here by using its full name. (Typing)
+
+41
+00:03:59,000 --> 00:04:04,000
+Return Person GetName. Now, I'm in a position where if someone makes a change in the base class I'll just
+
+42
+00:04:04,000 --> 00:04:10,000
+naturally get that change in the derived class. I don't have to worry about private and protected anymore.
+
+43
+00:04:10,000 --> 00:04:14,000
+I'm not trying to talk to private variables. This is all good.
+
+44
+00:04:14,000 --> 00:04:17,000
+That makes my project compile, but that wasn't really what we came here for, right?
+
+45
+00:04:17,000 --> 00:04:24,000
+We really came here to see what happens if I talk to some objects using different kinds of pointers,
+
+46
+00:04:24,000 --> 00:04:25,000
+so let's go back
+
+47
+00:04:25,000 --> 00:04:34,000
+and look at this in main. I'm creating a Person on the free store and, by the way, forgetting to delete it.
+
+48
+00:04:34,000 --> 00:04:39,000
+It's a deliberate memory leak here. I'm creating a Tweeter, also on the free store, which I do remember
+
+49
+00:04:39,000 --> 00:04:47,000
+to delete, and I'm creating a Person pointer that's equal to this Tweeter pointer, so just two ways of
+
+50
+00:04:47,000 --> 00:04:54,000
+looking at the same piece of memory out on the free store. And then, I'm going to call GetName on the Kate
+
+51
+00:04:54,000 --> 00:05:00,000
+pointer that I got from newing up a Person on the KateGregcons pointer, which is a Tweeter pointer that I got
+
+52
+00:05:00,000 --> 00:05:07,000
+from newing up a Tweeter, and on the pKateGregcons, which is a Person pointer that came from newing up a
+
+53
+00:05:07,000 --> 00:05:15,000
+Tweeter. Remember that the Person GetName just prints their name; the Tweeter GetName prints their handle
+
+54
+00:05:15,000 --> 00:05:20,000
+as well. Let's run this,
+
+55
+00:05:20,000 --> 00:05:32,000
+and here's what happens. When I use the Person pointer, which is pointing to a real Person object, not
+
+56
+00:05:32,000 --> 00:05:38,000
+surprisingly, I get Person output. When I use the Tweeter pointer, which is pointing to a real Tweeter
+
+57
+00:05:38,000 --> 00:05:45,000
+object, not surprisingly, I get Tweeter output. When I use a Person pointer, which is really pointing to a
+
+58
+00:05:45,000 --> 00:05:56,000
+Tweeter, I get Person output. Some of you might have expected differently, but GetName in Person.h
+
+59
+00:05:56,000 --> 00:06:02,000
+is not virtual, and because it's not virtual I will always get Person output.
+
+60
+00:06:02,000 --> 00:06:10,000
+If I want to see a Tweeter code for GetName run even when I'm using a Person pointer, as long as it's really
+
+61
+00:06:10,000 --> 00:06:17,000
+a Tweeter object that the Person pointer is pointing to, I need to make GetName virtual.
+
+62
+00:06:17,000 --> 00:06:21,000
+Now, I'll only need to do this here in the base class. I don't need to do it in Tweeter.
+
+63
+00:06:21,000 --> 00:06:27,000
+You can if you want as a form of documentation. And I don't need to do it throughout all of the inheritance hierarchy.
+
+64
+00:06:27,000 --> 00:06:35,000
+I can just make this single change here and then just run it,
+
+65
+00:06:35,000 --> 00:06:41,000
+and you see now the Tweeter code ran even though we were using a Person pointer because it really points to
+
+66
+00:06:41,000 --> 00:06:49,000
+a Tweeter object, and when the function's virtual that's what drives it.
+
+67
+00:06:49,000 --> 00:06:55,000
+Once I have a virtual function in Person I will have a virtual table and I will take that small performance
+
+68
+00:06:55,000 --> 00:07:01,000
+hit. At that point, a rule kicks in. Now it's not a compiler rule.
+
+69
+00:07:01,000 --> 00:07:05,000
+I don't have any warnings from the compiler. This is a best practices rule.
+
+70
+00:07:05,000 --> 00:07:10,000
+I want you to kind of go on a thought experiment with me. Imagine
+
+71
+00:07:10,000 --> 00:07:19,000
+that I new this Tweeter up and I don't call delete using the Tweeter pointer, but instead I call delete
+
+72
+00:07:19,000 --> 00:07:28,000
+using the Person pointer that points to the same place. The destructor for Person and Tweeter is currently
+
+73
+00:07:28,000 --> 00:07:29,000
+non-virtual.
+
+74
+00:07:29,000 --> 00:07:34,000
+Here is a destructor. This destructor actually doesn't do anything and we'd be better off taking it away,
+
+75
+00:07:34,000 --> 00:07:38,000
+but bear with me. We have this destructor; it's not virtual.
+
+76
+00:07:38,000 --> 00:07:47,000
+If instead of deleting the Tweeter pointer, we called delete on the Person pointer, you know what would happen?
+
+77
+00:07:47,000 --> 00:07:55,000
+The Person destructor would run. So what? Well, it depends on the class.
+
+78
+00:07:55,000 --> 00:08:03,000
+If Tweeter manages something, like it opens a file, and its destructor needs to close the file, and I delete
+
+79
+00:08:03,000 --> 00:08:08,000
+a Tweeter object using a Person pointer, I still want to run the Tweeter destructor.
+
+80
+00:08:08,000 --> 00:08:12,000
+I still want to close the file or release the lock or let go of the database connection or whatever my
+
+81
+00:08:12,000 --> 00:08:21,000
+destructor's going to do. How can I prevent this leak where we called the wrong destructor?
+
+82
+00:08:21,000 --> 00:08:26,000
+How can I be sure that if the object being deleted is really a Tweeter object that the Tweeter destructor
+
+83
+00:08:26,000 --> 00:08:31,000
+runs? By having the destructor be virtual. Now some people
+
+84
+00:08:31,000 --> 00:08:35,000
+go so far as to say that all destructors should be virtual. (Typing)
+
+85
+00:08:35,000 --> 00:08:41,000
+I don't agree with that. That just makes the overhead of virtual functions come into every class
+
+86
+00:08:41,000 --> 00:08:46,000
+whether they're needed or not, but a really good rule is the minute you have one virtual function,
+
+87
+00:08:46,000 --> 00:08:54,000
+clearly you're expecting to be using pointers and an inheritance hierarchy, and for virtuality to matter.
+
+88
+00:08:54,000 --> 00:08:57,000
+There's a really good chance that somebody might call delete on a Person pointer that was really pointing to
+
+89
+00:08:57,000 --> 00:09:04,000
+a Tweeter object, and despite the fact that as the Person author I have no idea what might get added to Tweeter,
+
+90
+00:09:04,000 --> 00:09:08,000
+I feel safest making the destructor virtual at this point.
+
+91
+00:09:08,000 --> 00:09:12,000
+Don't make the destructor virtual before there are any other virtual functions,
+
+92
+00:09:12,000 --> 00:09:16,000
+but the minute there's one virtual function get in there and make the destructor virtual.
+
+93
+00:09:16,000 --> 00:09:21,000
+It will save you from a really subtle bug that is extraordinarily hard to track down if you don't just
+
+94
+00:09:21,000 --> 00:59:00,000
+happen to recognize this pattern and this best practice.
+

@@ -1,0 +1,52 @@
+1
+00:00:04,000 --> 00:00:14,000
+In all of the code you've seen so far, you've had some lines that start with this #, or hash, or pound symbol.
+
+2
+00:00:14,000 --> 00:00:20,000
+Most famously you've seen the include statement. This is a directive to the pre-processor.
+
+3
+00:00:20,000 --> 00:00:26,000
+It actually just combines the file in together. So when you say include Person.h, it picks a copy of all the
+
+4
+00:00:26,000 --> 00:00:32,000
+lines in Person.h and plunks them in right where that line appeared.
+
+5
+00:00:32,000 --> 00:00:37,000
+People can do some very powerful and interesting things with pre-processor directives.
+
+6
+00:00:37,000 --> 00:00:43,000
+We've talked a couple times about I'm doing a debug, you could also do a release build and things are different
+
+7
+00:00:43,000 --> 00:00:49,000
+in a debug build then they are in a release build and you can actually use the pre-processor to make different
+
+8
+00:00:49,000 --> 00:00:55,000
+versions of functions for example, that have more output in them during a debug, and less output in for example
+
+9
+00:00:55,000 --> 00:01:03,000
+a release build. I don't want to go down the road of all the things you can do with the pre-processor, many
+
+10
+00:01:03,000 --> 00:01:10,000
+people try to use it as little as possible. They really just use it for includes, but there's one thing you
+
+11
+00:01:10,000 --> 00:01:15,000
+do need to be able to see when you see it in other peoples code and to be able to do it in your own and that's
+
+12
+00:01:15,000 --> 00:01:23,000
+the convenience of not having to memorize the structure of all of the headers that your system uses.
+
+13
+00:01:23,000 --> 00:59:00,000
+There's a concept known as include guards. This is easiest to see in a demo, so let's just get straight into it.
+

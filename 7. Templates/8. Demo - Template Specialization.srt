@@ -1,0 +1,384 @@
+1
+00:00:01,000 --> 00:00:06,000
+Let's try to accumulate people.
+
+2
+00:00:06,000 --> 00:00:11,000
+There's no operator+ defined for people, so it's not going to work, but that's good.
+
+3
+00:00:11,000 --> 00:00:16,000
+That gives us an opportunity to write a specialization. (Typing)
+
+4
+00:00:16,000 --> 00:00:22,000
+Here's our accumulator class, as we saw at the end of the last demo, and you may have already noticed that
+
+5
+00:00:22,000 --> 00:00:28,000
+Person is already in this project. I'm going to paste in some code because watching large quantities of
+
+6
+00:00:28,000 --> 00:00:40,000
+typing is never entertaining (Typing) and this code works because there is an include of Person.h here also.
+
+7
+00:00:40,000 --> 00:00:46,000
+You can see that I'm going to declare sort of a dummy person. The first name and last name are both quotes
+
+8
+00:00:46,000 --> 00:00:57,000
+and the arbitrarynumber is 0. This can be our start. Now, whether we define adding people to mean tacking
+
+9
+00:00:57,000 --> 00:01:03,000
+all their names together, so that Kate Gregory plus Someone Else is Kate Someone Gregory Else.
+
+10
+00:01:03,000 --> 00:01:08,000
+Maybe these are our employees and arbitrarynumber is their salary and I want to figure out our total salary burden,
+
+11
+00:01:08,000 --> 00:01:13,000
+so I'm going to add up everybody's arbitrarynumber. That's probably a better way of thinking about it.
+
+12
+00:01:13,000 --> 00:01:17,000
+Either way, I've got this sort of dummy person and then I'm going to make an accumulation of persons, called
+
+13
+00:01:17,000 --> 00:01:24,000
+people, and I'll use that dummy person as the start because the starting value needs to be of the type of
+
+14
+00:01:24,000 --> 00:01:31,000
+whatever it is we're accumulating. Declare a couple people and stick them in, just exactly in the way that
+
+15
+00:01:31,000 --> 00:01:40,000
+we declared accumulator and plus equaled them into the accumulator of strings, we'll += our Person objects
+
+16
+00:01:40,000 --> 00:01:48,000
+into the accumulator of persons. And then people.GetTotal will give us a Person.
+
+17
+00:01:48,000 --> 00:01:53,000
+We can use the dot syntax and call whatever member variable we want on it, like GetNumber.
+
+18
+00:01:53,000 --> 00:02:01,000
+It makes sense, but when you go to build it, and I'm just using the key strokes here, (Typing)
+
+19
+00:02:01,000 --> 00:02:09,000
+whew, error messages like you wouldn't believe. Now, there are an awful lot of them,
+
+20
+00:02:09,000 --> 00:02:15,000
+but what they basically boil down to is the +. Scroll out this way.
+
+21
+00:02:15,000 --> 00:02:25,000
+I couldn't figure out what to do in order to handle the += when I wanted to accumulate these Person objects.
+
+22
+00:02:25,000 --> 00:02:31,000
+Interestingly, it's only going to complain on these two lines.
+
+23
+00:02:31,000 --> 00:02:38,000
+If I comment out these lines and then build,
+
+24
+00:02:38,000 --> 00:02:40,000
+the build succeeds.
+
+25
+00:02:40,000 --> 00:02:46,000
+The compiler has no objection to me declaring an accumulator of Person objects.
+
+26
+00:02:46,000 --> 00:02:54,000
+It has no objection to me trying to call the GetTotal member function of that accumulator
+
+27
+00:02:54,000 --> 00:02:59,000
+and it knows that GetTotal will return a Person, so I can call GetNumber on that.
+
+28
+00:02:59,000 --> 00:03:04,000
+All of this is great. The only part it didn't like was the +=.
+
+29
+00:03:04,000 --> 00:03:11,000
+And the reason it didn't like the +=? Because Person, for all the operators and goodness that it has,
+
+30
+00:03:11,000 --> 00:03:18,000
+does not have an operator+, does not have a way to add two Person objects together.
+
+31
+00:03:18,000 --> 00:03:23,000
+Now I have three opportunities as a developer to try to solve this problem.
+
+32
+00:03:23,000 --> 00:03:29,000
+One is I could say, ah you know what, I don't need an accumulation of Person objects to figure out
+
+33
+00:03:29,000 --> 00:03:37,000
+their salary burden. I'll just make an accumulator of int and then I'll go through my people and instead of
+
+34
+00:03:37,000 --> 00:03:47,000
+adding a person, p1, into my accumulator, I'll call p1.GetNumber and I'll put the resulting integer into my
+
+35
+00:03:47,000 --> 00:03:54,000
+accumulator. It's okay. It might be repetitive, you might have to type .GetNumber a lot, and you're sort of
+
+36
+00:03:54,000 --> 00:04:02,000
+pulling some of the business logic about a person out into this calling code, so you have to know to call
+
+37
+00:04:02,000 --> 00:04:06,000
+GetNumber. You're also of course, giving up type safety. People can put any old integer into that
+
+38
+00:04:06,000 --> 00:04:12,000
+accumulator and the compiler will let them whereas, when we have an accumulator of Persons we have that type
+
+39
+00:04:12,000 --> 00:04:20,000
+safety that people can't put anything else in there. Imagine even a very generic loop, if it has to write
+
+40
+00:04:20,000 --> 00:04:25,000
+different code for Persons by calling GetNumber, that's kind of awkward, so a generically-written loop would
+
+41
+00:04:25,000 --> 00:04:29,000
+be tripped up by the fact that, oh, but for Persons we can't use the accumulator;
+
+42
+00:04:29,000 --> 00:04:34,000
+we have to remember to call GetNumber, so let's rule out that possibility.
+
+43
+00:04:34,000 --> 00:04:38,000
+The next choice is that I could write + for Person.
+
+44
+00:04:38,000 --> 00:04:43,000
+I have Person.h right here in my project. I could totally go in and write the + operator for Person.
+
+45
+00:04:43,000 --> 00:04:52,000
+I could write a free function for Person that constructs a new Person that's somehow bigger, based on the
+
+46
+00:04:52,000 --> 00:04:56,000
+arbitrary number of the person I'm adding it to. It'd be a little bit of a challenge.
+
+47
+00:04:56,000 --> 00:05:02,000
+There is no public set name function in Person, so I don't know how I'd set the name of the new person.
+
+48
+00:05:02,000 --> 00:05:06,000
+I could use GetNumber and SetNumber; that's all fine, kind of awkward.
+
+49
+00:05:06,000 --> 00:05:12,000
+What I want to show you and what is, in many cases, the only approach that will work is to write a template
+
+50
+00:05:12,000 --> 00:05:18,000
+specialization for Accum that says here's how you handle the special case of Person.
+
+51
+00:05:18,000 --> 00:05:22,000
+The first time you find a template not working for you, you may find a bit of a work-around, the equivalent
+
+52
+00:05:22,000 --> 00:05:26,000
+of calling GetNumber and then, oh yeah it works great with ints. That's fine.
+
+53
+00:05:26,000 --> 00:05:30,000
+You know how to call a member function. I don't need to spend any more time on that.
+
+54
+00:05:30,000 --> 00:05:35,000
+The second time you find a template that doesn't work for you, maybe you just find a work-around by writing
+
+55
+00:05:35,000 --> 00:05:39,000
+the operator as a free function or by going into the class and writing the operator.
+
+56
+00:05:39,000 --> 00:05:45,000
+That's a good choice, especially if having that public operator anyway has other value in your program, but
+
+57
+00:05:45,000 --> 00:05:50,000
+the day is going to come when you want to use a template, maybe even a template that you wrote.
+
+58
+00:05:50,000 --> 00:05:53,000
+It doesn't work with your class; there's just no work-arounds;
+
+59
+00:05:53,000 --> 00:05:58,000
+you can't write the operator because it's already written and you don't want to accept what it does;
+
+60
+00:05:58,000 --> 00:06:00,000
+and you need to write a template specialization.
+
+61
+00:06:00,000 --> 00:06:08,000
+It's not a hard thing to do at all, so let me show you. In fact, in the case of accumulator, we gain a real
+
+62
+00:06:08,000 --> 00:06:16,000
+benefit by writing a specialization, which is that we can actually change the type of our running total while
+
+63
+00:06:16,000 --> 00:06:20,000
+we're at it. Let's go into Accum.h
+
+64
+00:06:20,000 --> 00:06:27,000
+and I'm just going to copy all of this (Typing) and put it here.
+
+65
+00:06:27,000 --> 00:06:33,000
+When you write a specialization the brackets here become empty, but they don't go away.
+
+66
+00:06:33,000 --> 00:06:38,000
+You still say, I am writing a template. That way the compiler, when it goes to do the template
+
+67
+00:06:38,000 --> 00:06:45,000
+instantiation, looks at this one too. Here, I say this is the specialization for Person.
+
+68
+00:06:45,000 --> 00:06:52,000
+This is how you write an Accum of Person objects. Now I have no more T placeholder, so I need to take it
+
+69
+00:06:52,000 --> 00:06:58,000
+away. Most of the time you run through and just mechanically change T to the type you're writing a
+
+70
+00:06:58,000 --> 00:07:05,000
+specialization for, which would be person in this case, but you know, it doesn't really make a lot of sense
+
+71
+00:07:05,000 --> 00:07:10,000
+for the running total of my Person objects to be a person. The name doesn't mean anything, so I'm actually
+
+72
+00:07:10,000 --> 00:07:17,000
+going to take an opportunity here and say, you know what, my running total is an integer, and I'm going to
+
+73
+00:07:17,000 --> 00:07:26,000
+an integer for my starting value that I will initialize total to and my += will return an integer.
+
+74
+00:07:26,000 --> 00:07:36,000
+Now it's going to take a person and it'll return total equals total, but I can't say + t because you can't
+
+75
+00:07:36,000 --> 00:07:41,000
+add -- take an integer, and add a person to it, so here's where I'll call GetNumber.
+
+76
+00:07:41,000 --> 00:07:47,000
+And notice the compiler understands that t is a person and gives me IntelliSense here,
+
+77
+00:07:47,000 --> 00:07:58,000
+so I can call GetNumber and then my GetTotal will return an integer.
+
+78
+00:07:58,000 --> 00:08:03,000
+All my red wigglies have gone away. I'm going to take this const out of here and
+
+79
+00:08:03,000 --> 00:08:09,000
+I'm just going to have to ask you to trust me. I told you that it had to be there for when people passed
+
+80
+00:08:09,000 --> 00:08:16,000
+constants like three. There isn't such a thing really as the equivalent of a literal person and,
+
+81
+00:08:16,000 --> 00:08:19,000
+at the moment, it wouldn't compile if I left it in.
+
+82
+00:08:19,000 --> 00:08:24,000
+When we get to the const material you will understand why and that's not very far away, so trust me.
+
+83
+00:08:24,000 --> 00:08:28,000
+Let's go back to the Main now.
+
+84
+00:08:28,000 --> 00:08:34,000
+We don't need this fake person for start purposes (Typing) and I can actually just pass in the starting value
+
+85
+00:08:34,000 --> 00:08:42,000
+that I want of 0, make a couple of people, and now I can accumulate those people.
+
+86
+00:08:42,000 --> 00:08:49,000
+Now people is of type integer rather than Person, so I --- do need to call GetTotal, but I don't need to call
+
+87
+00:08:49,000 --> 00:08:59,000
+GetNumber on that, so I can just do this. See we have no wigglies, but I will build it just to confirm.
+
+88
+00:08:59,000 --> 00:09:01,000
+Build succeeds.
+
+89
+00:09:01,000 --> 00:09:03,000
+Now let's run it.
+
+90
+00:09:03,000 --> 00:09:07,000
+10 and hello world are from our old demo; they still work.
+
+91
+00:09:07,000 --> 00:09:10,000
+And you notice it's also now printed out 579
+
+92
+00:09:10,000 --> 00:09:18,000
+and if I look at my two people, 123 + 456 is indeed 579, so we successfully accumulated these two people
+
+93
+00:09:18,000 --> 00:09:22,000
+building up an integer running total and which we were able to print out.
+
+94
+00:09:22,000 --> 00:09:26,000
+It really wasn't hard to write the specialization for person. When the day comes that you need to write a
+
+95
+00:09:26,000 --> 00:09:32,000
+template specialization, you know how, and if you find yourself arguing about whether or not template
+
+96
+00:09:32,000 --> 00:59:00,000
+specializations need to exist, you've seen an example of what they can be good for.
+

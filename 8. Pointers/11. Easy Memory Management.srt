@@ -1,0 +1,104 @@
+1
+00:00:01,000 --> 00:00:06,000
+Are you thinking, there must be a better way? You're darn right there must be a better way.
+
+2
+00:00:06,000 --> 00:00:13,000
+Listen, if you're a library writer maybe you would deal with this, but in your regular, everyday life just
+
+3
+00:00:13,000 --> 00:00:21,000
+writing a Person class there is such a nicer way to do it. You see, C++, especially C++ 11, has what are
+
+4
+00:00:21,000 --> 00:00:31,000
+known as smart pointers. Smart pointers are objects that you allocate in local storage, on the stack, as a
+
+5
+00:00:31,000 --> 00:00:36,000
+member variable, whatever. They're solid objects. They're not pointers, despite their names.
+
+6
+00:00:36,000 --> 00:00:42,000
+They have a pointer inside them. When the smart pointer goes out of scope you know what his destructor does?
+
+7
+00:00:42,000 --> 00:00:46,000
+He calls delete for you. It's such a simple thing. It's actually templated.
+
+8
+00:00:46,000 --> 00:00:52,000
+It'll work with any kind of pointers. A T pointer, so you can give it an integer pointer or a Person pointer
+
+9
+00:00:52,000 --> 00:01:00,000
+or a Resource pointer, Employee pointer, whatever, and when you construct it it keeps a copy of that pointer.
+
+10
+00:01:00,000 --> 00:01:05,000
+When it goes out of scope the destructor does delete on that pointer.
+
+11
+00:01:05,000 --> 00:01:14,000
+No memory leak and it can't happen twice. It can't happen two few times, too many times. You're safe.
+
+12
+00:01:14,000 --> 00:01:20,000
+What about the copying and the assigning? Well, there are different kinds of smart pointers.
+
+13
+00:01:20,000 --> 00:01:28,000
+Some of them prevent copying, so you simply can't copy a unique pointer.
+
+14
+00:01:28,000 --> 00:01:34,000
+Others keep track of how many people are using the pointer with a reference count.
+
+15
+00:01:34,000 --> 00:01:40,000
+Not adding a reference count to Person or Employee, but inside the smart pointer there's a reference count,
+
+16
+00:01:40,000 --> 00:01:46,000
+and so the destructor just decrements the reference count and when it gets to 0, deletes it.
+
+17
+00:01:46,000 --> 00:01:51,000
+The constructor, obviously, increments the reference count and so does the copy constructor and so does the
+
+18
+00:01:51,000 --> 00:01:58,000
+assignment operator, and most important of all, operator overloads for a pair of operators you probably
+
+19
+00:01:58,000 --> 00:02:05,000
+didn't think of were operators, even though I say operator every time I talk about them, star and points to.
+
+20
+00:02:05,000 --> 00:02:12,000
+The effect of doing this is that you can treat that smart pointer exactly like a pointer except you don't
+
+21
+00:02:12,000 --> 00:02:18,000
+have to remember to delete it. It's not garbage collection. It's deterministic destruction.
+
+22
+00:02:18,000 --> 00:02:24,000
+It will get deleted exactly when it goes out of scope or when the last person using the shared_ptr goes
+
+23
+00:02:24,000 --> 00:02:31,000
+out of scope, but it feels like garbage collection because you're not writing all that code, and it saves you
+
+24
+00:02:31,000 --> 00:02:38,000
+from having the destructor, the copy constructor, and the assignment operator, the big three, in your class
+
+25
+00:02:38,000 --> 00:02:43,000
+that have a pointer in it. Oh, they're in the smart pointer, but you don't have to write the smart pointer;
+
+26
+00:02:43,000 --> 00:59:00,000
+they come with C++ 11. You just get to use them. Watch what happens to our code when we do that.
+

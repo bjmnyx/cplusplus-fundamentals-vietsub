@@ -1,0 +1,180 @@
+1
+00:00:01,000 --> 00:00:08,000
+I have a super quick demo to show you and because I've not covered all of the C++ operators, I'm just going to keep
+
+2
+00:00:08,000 --> 00:00:15,000
+using &gt;, I think it's pretty readable and obvious how &gt; works and that'll make the demo perhaps not utterly
+
+3
+00:00:15,000 --> 00:00:20,000
+thrilling, but at least we'll be able to focus on how if works and how else works.
+
+4
+00:00:20,000 --> 00:00:22,000
+So let's come over into Visual C++
+
+5
+00:00:22,000 --> 00:00:26,000
+Express. You can see that I'm going to ask you to enter two numbers.
+
+6
+00:00:26,000 --> 00:00:33,000
+We're going to use standard see n to get those values and I'm not doing any error checking or validation about
+
+7
+00:00:33,000 --> 00:00:39,000
+whether you went through numbers or letters or anything like that because that's not the point of this particular demo.
+
+8
+00:00:39,000 --> 00:00:44,000
+So it's not going to work right if you don't work it right, so I have a simple if, if x &gt; y, we'll put out that
+
+9
+00:00:44,000 --> 00:00:50,000
+it's larger and it has an else and I've put braces around both clauses even though they're only a single line just
+
+10
+00:00:50,000 --> 00:00:56,000
+because I feel that a best practice. Now a momentary word about bracing style.
+
+11
+00:00:56,000 --> 00:01:03,000
+People have arguments about braces positioning that far exceed the arguments that they can have about politics,
+
+12
+00:01:03,000 --> 00:01:09,000
+or religion, or any other major touch points and I'm not going to go there.
+
+13
+00:01:09,000 --> 00:01:12,000
+The bracing style I'm using is the default in Visual Studio.
+
+14
+00:01:12,000 --> 00:01:15,000
+You can tell Visual Studio if you have a different style.
+
+15
+00:01:15,000 --> 00:01:21,000
+So some people prefer to indent the braces so they line up here with the contents of the if and some people like to
+
+16
+00:01:21,000 --> 00:01:26,000
+put the first braces up here on the same line as the if.
+
+17
+00:01:26,000 --> 00:01:30,000
+I'm not going to argue the pros and cons, there are many different bracing styles.
+
+18
+00:01:30,000 --> 00:01:37,000
+If you're working for a company that has a style guide, follow the style guide for your bracing.
+
+19
+00:01:37,000 --> 00:01:45,000
+If you're updating someone else's code, do not go in there and "fix" that person's bracing style while you're making
+
+20
+00:01:45,000 --> 00:01:50,000
+whatever changes your making. For one thing, it makes difs very difficult when you go through the source control
+
+21
+00:01:50,000 --> 00:01:56,000
+to decide what was done, but also the chances are the next person's just going to "fix" it right back again.
+
+22
+00:01:56,000 --> 00:02:01,000
+So don't get into a brace alignment war, what I'm showing you here is what Visual Studio does if you don't tell
+
+23
+00:02:01,000 --> 00:02:09,000
+it any differently and if you have to use a different style, get Visual Studio to help with that by changing the
+
+24
+00:02:09,000 --> 00:02:13,000
+options so that it respects your particular bracing style.
+
+25
+00:02:13,000 --> 00:02:17,000
+Really simple test, here's an if with an else and if I just scroll down a little further, I want to show you that
+
+26
+00:02:17,000 --> 00:02:23,000
+you can have an if without an else if you want and you also can have a single line without braces.
+
+27
+00:02:23,000 --> 00:02:30,000
+The reason that I like to have braces no matter what is because people tend to believe that if they came here
+
+28
+00:02:30,000 --> 00:02:39,000
+and wrote some other line like change y=3 when the total is &gt; 10, that it somehow is associated with the if, but it isn't.
+
+29
+00:02:39,000 --> 00:02:43,000
+Only the line immediately after the if is executed just when the if is true.
+
+30
+00:02:43,000 --> 00:02:50,000
+So this y=3 line would get executed every time, whether the if was true of false and we say the complier doesn't
+
+31
+00:02:50,000 --> 00:02:57,000
+read indents. Since I started saying that many years ago, languages have been invented that do read indents, but
+
+32
+00:02:57,000 --> 00:03:04,000
+C++ isn't one of them. So if you always have braces, then when you add another line it will naturally get caught up
+
+33
+00:03:04,000 --> 00:03:10,000
+and this is just a mistake and you don't want to do it.
+
+34
+00:03:10,000 --> 00:03:15,000
+It's a pretty simple program, it's going to run. It'll print out is larger than or is not larger than and in the
+
+35
+00:03:15,000 --> 00:03:21,000
+case, that I happen to choose two numbers that add to more than 10, it'll also print this extra piece of information.
+
+36
+00:03:21,000 --> 00:03:29,000
+I'm going to Run it a few times so that you can see. So I'll run with Ctrl+F5
+
+37
+00:03:29,000 --> 00:03:37,000
+and if I enter 4 and 5, it prints out 4 is not larger than 5, that's right, and 4+5 is only 9, so we didn't get
+
+38
+00:03:37,000 --> 00:03:38,000
+the extra thing about thanks for
+
+39
+00:03:38,000 --> 00:03:45,000
+large numbers. Let's just run it again
+
+40
+00:03:45,000 --> 00:03:48,000
+6 is larger than 4, 10 is not larger than 10, so we still don't get
+
+41
+00:03:48,000 --> 00:03:58,000
+that message and I run it one more time
+
+42
+00:03:58,000 --> 00:04:02,000
+55 is not larger than 66, thanks for choosing larger numbers!
+
+43
+00:04:02,000 --> 00:04:07,000
+So I hope no one's really surprised to learn how if's work in C++, they work as they do in whatever language you
+
+44
+00:04:07,000 --> 00:04:15,000
+happen to know and as you can see, you can have more complex expressions in those round brackets if you want them
+
+45
+00:04:15,000 --> 00:59:00,000
+I'm just happening to choose simple expressions because it makes the demos simple.
+

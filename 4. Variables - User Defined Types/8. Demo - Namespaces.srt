@@ -1,0 +1,176 @@
+1
+00:00:01,000 --> 00:00:10,000
+It's time to cleanup some lose ends and one of the most annoying lose ends is having to keep typing std:: whatever
+
+2
+00:00:10,000 --> 00:00:18,000
+before say cout. This is the namespace std and the functionality that comes from the standard library is all in
+
+3
+00:00:18,000 --> 00:00:23,000
+this namespace, which is wonderful. It means that I can call my classes whatever I like.
+
+4
+00:00:23,000 --> 00:00:28,000
+If I want to write a string class, I can write a string class and I'll be able to tell them apart by talking about
+
+5
+00:00:28,000 --> 00:00:36,000
+standard string and Kate's great library:: string and it would possible to mix and match them in the same application
+
+6
+00:00:36,000 --> 00:00:42,000
+without any confusion and that is fantastic. It means that no words are really reserved.
+
+7
+00:00:42,000 --> 00:00:49,000
+String is available to be the name of your class, as long as you don't mind confusion in the minds of other developers.
+
+8
+00:00:49,000 --> 00:00:54,000
+Everything that's part of the standard library is inside the standard namespace and you can have things with exactly
+
+9
+00:00:54,000 --> 00:01:01,000
+the same name in your namespace, if you want. My problem is with having to type the name of the namespace every
+
+10
+00:01:01,000 --> 00:01:08,000
+single time I use these classes when I haven't written my own string or my own console out.
+
+11
+00:01:08,000 --> 00:01:15,000
+Well of course, I don't have to. Of course, there's a mechanism to get around it and it's as simple as calling
+
+12
+00:01:15,000 --> 00:01:24,000
+it out like this. I can say for example, I will be using from the standard library, cout.
+
+13
+00:01:24,000 --> 00:01:38,000
+Or I will be using from the standard library, endl and if I do that, then I can come down here and just call them
+
+14
+00:01:38,000 --> 00:01:46,000
+cout and endl. Now that in itself is a big improvement.
+
+15
+00:01:46,000 --> 00:01:53,000
+This isn't any kind of directive about going and picking certain things out of the larger library, it doesn't change
+
+16
+00:01:53,000 --> 00:02:00,000
+the size of my executable for example, it simply a convenience to the compiler and saying, whenever you see just
+
+17
+00:02:00,000 --> 00:02:08,000
+plain cout, I mean std::cout, I mean the standard cout, I just don't want to type it's whole name every time.
+
+18
+00:02:08,000 --> 00:02:15,000
+When you're going to use a number of things from the same namespace, it can get tiring to keep adding more things
+
+19
+00:02:15,000 --> 00:02:18,000
+so there's another approach. I can come into say the Person class
+
+20
+00:02:18,000 --> 00:02:30,000
+where I'm using both cout and I'm also using string, I could come here and say using the entire namespace std.
+
+21
+00:02:30,000 --> 00:02:55,000
+Having done that I can now go through and take away in front of every string, as well as in front of cout and endl.
+
+22
+00:02:55,000 --> 00:02:58,000
+and you can see I don't have any red wiggles, the compiler is fine with that.
+
+23
+00:02:58,000 --> 00:03:04,000
+Now there are some languages in which using has a different meaning, it has to do with controlling scope, we have
+
+24
+00:03:04,000 --> 00:03:07,000
+brace brackets for scope, using never has anything to do with scope.
+
+25
+00:03:07,000 --> 00:03:15,000
+Using is only about these namespace directives, it doesn't link new code in or add new references, anything it's
+
+26
+00:03:15,000 --> 00:03:21,000
+simply telling the compiler, when I say cout and you think, I don't know what you're talking about, quick go and
+
+27
+00:03:21,000 --> 00:03:24,000
+see if it's std::cout and if it is, we're both happy.
+
+28
+00:03:24,000 --> 00:03:30,000
+So it's basically what the compiler does with identifiers it doesn't immediately recognize like string, cout,
+
+29
+00:03:30,000 --> 00:03:42,000
+and endl in this example. Sometimes people want to put this using namespace whatever in a header file, that is a bad plan.
+
+30
+00:03:42,000 --> 00:03:48,000
+Right now, I can use Person and still have my own string class.
+
+31
+00:03:48,000 --> 00:03:53,000
+Person works with standard strings my code could work with my own strings.
+
+32
+00:03:53,000 --> 00:03:59,000
+The minute there's a using namespace standard inside Person, now everyone who wants to use Person has to agree not
+
+33
+00:03:59,000 --> 00:04:07,000
+to have collisions with something that is in std and that's too big of thing to ask.
+
+34
+00:04:07,000 --> 00:04:11,000
+You can do it in a cpp file, don't do it in an h file.
+
+35
+00:04:11,000 --> 00:04:17,000
+In a header file, you can call everything out by its full name or have individual using statements like the ones
+
+36
+00:04:17,000 --> 00:04:19,000
+we had here
+
+37
+00:04:19,000 --> 00:04:28,000
+for individual parts of the standard namespace, but I prefer to see those using namespace whatever's only in cpp
+
+38
+00:04:28,000 --> 00:04:36,000
+file and not in h files. Now my code looks a little neater, has a little less punctuation in it, and I think it's
+
+39
+00:04:36,000 --> 00:04:42,000
+easy to understand and read it as long as you can remember cout is from the standard library, string is from the
+
+40
+00:04:42,000 --> 00:04:47,000
+standard library, but Person and Tweeter are not, they're no longer being decorated as being different.
+
+41
+00:04:47,000 --> 00:04:53,000
+Now of course Visual Studio will help you, so if I hover over Person, it shows me that it's just class Person, but
+
+42
+00:04:53,000 --> 00:04:56,000
+if I hover over
+
+43
+00:04:56,000 --> 00:05:05,000
+say string in here, it's got a big long definition and it's got std:: and in its definition as a reminder that this
+
+44
+00:05:05,000 --> 00:59:00,000
+is the standard string from the standard library.
+

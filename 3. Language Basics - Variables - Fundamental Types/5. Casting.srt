@@ -1,0 +1,148 @@
+1
+00:00:01,000 --> 00:00:08,000
+In the demo that we just went through, you saw data moving back and forth between say integers and doubles, doubles
+
+2
+00:00:08,000 --> 00:00:16,000
+and integers, integers and Booleans, characters back and forth around from type to type.
+
+3
+00:00:16,000 --> 00:00:21,000
+Yes we wrapped up with an overflow, but not all types conversions involved overflows, or loss of data, or
+
+4
+00:00:21,000 --> 00:00:28,000
+are somehow bad. In fact, taking data in a variable of one type and putting it in another type is a very common
+
+5
+00:00:28,000 --> 00:00:34,000
+thing to do in C++ and the complier will take care of the conversion if the types are compatible.
+
+6
+00:00:34,000 --> 00:00:38,000
+Sometimes it will just have nothing to say about the whole process.
+
+7
+00:00:38,000 --> 00:00:43,000
+You have an integer you want to put it in a double, no big deal, we'll promote the integer value to a double value
+
+8
+00:00:43,000 --> 00:00:47,000
+and put that new promoted double value into your variable.
+
+9
+00:00:47,000 --> 00:00:51,000
+If what you're doing could cause a loss of data, the complier will give you a warning.
+
+10
+00:00:51,000 --> 00:00:57,000
+If the types are completely incompatible like a double quoted string trying to be put into a character, then the
+
+11
+00:00:57,000 --> 00:01:01,000
+complier will give you an error and the application won't run.
+
+12
+00:01:01,000 --> 00:01:06,000
+Once you have it complied and all you have is warnings, you're not going to get runtime errors as you move things
+
+13
+00:01:06,000 --> 00:01:12,000
+around from one type or another. That stuff is taken care of at compile time and there are not checks at runtime
+
+14
+00:01:12,000 --> 00:01:17,000
+that's a performance feature. Now this means that you mustn't ignore compiler warnings.
+
+15
+00:01:17,000 --> 00:01:24,000
+Some compiler warnings are telling you about serious possible bugs like throwing away all of the decimal places
+
+16
+00:01:24,000 --> 00:01:29,000
+in your floating point number when you put it into an integer.
+
+17
+00:01:29,000 --> 00:01:36,000
+The problem is if you have a large project, you have normally 307 warnings, you might not notice that this morning
+
+18
+00:01:36,000 --> 00:01:42,000
+you have 308 warnings and you really need to go and look at the new one because it's a bug waiting to happen.
+
+19
+00:01:42,000 --> 00:01:46,000
+The solution to this of course is don't have 307 warnings.
+
+20
+00:01:46,000 --> 00:01:53,000
+There's a mechanism called casting that lets you tell the complier, I know what I'm doing here, this is my choice,
+
+21
+00:01:53,000 --> 00:01:59,000
+I know I don't have an integer, but you want you to turn it into an integer and then put that newly made integer
+
+22
+00:01:59,000 --> 00:02:06,000
+into my variable. Then they'll be no more warning and it's clear to anyone who's reading your code, what it is
+
+23
+00:02:06,000 --> 00:02:13,000
+you're trying to do. Now, can this be dangerous? Of course it can, if that's a double with points of information
+
+24
+00:02:13,000 --> 00:02:19,000
+in it that you needed to keep and you cast it to an integer and throw them away, nobody's going to stop you.
+
+25
+00:02:19,000 --> 00:02:25,000
+C++ the saying goes, makes it easy to shoot your foot off, and the compiler when you cast, basically says well okay
+
+26
+00:02:25,000 --> 00:02:29,000
+it's your foot, you know you're asserting that you know what you're doing, I'm going to believe that you know
+
+27
+00:02:29,000 --> 00:02:37,000
+what you're doing. These traditional casts, which are sometimes called c style casts are not the absolute best
+
+28
+00:02:37,000 --> 00:02:44,000
+practice, after we've gone through templates in this material, I can show you some safer and better casts, but for
+
+29
+00:02:44,000 --> 00:02:51,000
+now, I'm going to go through traditional C style casts, which basically tell the compiler, back off, I know
+
+30
+00:02:51,000 --> 00:02:57,000
+what I'm doing and while we're talking about converting types back and forth, I also want to show you the suffixes
+
+31
+00:02:57,000 --> 00:03:04,000
+that you'll occasionally see on numbers and their only allowed on numbers to indicate the type of a literal.
+
+32
+00:03:04,000 --> 00:03:12,000
+So a literal is a number like 0 or 1, or 2.2 and these suffixes can say, I'm telling you that this is a long or
+
+33
+00:03:12,000 --> 00:03:19,000
+I'm telling you that this is a float and that's done as a form of casting to say, I would like to take a long 0
+
+34
+00:03:19,000 --> 00:03:24,000
+and put it in here as opposed to a default integer 0.
+
+35
+00:03:24,000 --> 00:03:31,000
+There's not a lot of compelling reasons why someone getting started in C++ would care what size of 0 they put
+
+36
+00:03:31,000 --> 00:03:38,000
+into a number, but when you read in someone else's code, it can just stop you in your tracks and you say, what the
+
+37
+00:03:38,000 --> 00:59:00,000
+heck is 0L, so I want you to see it, so that you recognize it when you bump into it.
+

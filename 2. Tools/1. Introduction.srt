@@ -1,0 +1,16 @@
+1
+00:00:01,000 --> 00:00:09,000
+Welcome back to Introduction to C++. My name is Kate Gregory and I am introducing you to the most popular
+
+2
+00:00:09,000 --> 00:00:16,000
+general purpose programming language, C++. In this module, I will show you the tools you need to get started,
+
+3
+00:00:16,000 --> 00:00:22,000
+they are free, and how to use them a little bit. And I will start to introduce some C++ syntax
+
+4
+00:00:22,000 --> 00:59:00,000
+and get you familiar with how the code looks.
+

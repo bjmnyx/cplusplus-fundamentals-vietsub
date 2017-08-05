@@ -1,0 +1,88 @@
+1
+00:00:02,000 --> 00:00:09,000
+I showed you in the demo how switching a raw pointer to a shared_ptr from the Standard Library just makes
+
+2
+00:00:09,000 --> 00:00:15,000
+all that work of the big three evaporate and this is how it should be.
+
+3
+00:00:15,000 --> 00:00:22,000
+There are three important smart pointers in C++ 11. Shared_ptr, which, as I've mentioned, is a reference
+
+4
+00:00:22,000 --> 00:00:28,000
+counted, non-intrusive, smart pointer, behaves well in collections, does everything you think it should do,
+
+5
+00:00:28,000 --> 00:00:33,000
+really doesn't have flaws. Weak_ptr, which sort of works with shared_ptr.
+
+6
+00:00:33,000 --> 00:00:38,000
+Every time you create a copy of a shared_ptr you bump the reference count.
+
+7
+00:00:38,000 --> 00:00:45,000
+Sometimes you want to have a weak_ptr, which doesn't bump the reference count; its existence doesn't
+
+8
+00:00:45,000 --> 00:00:51,000
+keep the object alive; and it's possible that the weak_ptr may become empty if the object goes away while the
+
+9
+00:00:51,000 --> 00:00:55,000
+weak_ptr's still pointing to it, and it handles that really nicely.
+
+10
+00:00:55,000 --> 00:01:02,000
+There's also unique_ptr, which can't be copied, and there's an algorithm available in the Standard Library
+
+11
+00:01:02,000 --> 00:01:07,000
+called move that you can use to move values in and out of unique-ptrs.
+
+12
+00:01:07,000 --> 00:01:13,000
+I should also probably mention auto_ptr, a previous attempt at a smart pointer that was in the Standard
+
+13
+00:01:13,000 --> 00:01:20,000
+Library. Auto_ptr wasn't as smart as it should be and it worked really poorly in containers, so if you
+
+14
+00:01:20,000 --> 00:01:29,000
+made a vector or some other standard collection of employee objects, solid objects, that'd work great or you
+
+15
+00:01:29,000 --> 00:01:35,000
+could make one of raw employee pointers and it would work, but you'd have to delete all of the individual
+
+16
+00:01:35,000 --> 00:01:42,000
+employees when you deleted the collection. If you put smart pointer auto_ptr into that collection
+
+17
+00:01:42,000 --> 00:01:49,000
+extraordinarily bad things happened. Shared_ptr and unique_ptr don't have that problem; they work well in
+
+18
+00:01:49,000 --> 00:02:00,000
+containers; auto_ptr does not. You should be using Visual Studio 2010 or Visual C++ 2010 Express.
+
+19
+00:02:00,000 --> 00:02:05,000
+They have shared_ptr and unique_ptr. You, therefore, have no need in your life for auto_ptr.
+
+20
+00:02:05,000 --> 00:02:10,000
+In fact, if you find an auto_ptr in old code that you're maintaining, you should give serious thought to
+
+21
+00:02:10,000 --> 00:02:16,000
+replacing it because it's flawed in some important ways. Don't use auto_ptr when you're writing new code.
+
+22
+00:02:16,000 --> 00:59:00,000
+Use shared_ptr or unique_ptr; they're the way to go from here forward.
+

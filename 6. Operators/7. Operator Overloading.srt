@@ -1,0 +1,132 @@
+1
+00:00:02,000 --> 00:00:08,000
+Something I say a lot when I'm explaining C++ and how it's different from other languages is that the
+
+2
+00:00:08,000 --> 00:00:12,000
+fundamental types and the user defined types are really on an equal footing.
+
+3
+00:00:12,000 --> 00:00:19,000
+Operator overloading is one of the things that makes that true. You can write int i is equal to j + 3.
+
+4
+00:00:19,000 --> 00:00:27,000
+You can also write Order newOrder is equal to oldOrder + newItem and plus, that fundamental operation of
+
+5
+00:00:27,000 --> 00:00:34,000
+addition, can be something that makes sense for orders and items.
+
+6
+00:00:34,000 --> 00:00:40,000
+This is overloading. To make it make sense, whoever wrote the order class has to write some code that says,
+
+7
+00:00:40,000 --> 00:00:47,000
+here's how to add an item to an order, but you don't necessarily have to have a function called a-d-d add,
+
+8
+00:00:47,000 --> 00:00:52,000
+you can use the much easier to spell and remember, plus sign, if you want to, as the way to add items to an
+
+9
+00:00:52,000 --> 00:01:01,000
+order. Usually the function that you write is a member function, so in this case, the order developer would
+
+10
+00:01:01,000 --> 00:01:07,000
+put something into the order class explaining how to add items into it.
+
+11
+00:01:07,000 --> 00:01:14,000
+It's also possible that you could write a free function, that is a function not a member of any class, that
+
+12
+00:01:14,000 --> 00:01:20,000
+takes two parameters: an order and an item. Why would you do that?
+
+13
+00:01:20,000 --> 00:01:28,000
+Maybe if you were the item developer and you didn't have access to the order class to change it.
+
+14
+00:01:28,000 --> 00:01:35,000
+The other reason that you'll see it is if the first item, the one before the operator, is not a class, but
+
+15
+00:01:35,000 --> 00:01:41,000
+say an integer, something you can't change, then you have to write a free function to explain how to take
+
+16
+00:01:41,000 --> 00:01:44,000
+three and add an item to it. Doesn't make any sense for items.
+
+17
+00:01:44,000 --> 00:01:51,000
+There are cases where it may make sense. Now the Standard Library is rich in overloads that you've been
+
+18
+00:01:51,000 --> 00:01:58,000
+using without seeing them. For example, the getName function in the person class that's been used in a
+
+19
+00:01:58,000 --> 00:02:08,000
+number of these demos returns firstname + " " + lastname. We're using the plus operator to combine strings.
+
+20
+00:02:08,000 --> 00:02:15,000
+Not because that's part of the language, the way it might be in some other languages, but because the plus
+
+21
+00:02:15,000 --> 00:02:22,000
+operator has been overloaded by the author of the string class and they've written code that will add two
+
+22
+00:02:22,000 --> 00:02:26,000
+strings together giving you a new string. You don't even see it.
+
+23
+00:02:26,000 --> 00:02:32,000
+You just, you read the line of code; you know how it works; you don't even notice.
+
+24
+00:02:32,000 --> 00:02:40,000
+The C in and C out using those double arrows turn out to be overloads of the bit shift operator
+
+25
+00:02:40,000 --> 00:02:43,000
+and when we talk about the Standard Library in more detail and talk about
+
+26
+00:02:43,000 --> 00:02:51,000
+things like collections, it's rich in overloads of, for example, the increment operator that you can use to
+
+27
+00:02:51,000 --> 00:02:55,000
+move through a collection, moving onto the next and the next and the next.
+
+28
+00:02:55,000 --> 00:03:05,000
+In addition to the arithmetic operators, you can overload the comparison operators, whether one order is
+
+29
+00:03:05,000 --> 00:03:13,000
+greater than another, whether one date is less than another, whether one string is equal to another.
+
+30
+00:03:13,000 --> 00:03:18,000
+You can even overload operators that most people don't realize are operators and in fact, think are part of
+
+31
+00:03:18,000 --> 00:03:24,000
+the language and there's some very powerful and useful classes in the Standard Library that have overloaded
+
+32
+00:03:24,000 --> 00:03:30,000
+these strange operators. We'll talk about them as we get to them, but you should know that essentially the
+
+33
+00:03:30,000 --> 00:59:00,000
+whole language is at your feet through the power of operator overloading.
+

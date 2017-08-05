@@ -1,0 +1,144 @@
+1
+00:00:01,000 --> 00:00:06,000
+I have a demo of a switch statement
+
+2
+00:00:06,000 --> 00:00:11,000
+and I'm sort of pulling in some other things that we've already covered, to make the demos a little easier to use.
+
+3
+00:00:11,000 --> 00:00:16,000
+So for example, it's kind of annoying to have to keep running the demo three, four, five times, to show the
+
+4
+00:00:16,000 --> 00:00:21,000
+results of three or four different paths through it, I've decided to put this loop in here.
+
+5
+00:00:21,000 --> 00:00:29,000
+As long as you enter some positive number, let me just follow this brace down, you can see the last thing that
+
+6
+00:00:29,000 --> 00:00:34,000
+happens in the loop is I'll ask you again for a number, we'll hit the brace bracket, and we'll come back up and
+
+7
+00:00:34,000 --> 00:00:40,000
+do this while again, and that way with a single run, we can test a number of different values.
+
+8
+00:00:40,000 --> 00:00:46,000
+So what's happening inside the while loop, well with have this switch statement and we're switching on x, which
+
+9
+00:00:46,000 --> 00:00:53,000
+is integral type so that's fine. Here's the non-optional open brace and the non-optional close brace at the end
+
+10
+00:00:53,000 --> 00:00:58,000
+of the switch statement and everything in between is our switch and I have a number of different cases.
+
+11
+00:00:58,000 --> 00:01:04,000
+So case 1, that is when x = 1, I'll tell you that you entered 1 and I have a break.
+
+12
+00:01:04,000 --> 00:01:10,000
+Something you'll see quite often is two labels right after each other, so 2 and 3 are right after each other.
+
+13
+00:01:10,000 --> 00:01:15,000
+This is deliberate and it means that you want to do the same thing for both 2 and 3.
+
+14
+00:01:15,000 --> 00:01:20,000
+Since we're not doing anything real all I can say is well you must have entered 2 or 3, but imagine a circumstance
+
+15
+00:01:20,000 --> 00:01:25,000
+where you process both canceled and delayed things the same.
+
+16
+00:01:25,000 --> 00:01:32,000
+So you might have case canceled: and immediately case delayed and then all the code to handle delayed and canceled
+
+17
+00:01:32,000 --> 00:01:39,000
+whatever these are. However, sometimes people do it accidently, so I've simulated that accidentalism here
+
+18
+00:01:39,000 --> 00:01:44,000
+with 4 and 5. There should be a break at the end of case 4 and there isn't and I'll show you happens when the
+
+19
+00:01:44,000 --> 00:01:51,000
+break is missing and then we have the default. So I'm going to run this through for a whole whack of numbers,
+
+20
+00:01:51,000 --> 00:01:56,000
+obviously, and let's do that now.
+
+21
+00:01:56,000 --> 00:01:59,000
+So if I put in 1, it says you entered 1 and that's fine.
+
+22
+00:01:59,000 --> 00:02:04,000
+If I say 2, you entered 2 or 3 and 3 will also say you entered 2 or 3.
+
+23
+00:02:04,000 --> 00:02:08,000
+When I say 4, it says you entered 4 you entered 5. Let's flip
+
+24
+00:02:08,000 --> 00:02:17,000
+back to the code. Because there's no break, it fell through to the 5 case and also executed the case for 5.
+
+25
+00:02:17,000 --> 00:02:20,000
+probably not what I wanted,
+
+26
+00:02:20,000 --> 00:02:26,000
+we'll try 5, try something else and finally 0
+
+27
+00:02:26,000 --> 00:02:35,000
+and we're out. The switch statement certainly takes up a lot less room than many, many nested lsifs and it's more
+
+28
+00:02:35,000 --> 00:02:40,000
+efficient than just if, if, if, if testing the same thing over and over again.
+
+29
+00:02:40,000 --> 00:02:44,000
+After all, once we've establish that x is 1 there is no way that it's 4.
+
+30
+00:02:44,000 --> 00:02:49,000
+Also stacking these up like this, is more readable than combining them with or, you haven't seen combining with or yet,
+
+31
+00:02:49,000 --> 00:02:55,000
+but trust me this is more readable. So for certain kinds of architecture of your application, the switch statement
+
+32
+00:02:55,000 --> 00:03:03,000
+is really useful. In modern C++, there are some alternatives especially when you're working with objects and you
+
+33
+00:03:03,000 --> 00:03:10,000
+variable hierarchies, you can rather than switching on sometimes you can have your objects be of different type
+
+34
+00:03:10,000 --> 00:03:15,000
+and have an implementation of a virtual function in that type handle whatever this is, so you may not see as
+
+35
+00:03:15,000 --> 00:03:19,000
+much switch statements, but when you see them I want you to be able to read them and I certainly don't want you
+
+36
+00:03:19,000 --> 00:59:00,000
+writing big long nested lsifs, when you could've just used a switch.
+

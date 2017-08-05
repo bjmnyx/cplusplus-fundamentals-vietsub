@@ -1,0 +1,124 @@
+1
+00:00:02,000 --> 00:00:10,000
+Now, when it comes to pointers, you really kind of know the rest of this story, the polymorphism story.
+
+2
+00:00:10,000 --> 00:00:17,000
+This lets you write really general code. I will be given a collection of BankAccount pointers -- they might
+
+3
+00:00:17,000 --> 00:00:22,000
+be smart pointers, doesn't matter, right? And I will update them all or if they're orders, I'll ship them,
+
+4
+00:00:22,000 --> 00:00:29,000
+or for employees, I'll pay them, whatever. These sorts of constructs are all over your code and they'll call
+
+5
+00:00:29,000 --> 00:00:37,000
+methods through the pointer. Very general methods that are defined in the base class, like update or ship or
+
+6
+00:00:37,000 --> 00:00:43,000
+pay, but the implementations that run will be the specific methods for updating a checking account or
+
+7
+00:00:43,000 --> 00:00:49,000
+updating a savings account, for shipping a rush order or shipping a regular order, for paying a part time
+
+8
+00:00:49,000 --> 00:00:53,000
+employee or paying a full time employee. They'll have very different implementations, but thanks to
+
+9
+00:00:53,000 --> 00:00:59,000
+polymorphism, your calling code stays really nice and general. Yeah, take that BankAccount pointer and call
+
+10
+00:00:59,000 --> 00:01:07,000
+its update method. With raw pointers you get polymorphism. With smart pointers you get polymorphism.
+
+11
+00:01:07,000 --> 00:01:13,000
+With references you get polymorphism. You don't try to decide which of those to use based on whether or not
+
+12
+00:01:13,000 --> 00:01:16,000
+you're going to get polymorphism because you're going to get it.
+
+13
+00:01:16,000 --> 00:01:24,000
+When you're not using pointers or references or smart pointers, when you're using solid objects and copying
+
+14
+00:01:24,000 --> 00:01:30,000
+them around, either the way we did in the demos with equal signs, or more realistically, by calling some
+
+15
+00:01:30,000 --> 00:01:37,000
+function that takes its parameters by value. When you take a derived object and copy it onto a base object
+
+16
+00:01:37,000 --> 00:01:41,000
+you get slicing. You lose the member variables that are unique to the derived class.
+
+17
+00:01:41,000 --> 00:01:47,000
+That's almost never a good thing. When you use a pointer you lose nothing.
+
+18
+00:01:47,000 --> 00:01:54,000
+You still get polymorphic behavior on that pointer, and if you cast it back to the derived class later,
+
+19
+00:01:54,000 --> 00:01:59,000
+you can then continue to call derived class functions using the pointer.
+
+20
+00:01:59,000 --> 00:02:04,000
+You can do a lot of casting with the round bracket, C-style cast, but I don't recommend it.
+
+21
+00:02:04,000 --> 00:02:11,000
+I recommend, for safety and for expressiveness, that you use the cast templates, especially static_cast and
+
+22
+00:02:11,000 --> 00:02:18,000
+dynamic_cast. Stay away from const_cast and reinterpret_cast, at least for now.
+
+23
+00:02:18,000 --> 00:02:28,000
+In order to understand this topic, pointers, polymorphism, and inheritance, we had to cover the full gamut
+
+24
+00:02:28,000 --> 00:02:35,000
+from your fundamental types like int and float and casting amongst them, designing and defining and declaring
+
+25
+00:02:35,000 --> 00:02:43,000
+objects, and writing functions of objects, all of the operators and arithmetic that make up flow of control
+
+26
+00:02:43,000 --> 00:02:52,000
+statements to make a C++ application, and then tackle templates and pointers and the combination pointers and
+
+27
+00:02:52,000 --> 00:02:57,000
+inheritance to get polymorphism, as well as the benefit you see from smart pointers and these cast
+
+28
+00:02:57,000 --> 00:03:05,000
+operators, both of which rely on templates to work. This topic is sort of the pinnacle of what parts of
+
+29
+00:03:05,000 --> 00:03:12,000
+C++ do you still need to understand? If you really followed all of this then you understand casting, you
+
+30
+00:03:12,000 --> 00:03:16,000
+understand pointers, you understand inheritance, you understand templates.
+
+31
+00:03:16,000 --> 00:59:00,000
+You understand C++, so congratulations. Now you're ready to do some very, very cool things.
+

@@ -1,0 +1,56 @@
+1
+00:00:02,000 --> 00:00:08,000
+Here's the code you just saw in the demo. You start by writing the class out just using a placeholder
+
+2
+00:00:08,000 --> 00:00:15,000
+instead of the type. We accumulate T, whatever T is, of an ordinary class definition with a private and a
+
+3
+00:00:15,000 --> 00:00:25,000
+public section, member variables, operators, constructor, member functions, really nothing unusual, and when
+
+4
+00:00:25,000 --> 00:00:31,000
+you use it you tell the compiler what type you'd like the template instantiated for, so I'd like to
+
+5
+00:00:31,000 --> 00:00:41,000
+accumulate ints or I'd like to accumulate strings. The compiler will not check on this line and say, is it
+
+6
+00:00:41,000 --> 00:00:47,000
+okay that you're using this type? Is int appropriate for the Accum class?
+
+7
+00:00:47,000 --> 00:00:57,000
+It will check as you use or exercise members of Accum, so here you're going to exercise the constructor, and
+
+8
+00:00:57,000 --> 00:01:02,000
+if there wasn't a constructor that was happy with having the number 0 passed to it for an Accum of ints, if
+
+9
+00:01:02,000 --> 00:01:08,000
+there wasn't a constructor that's happy with having an empty string passed to it for an Accum of strings,
+
+10
+00:01:08,000 --> 00:01:14,000
+you'd get a compiler error. If the appropriate constructor was there, but something else wasn't, that's when
+
+11
+00:01:14,000 --> 00:01:18,000
+you'd find out that there were issues, so just as with the template functions, it can be a little challenging
+
+12
+00:01:18,000 --> 00:01:24,000
+to understand your compiler errors, but in many cases the compiler errors are actually a feature.
+
+13
+00:01:24,000 --> 00:01:31,000
+Once you've made an accumulation of ints you can't add strings to it and vice versa, and this type safety is
+
+14
+00:01:31,000 --> 00:59:00,000
+a big part of what's good about templates.
+

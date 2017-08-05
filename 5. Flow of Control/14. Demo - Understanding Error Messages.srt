@@ -1,0 +1,644 @@
+1
+00:00:03,000 --> 00:00:06,000
+Now it all looks fine when someone just shows it to you.
+
+2
+00:00:06,000 --> 00:00:11,000
+Here is a function being declared, here is a function being implemented, here is a function being called.
+
+3
+00:00:11,000 --> 00:00:17,000
+Then you get out in the wild and you try to do this yourself and I find often people are really frustrated by the
+
+4
+00:00:17,000 --> 00:00:24,000
+error messages that they get and the reason for their frustration is that in C++ calling and using a function
+
+5
+00:00:24,000 --> 00:00:30,000
+requires passing two different checks. Sometimes people are getting message from one check and trying to fix
+
+6
+00:00:30,000 --> 00:00:35,000
+something that only the other check cares about. It's not going to make the error message go away.
+
+7
+00:00:35,000 --> 00:00:42,000
+Specifically, you have to make the complier happy, as well as the linker happy.
+
+8
+00:00:42,000 --> 00:00:47,000
+The compiler only cares that you declared the function, that's usually in a header file.
+
+9
+00:00:47,000 --> 00:00:54,000
+If you've told the complier, there is a function called, in the case of our free function demo, IsPrime and it takes
+
+10
+00:00:54,000 --> 00:01:00,000
+an integer, then that will get you no compiler error messages as long as you're calling IsPrime and passing
+
+11
+00:01:00,000 --> 00:01:07,000
+in an integer, but if you don't implement the function, the linker says I can't find the implementation code for
+
+12
+00:01:07,000 --> 00:01:12,000
+this to link in. Sometimes people are getting linker error messages and they go and try to change things in a
+
+13
+00:01:12,000 --> 00:01:18,000
+header file, that's only about the compiler and it's not going to solve your error message.
+
+14
+00:01:18,000 --> 00:01:24,000
+The easiest way to internalize which error messages are caused by which mistakes is to deliberately make a series
+
+15
+00:01:24,000 --> 00:01:29,000
+of mistakes and check and see what error messages you get for them and so that's exactly what I'm going to do.
+
+16
+00:01:29,000 --> 00:01:36,000
+I'm going to use the classes and objects example from the previous demo and deliberately mess up in it a little bit.
+
+17
+00:01:36,000 --> 00:01:40,000
+So, let's start with getting the name of the function when you're calling it.
+
+18
+00:01:40,000 --> 00:01:46,000
+So it's declared properly, implemented properly, I'll use get name as an example and I'll just accidently type
+
+19
+00:01:46,000 --> 00:01:59,000
+the wrong thing and then if I Build the project, I get this error, GetNameX is not a member of Person.
+
+20
+00:01:59,000 --> 00:02:06,000
+If I double click the error, it repeats the message down here and I can look and see the problem is indeed I've
+
+21
+00:02:06,000 --> 00:02:13,000
+typed the name of the function wrong. That's easy enough to fix and also I got red wiggles for it, class Person
+
+22
+00:02:13,000 --> 00:02:17,000
+has no member GetNameX, so I'll fix that.
+
+23
+00:02:17,000 --> 00:02:22,000
+Our next possible mistake is that I've got the name correct, but I've either used the wrong number parameters or
+
+24
+00:02:22,000 --> 00:02:24,000
+the wrong type.
+
+25
+00:02:24,000 --> 00:02:27,000
+Let's go back here and what if I try to pass a number down to GetName.
+
+26
+00:02:27,000 --> 00:02:34,000
+We don't have a version of GetName that takes a number. You see I get red wiggles, too many arguments in function call.
+
+27
+00:02:34,000 --> 00:02:42,000
+If I compile anyway, function does not take 1 arguments. Pluralization bugs are fun, aren't they?
+
+28
+00:02:42,000 --> 00:02:47,000
+Now this applies to also not passing enough arguments or passing the wrong type.
+
+29
+00:02:47,000 --> 00:02:59,000
+So if come down here to SetNumber and I pass in string instead of a number, it says that the argument is incompatible.
+
+30
+00:02:59,000 --> 00:03:08,000
+If I build it anyway, so you can see that error message, cannot convert parameter 1, this is actually C++ talk for
+
+31
+00:03:08,000 --> 00:03:14,000
+that quote string to int and usually that's all the hint you need that oh yeah, this is supposed to take an integer
+
+32
+00:03:14,000 --> 00:03:18,000
+not a string and you can fix your problem.
+
+33
+00:03:18,000 --> 00:03:20,000
+Sometimes, you call it properly,
+
+34
+00:03:20,000 --> 00:03:24,000
+you implement properly, but you mess up when you declare it.
+
+35
+00:03:24,000 --> 00:03:29,000
+So I'll just put a name change, put an x in the name and we'll build this.
+
+36
+00:03:29,000 --> 00:03:33,000
+So it's correct in the calling code. It's correct in the implementing code here
+
+37
+00:03:33,000 --> 00:03:34,000
+in Person.cpp, but the
+
+38
+00:03:34,000 --> 00:03:41,000
+mistake is in the header file.
+
+39
+00:03:41,000 --> 00:03:46,000
+Now you notice what happens, I'm getting a very large number of error messages.
+
+40
+00:03:46,000 --> 00:03:53,000
+For one typo, I'm getting a lot of different error messages and here's why.
+
+41
+00:03:53,000 --> 00:04:02,000
+These first clump are when I'm compiling that main ClassesandOjects.cpp. ClassesandObjects.cpp tries to call
+
+42
+00:04:02,000 --> 00:04:08,000
+GetName twice and the error messages are saying there is no GetName.
+
+43
+00:04:08,000 --> 00:04:16,000
+Now there's an implementation of GetName in the .cpp file, but ClassesandObjects when it's being compiled, the
+
+44
+00:04:16,000 --> 00:04:22,000
+compiler just looks at what's in the header file Person.h and there's no GetName in the Person.h and so we get a
+
+45
+00:04:22,000 --> 00:04:29,000
+pair of error messages for the correct lines here, this should be right, but because of the error in the header
+
+46
+00:04:29,000 --> 00:04:35,000
+file, we're given sort of a false positive error here in our main.
+
+47
+00:04:35,000 --> 00:04:40,000
+What's more, when we're compiling Person.cpp
+
+48
+00:04:40,000 --> 00:04:48,000
+and we're trying to implement GetName, it gives us a series of different complaints.
+
+49
+00:04:48,000 --> 00:04:53,000
+First it says, GetName I don't know what you're talking about and it says that here when we try to call it in the
+
+50
+00:04:53,000 --> 00:04:57,000
+constructor and the destructor, but it also says it here when we try to implement it.
+
+51
+00:04:57,000 --> 00:05:04,000
+Plus, it says here, what do you mean firstname, what do mean lastname because as far as the complier is concerned
+
+52
+00:05:04,000 --> 00:05:06,000
+this function GetName isn't
+
+53
+00:05:06,000 --> 00:05:11,000
+part of Person and if it isn't part of Person, it doesn't have access to Person's
+
+54
+00:05:11,000 --> 00:05:20,000
+member variables. So we have this just boat load of error messages all because the compiler doesn't believe that
+
+55
+00:05:20,000 --> 00:05:22,000
+GetName is part of Person
+
+56
+00:05:22,000 --> 00:05:26,000
+and so making typos in header files can have dramatic consequences.
+
+57
+00:05:26,000 --> 00:05:31,000
+Every single file that includes the header file is now going to have some sort of compiler errors and their often
+
+58
+00:05:31,000 --> 00:05:38,000
+going to be these cascades of errors which say, I don't know what you're talking about plus that's not a member
+
+59
+00:05:38,000 --> 00:05:42,000
+variable you can't talk to it because you're not part of the class, plus this other code that tries to call the
+
+60
+00:05:42,000 --> 00:05:50,000
+function is going to get errors and when you fix your one character mistake and rebuild, dozens of error
+
+61
+00:05:50,000 --> 00:05:56,000
+messages disappear. A good rule of thumb for C++ developers, when you get
+
+62
+00:05:56,000 --> 00:06:03,000
+a lot of error messages all at once, just fix the first one and then build again because sometimes it'll make a
+
+63
+00:06:03,000 --> 00:06:10,000
+great number of them go away and that's especially true when the mistake is a mistake in the header file.
+
+64
+00:06:10,000 --> 00:06:13,000
+Now what if I make a mistake when I'm implementing that function?
+
+65
+00:06:13,000 --> 00:06:17,000
+So it's declared properly as GetName and it's called
+
+66
+00:06:17,000 --> 00:06:20,000
+properly as GetName, but I go in here
+
+67
+00:06:20,000 --> 00:06:26,000
+and I just, you know I'm having a bad day, and I type the name wrong.
+
+68
+00:06:26,000 --> 00:06:32,000
+I could as easily type the number of parameters wrong or the types of parameters, doesn't matter, you can see right
+
+69
+00:06:32,000 --> 00:06:37,000
+away I'm getting red wiggles and this is because in the header I said that there was a GetName function, I didn't
+
+70
+00:06:37,000 --> 00:06:44,000
+say there was a GetNamex function and so just as you saw when the mistake was in the header, this implementation
+
+71
+00:06:44,000 --> 00:06:48,000
+file is like you're not a member function of person, I don't know what you're talking about and why you think
+
+72
+00:06:48,000 --> 00:06:53,000
+you're allowed to look at firstname and lastname and you get that big clump, the same clump of error messages
+
+73
+00:06:53,000 --> 00:07:02,000
+as when the mistake was in the header file.
+
+74
+00:07:02,000 --> 00:07:04,000
+What if I just flat out forget
+
+75
+00:07:04,000 --> 00:07:10,000
+to implement the function? You declared it in the header file and you forgot that you needed to implement it.
+
+76
+00:07:10,000 --> 00:07:17,000
+Especially if you have some functions that are inline, the way GetNumber and SetNumber are, you might type a whole
+
+77
+00:07:17,000 --> 00:07:21,000
+pile of functions in here and just forget you needed to over and implement GetName.
+
+78
+00:07:21,000 --> 00:07:26,000
+This is a problem that trips people up because the compiler is going to be perfectly happy.
+
+79
+00:07:26,000 --> 00:07:28,000
+The compiler when it's compiling
+
+80
+00:07:28,000 --> 00:07:36,000
+says ClassesandObjects, you notice there's no red wiggles here, GetName is declared in Person.h, but when we Build
+
+81
+00:07:36,000 --> 00:07:40,000
+these are linker errors and the first linker errors that you'll have seen from me so far.
+
+82
+00:07:40,000 --> 00:07:44,000
+In fact if you really care, you notice that the error starts LNK.
+
+83
+00:07:44,000 --> 00:07:52,000
+When you see a linker error, you always look not for a problem in a header file, but for missing implementations.
+
+84
+00:07:52,000 --> 00:08:00,000
+So the key part of messages it says, unresolved external symbol, something is missing that it was expecting to be
+
+85
+00:08:00,000 --> 00:08:06,000
+able to find. Now because we're working with strings, this is unfortunate, you sometimes get really nasty error
+
+86
+00:08:06,000 --> 00:08:09,000
+messages when you're using strings, we'll just skip over all of that.
+
+87
+00:08:09,000 --> 00:08:17,000
+Here's the important part, Person::GetName. So it's telling you what is missing and then there's some more
+
+88
+00:08:17,000 --> 00:08:20,000
+decoration which has to do with how overloads are implemented.
+
+89
+00:08:20,000 --> 00:08:27,000
+Linker error messages reveal a lot of the insides of C++, but you can skip over all that and get to where it turns
+
+90
+00:08:27,000 --> 00:08:36,000
+into English again referenced in function_wmain, which is what we call it tmain here, but there's a preprocessor thing
+
+91
+00:08:36,000 --> 00:08:39,000
+that turns in into wmain, that's not terribly vital.
+
+92
+00:08:39,000 --> 00:08:49,000
+The key is, in amongst all the gibberish, this error message says to you, you said there would be a GetName and
+
+93
+00:08:49,000 --> 00:08:55,000
+now I can't find it and when you get that error message from the linker, as opposed to the compiler, it's because you
+
+94
+00:08:55,000 --> 00:09:07,000
+forgot to implement the function. So we quickly implement it, Build it, and we're back to the races again.
+
+95
+00:09:07,000 --> 00:09:13,000
+What about I wrote it, I implemented it, but I forgot to include the right header file?
+
+96
+00:09:13,000 --> 00:09:16,000
+That one's the most common mistake actually.
+
+97
+00:09:16,000 --> 00:09:22,000
+Let's comment out this include of Tweeter and Build.
+
+98
+00:09:22,000 --> 00:09:29,000
+Here the errors are only in ClassesAndObjects. When you have a mistake in a header file, you get complaints from
+
+99
+00:09:29,000 --> 00:09:36,000
+ever place that includes that header file. When you forget a header file, you only get the complaints in the place
+
+100
+00:09:36,000 --> 00:09:43,000
+you forgot it. So here it says Tweeter undeclared identifier and then we have a cascade of errors.
+
+101
+00:09:43,000 --> 00:09:50,000
+It goes on to say, well if I don't know what Tweeter is then this syntax is really strange I don't know why you've
+
+102
+00:09:50,000 --> 00:09:58,000
+got round brackets and commas and things, this isn't right and I don't know what t1 is, I'm going to throw this
+
+103
+00:09:58,000 --> 00:10:04,000
+whole line away, so then a little later it will try to object if you try to talk to t1 because it wasn't properly
+
+104
+00:10:04,000 --> 00:10:10,000
+declared or it doesn't know its type. The real hallmark you're forgetting and include is that the errors are only
+
+105
+00:10:10,000 --> 00:10:16,000
+in the file that the include was forgotten in. When the errors are in multiple files, they're caused by a mistake
+
+106
+00:10:16,000 --> 00:10:20,000
+in the header that's been included into multiple files.
+
+107
+00:10:20,000 --> 00:10:22,000
+So let's make that right again.
+
+108
+00:10:22,000 --> 00:10:26,000
+Let's forget the header in the implementation file now.
+
+109
+00:10:26,000 --> 00:10:28,000
+So if I go into Person.cpp
+
+110
+00:10:28,000 --> 00:10:36,000
+because I happen to have it open, scroll up to the top, and forget to include Person.h.
+
+111
+00:10:36,000 --> 00:10:44,000
+Now when this is being complied, I'm declaring all these member functions in the person class.
+
+112
+00:10:44,000 --> 00:10:51,000
+In fact, I'm even declaring the fact that there is a Person class in a file that's not being included into here
+
+113
+00:10:51,000 --> 00:10:56,000
+and as you can see from all the red wiggles, in here they're like why are trying to talk about Person.
+
+114
+00:10:56,000 --> 00:11:00,000
+anything that's got :: after it has to be a class name.
+
+115
+00:11:00,000 --> 00:11:07,000
+This is your clue that the complier doesn't think Person is a class name and here, it says I don't know what GetName
+
+116
+00:11:07,000 --> 00:11:12,000
+is and GetName is a member of function of Person, but the compiler no long knows that because you didn't include
+
+117
+00:11:12,000 --> 00:11:23,000
+it here in the implementation file. So if I build it, tons of errors, all coming from Person.cpp and basically
+
+118
+00:11:23,000 --> 00:11:26,000
+starting with this one, Person is not a class or namespace name.
+
+119
+00:11:26,000 --> 00:11:31,000
+The rest of these kind of cascade from that. You notice eventually it does give up, it says wow, you are so messed
+
+120
+00:11:31,000 --> 00:11:36,000
+up I'm going to stop even trying to figure out what you mean and that's a good sign.
+
+121
+00:11:36,000 --> 00:11:40,000
+You don't work your way up from the bottom or pick one of these things in the middle and try and fix it, you start
+
+122
+00:11:40,000 --> 00:11:47,000
+with the first error, Person is not a class or namespace name, well I declared the Person to be a class over in
+
+123
+00:11:47,000 --> 00:11:55,000
+Person.h, I forgot to include Person.h, fix it up, build it and all the errors go away.
+
+124
+00:11:55,000 --> 00:12:01,000
+Finally, one that's not very likely to happen as long as you're following along the way I told you how to add classes
+
+125
+00:12:01,000 --> 00:12:04,000
+into your project, but that can trip you up, so
+
+126
+00:12:04,000 --> 00:12:11,000
+I'll show it to you. When you look in this project, we have files over here in the Solution Explorer.
+
+127
+00:12:11,000 --> 00:12:20,000
+When this project was built, it was built two different ways, one by right click, Add, a Class, which added a
+
+128
+00:12:20,000 --> 00:12:28,000
+cpp and an h file at the same time and one by right click Add, New Item twice, once by choosing cpp file and once
+
+129
+00:12:28,000 --> 00:12:34,000
+choosing header file and both of these approaches add the cpp file to the project.
+
+130
+00:12:34,000 --> 00:12:39,000
+It doesn't much matter whether a header file is included in the project or not, but it really matters that an
+
+131
+00:12:39,000 --> 00:12:46,000
+implementation is added to the project. If you right click any of these file tabs, you can choose Open
+
+132
+00:12:46,000 --> 00:12:50,000
+Containing Folder and in here
+
+133
+00:12:50,000 --> 00:12:59,000
+you will see the cpp files and the h files all mixed together and you could, if you wanted to, right click and
+
+134
+00:12:59,000 --> 00:13:06,000
+Create a File here, typically people would create a Text Document and then rename it with a different extension,
+
+135
+00:13:06,000 --> 00:13:11,000
+and that would add a file to this folder, but it wouldn't add the file to the project.
+
+136
+00:13:11,000 --> 00:13:18,000
+Sometimes people give you code, and you just put it in the folder and if you forget to add it to the project
+
+137
+00:13:18,000 --> 00:13:25,000
+the includes will work because includes follow a path and just look on that path for a file with that name, but
+
+138
+00:13:25,000 --> 00:13:33,000
+the linking will not because unless the cpp file is explicitly added to the project, it won't be linked into the project.
+
+139
+00:13:33,000 --> 00:13:41,000
+So to simulate forgetting to add, I'm going to remove a file from the project and I'm going to remove Tweeter.cpp
+
+140
+00:13:41,000 --> 00:13:47,000
+with this Exclude From Project. Now you see that it disappears from here, it's still
+
+141
+00:13:47,000 --> 00:13:55,000
+in the folder, nothing's happened to the actual file and if I Build this
+
+142
+00:13:55,000 --> 00:14:01,000
+again we're getting linker errors, they start LNK unresolved external symbol and it's actually complaining about
+
+143
+00:14:01,000 --> 00:14:08,000
+two different things, one is the destructor and the other is the constructor of Tweeter.
+
+144
+00:14:08,000 --> 00:14:14,000
+They're both caused because the cpp file, Tweeter.cpp, is no long being linked into the project.
+
+145
+00:14:14,000 --> 00:14:23,000
+Now, as long as you always add new material by right clicking your project and choosing Add, you will get things
+
+146
+00:14:23,000 --> 00:14:27,000
+added to your project because you're busy adding them to your project.
+
+147
+00:14:27,000 --> 00:14:32,000
+Should it ever happen that someone gives you a file of code and especially if you then get an error like this,
+
+148
+00:14:32,000 --> 00:14:39,000
+we'll say, I've got to add it to the project, you can choose to Add Existing Item.
+
+149
+00:14:39,000 --> 00:14:42,000
+It'll start by default looking right in the folder with the rest of your code.
+
+150
+00:14:42,000 --> 00:14:45,000
+There's Tweeter.cpp and get it Added
+
+151
+00:14:45,000 --> 00:14:51,000
+back into the project, shows up here, and I can Build and the Build succeeds.
+
+152
+00:14:51,000 --> 00:14:58,000
+Should it happen that you get linker errors and you're sure the code is in the file, the next step is, is the linker
+
+153
+00:14:58,000 --> 00:15:03,000
+including the file and the way to test that is to look over here in Solution Explorer and make sure that the cpp
+
+154
+00:15:03,000 --> 00:15:09,000
+file really is in the project and not just in the solution that the project is part of.
+
+155
+00:15:09,000 --> 00:15:14,000
+Now you've seen the full spectrum of mistakes a person can make when their working with functions whether you
+
+156
+00:15:14,000 --> 00:15:19,000
+make a mistake calling it, declaring it, or implementing it.
+
+157
+00:15:19,000 --> 00:15:23,000
+You've seen the difference between compiler error messages and linker error messages.
+
+158
+00:15:23,000 --> 00:15:28,000
+You understand that sometimes you get dozens of error messages from a single character mistake and that noticing
+
+159
+00:15:28,000 --> 00:15:33,000
+whether your error messages come all from the same file or from a variety of different files, is an excellent way
+
+160
+00:15:33,000 --> 00:15:40,000
+to zero in on exactly where you're problem is. I hope this makes the process of fixing error messages a lot less
+
+161
+00:15:40,000 --> 00:59:00,000
+frustrating for you.
+

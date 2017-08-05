@@ -1,0 +1,32 @@
+1
+00:00:01,000 --> 00:00:07,000
+Welcome back to Introduction to C++. My name is Kate Gregory and I'm introducing you to the most popular general
+
+2
+00:00:07,000 --> 00:00:14,000
+purpose programming language C++. In this module, I'll build on the concepts you met with fundamental types and
+
+3
+00:00:14,000 --> 00:00:22,000
+use them for user defined types, your own classes. So you'll see how to define and use objects that are instances
+
+4
+00:00:22,000 --> 00:00:29,000
+of class that you invented. That will need us to talk about some other concepts that are really important to
+
+5
+00:00:29,000 --> 00:00:41,000
+C++ like scope, the lifetime of an object, and we also need to discuss inheritance, namespaces, the C++ enum type,
+
+6
+00:00:41,000 --> 00:00:46,000
+and the role of the preprocessor in a C++ application.
+
+7
+00:00:46,000 --> 00:00:52,000
+It's quite a lot of ground to cover, but at the end of it, you'll be really ready to work with objects with instances
+
+8
+00:00:52,000 --> 00:59:00,000
+of your own classes or classes from a library.
+

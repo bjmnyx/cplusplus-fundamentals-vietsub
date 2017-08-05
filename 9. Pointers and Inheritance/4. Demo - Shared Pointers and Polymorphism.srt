@@ -1,0 +1,112 @@
+1
+00:00:03,000 --> 00:00:11,000
+Let's change this demo from using raw pointers, Person* and Tweeter*, to using shared_ptrs.
+
+2
+00:00:11,000 --> 00:00:20,000
+I'll include memory. (Typing) That brings me in the shared_ptr and since I already have using namespace std
+
+3
+00:00:20,000 --> 00:00:32,000
+I can just call it shared_ptr. Let's (Typing) make a shared_ptr (Typing) of Person (Typing), and call it
+
+4
+00:00:32,000 --> 00:00:38,000
+shared pointer to Kate. And there's a couple different ways -- we used to make shared in other demos
+
+5
+00:00:38,000 --> 00:00:42,000
+because we weren't declaring and initializing the pointer at the same time.
+
+6
+00:00:42,000 --> 00:00:50,000
+Here, I can, if I wish, simply new up a Person and put it in here
+
+7
+00:00:50,000 --> 00:00:59,000
+or I can use =make_shared (Typing) at Person (Typing)
+
+8
+00:00:59,000 --> 00:01:07,000
+and again, pass in those arguments. I'm just going to steal these arguments (Typing)
+
+9
+00:01:07,000 --> 00:01:13,000
+and I'll put an S and a P. We're not going to be very pronounceable, but we'll be able to tell our objects
+
+10
+00:01:13,000 --> 00:01:22,000
+apart. (Typing)
+
+11
+00:01:22,000 --> 00:01:30,000
+This line of code compiles. I'll build it to prove it to you, but it's a little repetitive.
+
+12
+00:01:30,000 --> 00:01:36,000
+Why do I have to say the type here and here? Interestingly, make_shared a Person returns a
+
+13
+00:01:36,000 --> 00:01:44,000
+shared_ptr of Person and in C++ 11 we have this cool capability, which is, I don't have to type out the type
+
+14
+00:01:44,000 --> 00:01:53,000
+of an object if the compiler knows what it is. Here, I can actually use this C++ 11 keyword, auto.
+
+15
+00:01:53,000 --> 00:01:58,000
+When I do that, if I hover over spKate, you'll see it's a shared_ptr of Person.
+
+16
+00:01:58,000 --> 00:02:04,000
+It has a type; I just didn't have to come up with it. Its type is whatever make_shared returns.
+
+17
+00:02:04,000 --> 00:02:10,000
+I can, of course, interact with this pointer the same way we did with the raw ones.
+
+18
+00:02:10,000 --> 00:02:19,000
+So I could take this line, (Typing) paste it here, and all I need to do is change the variable to spKate,
+
+19
+00:02:19,000 --> 00:02:25,000
+and that's just fine. I'm dereferencing the shared_ptr to call its GetName function.
+
+20
+00:02:25,000 --> 00:02:38,000
+I could also go back to calling this a shared_ptr (Typing) to Person, but create it, not by calling
+
+21
+00:02:38,000 --> 00:02:45,000
+make_shared of Person, but by calling make_shared of Tweeter. So this will now be a shared_ptr to Person
+
+22
+00:02:45,000 --> 00:02:50,000
+that's actually pointing to an object that was allocated out on the free store as a Tweeter.
+
+23
+00:02:50,000 --> 00:02:51,000
+I'm going to need another
+
+24
+00:02:51,000 --> 00:03:03,000
+parameter to my constructor for a twitter handle. (Typing) And if I run this
+
+25
+00:03:03,000 --> 00:03:11,000
+you can see I got the Tweeter version of GetName. In other words, our shared_ptrs are being appropriately
+
+26
+00:03:11,000 --> 00:03:17,000
+polymorphic. A shared_ptr of Person that really points at a Person, you get the Person code.
+
+27
+00:03:17,000 --> 00:03:22,000
+No surprise there. A shared_ptr of Person that really points at a Tweeter, you get the Tweeter code because
+
+28
+00:03:22,000 --> 00:59:00,000
+it's a virtual function. It just works exactly like a raw pointer.
+

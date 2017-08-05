@@ -1,0 +1,212 @@
+1
+00:00:02,000 --> 00:00:08,000
+Here's a template class. This is a very naive accumulator. It keeps a running total.
+
+2
+00:00:08,000 --> 00:00:14,000
+It's not necessarily a paradigm of exactly how to write accumulators that keep running totals.
+
+3
+00:00:14,000 --> 00:00:18,000
+There are things that will do this for you in the Standard Library,
+
+4
+00:00:18,000 --> 00:00:22,000
+but I wanted to choose a class that you could easily see how it worked.
+
+5
+00:00:22,000 --> 00:00:25,000
+This isn't a header file and there is not Accum.cpp.
+
+6
+00:00:25,000 --> 00:00:31,000
+That's pretty normal that everything is in the header file, so that it can easily be brought in by the
+
+7
+00:00:31,000 --> 00:00:37,000
+compiler everywhere that it's used. As with the functions, you notice we start template class T
+
+8
+00:00:37,000 --> 00:00:42,000
+and then we are defining a class and this is the end of it as usual.
+
+9
+00:00:42,000 --> 00:00:47,000
+Inside we use T for the type placeholder, just as in the function.
+
+10
+00:00:47,000 --> 00:00:51,000
+Accum here, if you're making an Accum of ints it'll have an integer total.
+
+11
+00:00:51,000 --> 00:00:55,000
+If you're making an Accum of floats it'll have a float total.
+
+12
+00:00:55,000 --> 00:01:01,000
+It has a constructor that takes a starting value. It's probably going to be 0, but we're going to have a
+
+13
+00:01:01,000 --> 00:01:06,000
+constructor that lets you pass in what your starting value will be and all it will do is,
+
+14
+00:01:06,000 --> 00:01:11,000
+using C++ initialization syntax, initialize total to that starting value.
+
+15
+00:01:11,000 --> 00:01:20,000
+Then, we have an operator +=. It returns a type and takes a type reference.
+
+16
+00:01:20,000 --> 00:01:25,000
+I'll explain the const later. In the material on pointers we'll get into const.
+
+17
+00:01:25,000 --> 00:01:28,000
+For now, when you take certain things by reference you have to say const,
+
+18
+00:01:28,000 --> 00:01:32,000
+otherwise, you can't pass in a literal like three, which is a constant.
+
+19
+00:01:32,000 --> 00:01:35,000
+Treat that as a little bit of a magic word for now. We'll come back to it.
+
+20
+00:01:35,000 --> 00:01:44,000
+Operator+=, this is just ordinary common or garden operator overloading when you add t onto the total we
+
+21
+00:01:44,000 --> 00:01:51,000
+should increment total, so total is equal to total + t, and we'll return that value.
+
+22
+00:01:51,000 --> 00:01:56,000
+That may be of some value if people are chaining them or using them to pass down to other functions
+
+23
+00:01:56,000 --> 00:02:03,000
+and that kind of thing. Then, I have a member function called GetTotal that provides access to the total
+
+24
+00:02:03,000 --> 00:02:08,000
+and it is returning type t again, so if totals an int this returns an int,
+
+25
+00:02:08,000 --> 00:02:13,000
+if totals a float this returns a float, and so on. And I have some code here
+
+26
+00:02:13,000 --> 00:02:20,000
+that uses it. Now when you instantiate a template class you do explicitly specify the type,
+
+27
+00:02:20,000 --> 00:02:26,000
+so here I'm saying I have an Accum of int and I've happened to give it a name integers, but you could of
+
+28
+00:02:26,000 --> 00:02:32,000
+course call it hello or Tuesday or whatever works for you, and I'm passing in the starting value, which makes
+
+29
+00:02:32,000 --> 00:02:39,000
+sense that we start at 0. And then I just use += a couple times and add more integers onto my accumulator,
+
+30
+00:02:39,000 --> 00:02:46,000
+and then I ask for the total and print that out. Do the same thing with strings.
+
+31
+00:02:46,000 --> 00:02:51,000
+I call it strings and this time I initialize it to "" rather than 0 -- that obviously makes more sense for
+
+32
+00:02:51,000 --> 00:02:57,000
+strings -- and I'm going to put in hello and world. And the rest of the code in this main is commented out,
+
+33
+00:02:57,000 --> 00:03:01,000
+so let's just run this and show what you get.
+
+34
+00:03:01,000 --> 00:03:06,000
+So when we put 3 and 7 into the accumulation of integers, we ended up with 10.
+
+35
+00:03:06,000 --> 00:03:11,000
+And when we put hello and space world into the accumulation of strings, we ended up with a hello world,
+
+36
+00:03:11,000 --> 00:03:18,000
+so this works as advertised. That's nice. Good, simple, easy to use, and apart from the angle bracket
+
+37
+00:03:18,000 --> 00:03:24,000
+syntax when you declared them, after that it's just perfectly ordinary class and you just use these
+
+38
+00:03:24,000 --> 00:03:32,000
+intuitive operators and member functions. Now what do I have commented out down here?
+
+39
+00:03:32,000 --> 00:03:38,000
+I have attempted to break the rules. I have mentioned a couple times that templates give you type safety.
+
+40
+00:03:38,000 --> 00:03:45,000
+Integers is an accumulation of integers and its += operator takes an integer reference.
+
+41
+00:03:45,000 --> 00:03:51,000
+When I try to use a string you can see I'm going to get red wigglies, says no operator += matches these
+
+42
+00:03:51,000 --> 00:03:58,000
+operands. And similarly, strings is an accumulation of strings and when I try to add in an integer it says,
+
+43
+00:03:58,000 --> 00:04:05,000
+no operator += matches these operands. I will build it to show you the compiler errors that you get in the
+
+44
+00:04:05,000 --> 00:04:11,000
+output window. There's a lot more of them and they can be a little more intimidating.
+
+45
+00:04:11,000 --> 00:04:18,000
+They do contain the same fundamental complaint that you saw in the tip, no operator found which takes a
+
+46
+00:04:18,000 --> 00:04:28,000
+right hand operator of type ‘const char
+
+47
+00:04:28,000 --> 00:04:34,000
+And just that, seeing T here and here, is your biggest clue that if it's an accumulation of integers you
+
+48
+00:04:34,000 --> 00:04:39,000
+should add integers into it and if it's accumulation of strings you should add strings into it.
+
+49
+00:04:39,000 --> 00:04:47,000
+This kind of type safety is a feature. This is what we want our templates to do for us, to let us write the
+
+50
+00:04:47,000 --> 00:04:54,000
+code once and use it with a variety of types without forgetting what the types are, keeping all their true
+
+51
+00:04:54,000 --> 00:05:00,000
+nature as an integer or a string or a person or a bank account, and getting the compiler, our friend the
+
+52
+00:05:00,000 --> 00:05:07,000
+compiler, to tell us when we mess up. These lines don't compile because our accumulator is type safe and
+
+53
+00:05:07,000 --> 00:59:00,000
+that's what we want.
+

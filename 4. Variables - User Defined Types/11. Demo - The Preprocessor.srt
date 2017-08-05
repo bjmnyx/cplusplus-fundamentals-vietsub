@@ -1,0 +1,248 @@
+1
+00:00:01,000 --> 00:00:04,000
+In the demos that I've shown you
+
+2
+00:00:04,000 --> 00:00:20,000
+so far, I had to comment out this line, Person.h and I'll show you why by taking away the commenting out and building.
+
+3
+00:00:20,000 --> 00:00:29,000
+See all these errors? Person, class type redefinition, see declaration of Person, What?
+
+4
+00:00:29,000 --> 00:00:38,000
+What happens is I explain to the compiler what a Person is by including Person.h and then I include Tweeter.h
+
+5
+00:00:38,000 --> 00:00:39,000
+and if I just go there
+
+6
+00:00:39,000 --> 00:00:47,000
+you'll see that that first things that Tweeter.h does is include Person.h and the pre-processor Pastes that same
+
+7
+00:00:47,000 --> 00:00:55,000
+include file in again and then says, what, Person again, well that's an error, our persons already been defined,
+
+8
+00:00:55,000 --> 00:01:01,000
+we can't have two classes called Person in the same namespace and you get an error.
+
+9
+00:01:01,000 --> 00:01:02,000
+So because we're really
+
+10
+00:01:02,000 --> 00:01:08,000
+focusing in that demo on the mechanics of inheritance, I didn't want to get into that, we just commented the line
+
+11
+00:01:08,000 --> 00:01:11,000
+out, but obviously we have to fix something about that.
+
+12
+00:01:11,000 --> 00:01:18,000
+Now the old fashion way would be to have someone include both files, get an error, and then say I get it, Tweeter
+
+13
+00:01:18,000 --> 00:01:22,000
+brings in Person, so I don't need to bring in Person, so I'll just take this line away.
+
+14
+00:01:22,000 --> 00:01:28,000
+I don't like that. I don't like having to build a tree in your head of all the possible things that have been
+
+15
+00:01:28,000 --> 00:01:33,000
+included by other things. You just should be able to say what you use and then let them work it out amongst
+
+16
+00:01:33,000 --> 00:01:40,000
+themselves and there are a variety of ways to do it, here is a way that many, many developers use.
+
+17
+00:01:40,000 --> 00:01:46,000
+You go into the header file and we're going to add directives in here that basically prevent it from ever being
+
+18
+00:01:46,000 --> 00:01:53,000
+included twice. So if someone tries to include Person.h a second time, the header file itself will recognize
+
+19
+00:01:53,000 --> 00:02:00,000
+that it's already been included and not define the class again and therefore not trigger the error messages
+
+20
+00:02:00,000 --> 00:02:07,000
+and we're going to do this using some pre-processor directives that can define arbitrary constants and people use
+
+21
+00:02:07,000 --> 00:02:16,000
+this to say for example, define pi to be 3.14 15 etc and then they can use pi in their calculations.
+
+22
+00:02:16,000 --> 00:02:22,000
+We're going to define some constants that really just indicate, we must have been this way before because this
+
+23
+00:02:22,000 --> 00:02:30,000
+constant is already defined. Once you've defined a constant, you can test to see if it's defined or not and
+
+24
+00:02:30,000 --> 00:02:37,000
+that's how we'll know what's going on. So the constant by tradition, is based on the name of the file, that
+
+25
+00:02:37,000 --> 00:02:51,000
+way they won't conflict or clash with each other. So for example, I might define _Person_H and that's a variable
+
+26
+00:02:51,000 --> 00:02:59,000
+that represents the name of this file Person.h. If that's already defined, we must have already included this file.
+
+27
+00:02:59,000 --> 00:03:02,000
+If it isn't defined yet, we haven't yet included this file.
+
+28
+00:03:02,000 --> 00:03:20,000
+So before I define it, I test, ifnotdef _Person_H and then I'm going to put the end of that all the way down here.
+
+29
+00:03:20,000 --> 00:03:25,000
+So what's happening is, if Person.h is not yet defined, great, in comes the whole rest of the file.
+
+30
+00:03:25,000 --> 00:03:34,000
+We define Person.h, we declare the Person class and everything is as before, but if Person.h is being included for
+
+31
+00:03:34,000 --> 00:03:41,000
+a second time, when the pre-processor is doing that including and it reaches this ifnotdef, it says, oh but it
+
+32
+00:03:41,000 --> 00:03:48,000
+is defined, okay, we'll skip down here to the endif and as a result Person does not get included again.
+
+33
+00:03:48,000 --> 00:03:59,000
+So let's Build this
+
+34
+00:03:59,000 --> 00:04:03,000
+and you can see there's no error messages, this works perfectly. The main file
+
+35
+00:04:03,000 --> 00:04:09,000
+ClassesAndObjects can now include Person and Tweeter without worrying that they have some kind of relationship or
+
+36
+00:04:09,000 --> 00:04:16,000
+that one includes the other, or that it matters what order, it all just kind of works the way that it should
+
+37
+00:04:16,000 --> 00:04:22,000
+and this pattern is called an include guard. Whatever your arguments for or against include guards are, please don't
+
+38
+00:04:22,000 --> 00:04:29,000
+compiler performance be one of them. This is a relatively high performing way to solve this particular problem,
+
+39
+00:04:29,000 --> 00:04:33,000
+but it's not the only way. There is another way that isn't standard.
+
+40
+00:04:33,000 --> 00:04:37,000
+So this is standard it will work in every C++ compiler in the universe.
+
+41
+00:04:37,000 --> 00:04:43,000
+They all understand the idea of defining a constant and they understand the idea of testing against the constant
+
+42
+00:04:43,000 --> 00:04:49,000
+and some of them, for example Visual Studio, can also be reasonably smart about realizing the endif is at the
+
+43
+00:04:49,000 --> 00:04:53,000
+very end of the line, so I don't even need to process the rest of the file.
+
+44
+00:04:53,000 --> 00:04:59,000
+There is another approach, that you can take and in fact, when we added that class using the Wizard,
+
+45
+00:04:59,000 --> 00:05:05,000
+Visual Studio took this approach for us and that's this directive here, pragma.
+
+46
+00:05:05,000 --> 00:05:11,000
+As you can see it's a pre-processor directive just like include, or define, or ifnotdefined and pragma, once
+
+47
+00:05:11,000 --> 00:05:18,000
+says, this particular file should only be included once in each compilation unit.
+
+48
+00:05:18,000 --> 00:05:23,000
+It's the same things behind the scenes, the compiler generates the unique identifier and makes sure that if it
+
+49
+00:05:23,000 --> 00:05:26,000
+gets included again it doesn't actually process it again.
+
+50
+00:05:26,000 --> 00:05:30,000
+Some people find this more readable, some people find it less readable.
+
+51
+00:05:30,000 --> 00:05:35,000
+There may be compilers out there that don't recognize it in which case you would need to write the old include
+
+52
+00:05:35,000 --> 00:05:41,000
+guard way anyway. You're welcome to use pragma once if you prefer it to include guards.
+
+53
+00:05:41,000 --> 00:05:45,000
+You should be to recognize include guards when you see them
+
+54
+00:05:45,000 --> 00:05:50,000
+in someone else's header files and understand what's going on and if you're copying someone else's code for your
+
+55
+00:05:50,000 --> 00:05:59,000
+own purposes and you copy include guards, make sure you change the name of the defined variable that you're using
+
+56
+00:05:59,000 --> 00:06:04,000
+to guard the include with to something that represents your new file name otherwise you're get really strange
+
+57
+00:06:04,000 --> 00:06:09,000
+behavior where I know I'm including this file, but the compiler's acting like I'm not because if two files actually
+
+58
+00:06:09,000 --> 00:06:14,000
+both test the same variable, they can't both get included, that's never going to be a good thing.
+
+59
+00:06:14,000 --> 00:06:19,000
+So you have to understand how include guards work in order to be able to understand other people's code.
+
+60
+00:06:19,000 --> 00:06:20,000
+If you would prefer to do
+
+61
+00:06:20,000 --> 00:06:27,000
+the prama once and you're only going to be working in Visual Studio, or Visual C++ Express, that's fine, pragma once
+
+62
+00:06:27,000 --> 00:59:00,000
+will work beautifully, they're both available to you.
+

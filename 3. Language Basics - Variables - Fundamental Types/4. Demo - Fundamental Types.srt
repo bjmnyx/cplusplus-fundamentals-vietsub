@@ -1,0 +1,572 @@
+1
+00:00:02,000 --> 00:00:08,000
+I have a demo to show you that will take these types out for a spin, show us putting some values back and forth into
+
+2
+00:00:08,000 --> 00:00:14,000
+different types of variables, and what happens especially when you mix and match types and convert maybe from one
+
+3
+00:00:14,000 --> 00:00:17,000
+type to another, So here in
+
+4
+00:00:17,000 --> 00:00:25,000
+Visual C++ Express, I have a project called VariablesAndTypes and you see for example here we declare an integer
+
+5
+00:00:25,000 --> 00:00:33,000
+called i1 and initialize it with a value of 1 and then I'm printing the values out onto the console output and
+
+6
+00:00:33,000 --> 00:00:41,000
+that's why I have this include here of iostream so that I can use standard console output to write to.
+
+7
+00:00:41,000 --> 00:00:46,000
+I declare another integer here and don't give if a value right away, but then give it a value on the next line,
+
+8
+00:00:46,000 --> 00:00:49,000
+and there's really no important difference between these two, for integers.
+
+9
+00:00:49,000 --> 00:00:56,000
+There can be a difference for your own user defined types, I'll talk about that in a little while and then this
+
+10
+00:00:56,000 --> 00:00:59,000
+third way which some people ask about when the first time they see it.
+
+11
+00:00:59,000 --> 00:01:05,000
+Actually initializing that integer using these round brackets and this is another way to do.
+
+12
+00:01:05,000 --> 00:01:09,000
+It's simply a matter of taste. These three have no real difference.
+
+13
+00:01:09,000 --> 00:01:18,000
+If I run this application with Ctrl+F5, let it compile
+
+14
+00:01:18,000 --> 00:01:24,000
+and then I'll just pull this window down so that you can see the code, hopefully no one is terribly surprised that
+
+15
+00:01:24,000 --> 00:01:33,000
+i1 comes out as 1, i2 as 2, and i3 as 3 because those are the values that I've initialized them to.
+
+16
+00:01:33,000 --> 00:01:37,000
+If we scroll down a little further in the code, you can see we've got a couple of doubles here.
+
+17
+00:01:37,000 --> 00:01:45,000
+I'm putting a real number into d1 2.2 and for d2 I'm assigning to the value that's in i1.
+
+18
+00:01:45,000 --> 00:01:54,000
+So i1's an integer and the integers we say promoted to a double and there's no loss of any information, that's just fine.
+
+19
+00:01:54,000 --> 00:02:02,000
+But this next line, we take another integer i4 and we assign it to this value that's in d1, which is 2.2.
+
+20
+00:02:02,000 --> 00:02:06,000
+Now you can't put 2.2 into an integer, so we're going to lose some information.
+
+21
+00:02:06,000 --> 00:02:12,000
+If you're expecting a runtime error from doing this, you don't get one. Let's take a look at the output
+
+22
+00:02:12,000 --> 00:02:21,000
+obviously there's no error messages, d1 comes out as 2.2, d2 comes out as 1, which is what was in i1 and i4 comes
+
+23
+00:02:21,000 --> 00:02:30,000
+out as 2, the value is just truncated silently it runtime with no complaints and if that was what you wanted, fantastic,
+
+24
+00:02:30,000 --> 00:02:34,000
+if it wasn't there was a way to find out that you were going to have this problem, but it's not something you'll
+
+25
+00:02:34,000 --> 00:02:36,000
+be told about at runtime.
+
+26
+00:02:36,000 --> 00:02:43,000
+Let's carry down here. I have a character called c1 and you see that it's perfectly ordinary to put a value into
+
+27
+00:02:43,000 --> 00:02:49,000
+a character using single quotes then the letter then end single quote.
+
+28
+00:02:49,000 --> 00:02:54,000
+I have a line here that's currently commented out that uses double quotes, I'm going to let you see the error
+
+29
+00:02:54,000 --> 00:02:58,000
+message from that in a moment, we'll print out c1
+
+30
+00:02:58,000 --> 00:03:00,000
+and not surprisingly it's a
+
+31
+00:03:00,000 --> 00:03:11,000
+and then I have some Boolean values, I call it flag and I started as false, print that out.
+
+32
+00:03:11,000 --> 00:03:16,000
+It actually prints out 0 when you send the Boolean value to c out.
+
+33
+00:03:16,000 --> 00:03:22,000
+Then I take that and I assign it to i1, which you remember had the numerical value of 1
+
+34
+00:03:22,000 --> 00:03:26,000
+and sure enough it comes out as 1. It sounds like you can put a number into a
+
+35
+00:03:26,000 --> 00:03:33,000
+bool so just to prove you can, I'm going to take this double number, d1, which has the value
+
+36
+00:03:33,000 --> 00:03:40,000
+2.2, put it into the flag and it still prints out 1 because really what flag is, is true and when you send true to
+
+37
+00:03:40,000 --> 00:03:46,000
+console output, it happens to put a 1 on the screen, but its value is either true or false and the easiest way to
+
+38
+00:03:46,000 --> 00:03:49,000
+see that is if I rerun the application under the debugger.
+
+39
+00:03:49,000 --> 00:03:53,000
+So I'm going to Stop this run
+
+40
+00:03:53,000 --> 00:03:58,000
+and just before you do the debugger run, I'll show you what would happen if I were to try to compile this line
+
+41
+00:03:58,000 --> 00:04:03,000
+that's trying to initialize a character using double quotes rather than single quotes.
+
+42
+00:04:03,000 --> 00:04:10,000
+To a lot of people from other programming languages, when they see "b", the think we'll that's a single character,
+
+43
+00:04:10,000 --> 00:04:17,000
+but it's not. It's what a lot of people call c style string, it's actually an array of characters with a special
+
+44
+00:04:17,000 --> 00:04:21,000
+termination character at the end of the array. So one real character the letter b and the special
+
+45
+00:04:21,000 --> 00:04:27,000
+termination character. We're not using those kinds of strings because I think the standard strings are much easier
+
+46
+00:04:27,000 --> 00:04:33,000
+to work with, but I just want you to know that you can't initialize a character using a string.
+
+47
+00:04:33,000 --> 00:04:39,000
+So you can see there's red wiggles here and it says Error: a value of type "const char*" cannot be used to initialize
+
+48
+00:04:39,000 --> 00:04:44,000
+an entity of type "char". The important part of that is probably the word error.
+
+49
+00:04:44,000 --> 00:04:51,000
+When you want to initialize a character use only a single quote, a single quote for a single character, easy way
+
+50
+00:04:51,000 --> 00:04:57,000
+to remember it. So let's comment that back out and this time I'm going to run the application under the debugger
+
+51
+00:04:57,000 --> 00:05:01,000
+because I want to show you how the debugger displays Boolean values.
+
+52
+00:05:01,000 --> 00:05:08,000
+Now this, exact ins and outs of how to debug an application are not what we're here for, so I'm just going to treat
+
+53
+00:05:08,000 --> 00:05:17,000
+the debugger as a way to let you see values. The way to see values is to pause the program and you pause at what's
+
+54
+00:05:17,000 --> 00:05:21,000
+called a break point. Lots of ways to get break points in your application.
+
+55
+00:05:21,000 --> 00:05:29,000
+If you're not familiar with Visual Studio probably your best choice is to simply right click on a line, Breakpoint,
+
+56
+00:05:29,000 --> 00:05:35,000
+Insert Breakpoint. Once you're a little bit more familiar, you'll recognize this gray margin as sort of the
+
+57
+00:05:35,000 --> 00:05:41,000
+breakpoint margin and you can click on one to make it go away, or click on the empty margin to set one, but if
+
+58
+00:05:41,000 --> 00:05:45,000
+you're not 100% which margins are which, right click to set your breakpoints.
+
+59
+00:05:45,000 --> 00:05:48,000
+Now when I hit this,
+
+60
+00:05:48,000 --> 00:05:49,000
+we will run
+
+61
+00:05:49,000 --> 00:05:59,000
+just up until the breakpoint and then we'll stop. Now here, stopped at the breakpoint, you can see this window
+
+62
+00:05:59,000 --> 00:06:06,000
+here called Autos. If for some reason you don't see this window when you're doing this yourself, you can go on the
+
+63
+00:06:06,000 --> 00:06:14,000
+Debug menu, choose Windows, and bring up a particular window that you might want.
+
+64
+00:06:14,000 --> 00:06:21,000
+Locals is a perfectly good substitute for Autos, it simply shows a few more values.
+
+65
+00:06:21,000 --> 00:06:27,000
+Now you can see here that paused execution before we're running this line.
+
+66
+00:06:27,000 --> 00:06:34,000
+The i1 value is just gibberish. In fact, what the debugger is showing is just what happened to used to be in that
+
+67
+00:06:34,000 --> 00:06:39,000
+memory, we haven't yet declared the variable or put a value into it.
+
+68
+00:06:39,000 --> 00:06:46,000
+So if I step over this line, using this Step Over button on the toolbar, now you can see down here that i1 has
+
+69
+00:06:46,000 --> 00:06:52,000
+the value 1. Now none of this is terribly exciting because you watched all these in the console window and they
+
+70
+00:06:52,000 --> 00:06:58,000
+probably weren't that exciting the first time through. So I'm just going to scroll down to here, right click,
+
+71
+00:06:58,000 --> 00:07:02,000
+and choose Run To Cursor, just to whiz past all of that.
+
+72
+00:07:02,000 --> 00:07:08,000
+Because what I actually think is worth seeing is the way the debugger displays our Boolean value of flag.
+
+73
+00:07:08,000 --> 00:07:16,000
+So when I step over this line, and let's look around and find flag, it has the value false and you see that the
+
+74
+00:07:16,000 --> 00:07:21,000
+debugger doesn't show 0 the way the console output did, but it actually shows false, which is much more helpful
+
+75
+00:07:21,000 --> 00:07:29,000
+for you to understand what's going on and when we set flag = to i1 which has a numerical value of 1, now the debugger
+
+76
+00:07:29,000 --> 00:07:40,000
+reports that as true, and when we set flag = to d1, which has a numerical value of 2.2, you can see that the debugger
+
+77
+00:07:40,000 --> 00:07:48,000
+continues to report that as true. So using the debugger can sometimes give a little more insight into what's
+
+78
+00:07:48,000 --> 00:08:00,000
+going on and how your data is being interpreted. The console out writing isn't always quite as useful as the debugger.
+
+79
+00:08:00,000 --> 00:08:07,000
+To kind of illustrate that a little more firmly, I'm going to uncomment some code that I've had hidden and this is
+
+80
+00:08:07,000 --> 00:08:13,000
+some code working with characters, but putting numbers into that character type.
+
+81
+00:08:13,000 --> 00:08:19,000
+The reason I'm doing this with character is because it's small enough that we can all kind of know what it can hold.
+
+82
+00:08:19,000 --> 00:08:31,000
+An unsigned character hold 8 bytes, as signed character holds 7 bytes of number and 7 bytes is a number up to 127
+
+83
+00:08:31,000 --> 00:08:39,000
+and 8 bytes is a number up to 255. Now, just before I uncomment this code, I want you to see that it uses the
+
+84
+00:08:39,000 --> 00:08:46,000
+sytle of C++ comments. So you've already seen a single pair of // on a line to makes the whole rest of the line
+
+85
+00:08:46,000 --> 00:08:55,000
+into a comment, the /* character signifies the beginning of a comment, which can be only even part of a line if
+
+86
+00:08:55,000 --> 00:09:01,000
+you want or many lines, as this one is, and the */ indicates the end of that comment.
+
+87
+00:09:01,000 --> 00:09:11,000
+So if I delete the beginning and the end of the comment, now this code is incorporated into my application again
+
+88
+00:09:11,000 --> 00:09:17,000
+and I'll compile it. I'm using the keystroke Ctrl+Shift+B to Build.
+
+89
+00:09:17,000 --> 00:09:25,000
+You can also just come up here to the Solution, right click, and choose Build Solution.
+
+90
+00:09:25,000 --> 00:09:33,000
+So what we're doing, I mentioned an unsigned character can hold up to 255, so I'm going to put 128 in there, that's fine.
+
+91
+00:09:33,000 --> 00:09:40,000
+We're also going to make a character which can hold up to 127 and try to put a 128 into it and see what debugger
+
+92
+00:09:40,000 --> 00:09:49,000
+has to say about that. SO let's put a breakpoint here, and run to here.
+
+93
+00:09:49,000 --> 00:09:56,000
+It hits the first breakpoint, I'm just going to hit Run again to run down to the second one and we'll Step through.
+
+94
+00:09:56,000 --> 00:10:02,000
+So you can see that n1 has the numerical value 128 and this is the character that that represents.
+
+95
+00:10:02,000 --> 00:10:14,000
+We don't really care about it as a character we're using it for numbers and n2 is showing that it holds the number
+
+96
+00:10:14,000 --> 00:10:24,000
+-128, that's because of the way that numbers are represented in terms of bytes and the bit pattern when you try to
+
+97
+00:10:24,000 --> 00:10:32,000
+put 128 into something that can't hold it, ends up being interpreted as the largest negative number it can hold.
+
+98
+00:10:32,000 --> 00:10:39,000
+So when we put those onto the output, that's what it's going to print out and that can be really confusing.
+
+99
+00:10:39,000 --> 00:10:50,000
+If we try even bigger numbers, say 254, which is about as much as n1 can hold, and n1 successfully reports back
+
+100
+00:10:50,000 --> 00:11:06,000
+254, again that's a very strange character, but n2 thinks that -2 and finally if we take a number that's too large
+
+101
+00:11:06,000 --> 00:11:17,000
+for both of them like 300, they both say 44. Here's n2 saying 44 and down here you see n1 saying 44.
+
+102
+00:11:17,000 --> 00:11:24,000
+You notice there were no warnings, no exceptions, nothing at runtime to tell us that this was a bad thing and
+
+103
+00:11:24,000 --> 00:11:28,000
+that really brings me back to what I said before about the complier is your friend.
+
+104
+00:11:28,000 --> 00:11:38,000
+So let's let this application run back out and I'm going to compile the application once again.
+
+105
+00:11:38,000 --> 00:11:43,000
+So Rebuild the Solution. Normally the complier's pretty smart, it only builds things that have changed.
+
+106
+00:11:43,000 --> 00:11:48,000
+When you choose Rebuild, it rebuilds everything whether it needs to or not and for the first time, I'm going to show
+
+107
+00:11:48,000 --> 00:11:59,000
+you my build Output. What we have here in the Output is a whole pile of warning messages, they're not errors.
+
+108
+00:11:59,000 --> 00:12:06,000
+The compile succeeds, the application can run, but they are all warnings from the compiler, from your
+
+109
+00:12:06,000 --> 00:12:13,000
+friend the complier and it's saying, look you're converting, let's double click these to go to the lines, you're
+
+110
+00:12:13,000 --> 00:12:20,000
+converting that double 2.2 and putting it in an integer, possible loss of data, yes indeed.
+
+111
+00:12:20,000 --> 00:12:29,000
+Here, you're forcing integer value into a Boolean value and among other things that's a performance warning and of
+
+112
+00:12:29,000 --> 00:12:36,000
+course, if you actually planned to keep the number around as a number, you've lost it, all you know is true or
+
+113
+00:12:36,000 --> 00:12:44,000
+false at that point. Here, this warning, I'm going to truncate your 128, it won't fit in here and it goes onto
+
+114
+00:12:44,000 --> 00:12:50,000
+continue to warn you about truncations all the time that I'm messing around with our character number.
+
+115
+00:12:50,000 --> 00:12:56,000
+Now although you wouldn't really put outsize numbers into characters, you might accidently put outsize numbers
+
+116
+00:12:56,000 --> 00:13:03,000
+into shorts and longs and I don't expect anyone to memorize how long these things can how, I'll show you how to
+
+117
+00:13:03,000 --> 00:13:09,000
+find that out in just a moment, but the important thing to know is that the compiler knows how long they can hold.
+
+118
+00:13:09,000 --> 00:13:16,000
+So that especially when you're working directly with constants, it can tell you, this data type cannot hold the
+
+119
+00:13:16,000 --> 00:13:24,000
+number 128, you've chosen the wrong data type if 128 is what you need to put into it and that's one of the services
+
+120
+00:13:24,000 --> 00:13:33,000
+the compiler can offer to you, as well if you take two doubles regardless of their values and multiple them together
+
+121
+00:13:33,000 --> 00:13:40,000
+and try to put the answer into an integer. Even though they're not constants at compile time like 2.2, the complier
+
+122
+00:13:40,000 --> 00:13:45,000
+still knows you're probably going to lose data when you take that double and put it into an integer and it will
+
+123
+00:13:45,000 --> 00:13:52,000
+warn you about it. In many ways, the moral of the story is don't ignore your complier warning messages, read
+
+124
+00:13:52,000 --> 00:14:01,000
+them, they are trying to help you. Now I promised I'd show you how to get the value that a certain type can hold.
+
+125
+00:14:01,000 --> 00:14:06,000
+How big a number can you put in a char? How big a number can you put in an int and so on?
+
+126
+00:14:06,000 --> 00:14:14,000
+If you go into MSDN and you find this page Fundamental Types, you can navigate to it what you can see based on
+
+127
+00:14:14,000 --> 00:14:18,000
+here on the screen of this tree or you could just search for it.
+
+128
+00:14:18,000 --> 00:14:27,000
+Then you'll find the different types in C++ along with some specific extra types that Visual C++ defines.
+
+129
+00:14:27,000 --> 00:14:33,000
+For the best cross platform experience, you want to stick with the ones that are actually built in C++ types.
+
+130
+00:14:33,000 --> 00:14:40,000
+So you can see here the definition of char, bool, short, int, an so on and talking a little bit about how long
+
+131
+00:14:40,000 --> 00:14:47,000
+they are, however, I find that the best thing to figure out their length is to come down here to this chart and
+
+132
+00:14:47,000 --> 00:14:56,000
+you can see that it takes up a byte of memory or 2 bytes of memory, or 8 bytes of memory or so on and as well,
+
+133
+00:14:56,000 --> 00:15:03,000
+if you scroll right down to the bottom, you'll see this link here to Data Type Ranges,
+
+134
+00:15:03,000 --> 00:15:15,000
+Here, it shows you the range that each type can hold. So int is 4 bytes, it can hold -2 billion to +2 billion
+
+135
+00:15:15,000 --> 00:15:24,000
+and change. Char as I mentioned can hold -128 to 127, whereas unsigned char can hold 0 to 255 and so on.
+
+136
+00:15:24,000 --> 00:15:31,000
+So if want to know what maximum and minimum numbers you can put into a particular data type, this is the place to
+
+137
+00:15:31,000 --> 00:15:38,000
+come and look. As I say, if you're just generally working with small numbers, you might be able to get away with
+
+138
+00:15:38,000 --> 00:15:46,000
+char, but 255 and 127 are not that big, so just go with int and generally speaking, unless you're writing an operating
+
+139
+00:15:46,000 --> 00:15:49,000
+system, you're going to be fine and that's my advice to most people.
+
+140
+00:15:49,000 --> 00:15:54,000
+Put integers into IntelliSense, put real numbers into doubles, and don't spend too much time worrying about what
+
+141
+00:15:54,000 --> 00:16:00,000
+exactly what size and how many bytes the various types are until it matters it to you and when you're just getting
+
+142
+00:16:00,000 --> 00:16:08,000
+started, it doesn't matter yet, but you have seen the types that we have in C++ now and a little bit of what happens
+
+143
+00:16:08,000 --> 00:59:00,000
+as you move the data back and forth from one type to another.
+

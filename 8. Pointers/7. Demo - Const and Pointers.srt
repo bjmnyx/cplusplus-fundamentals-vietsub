@@ -1,0 +1,116 @@
+1
+00:00:01,000 --> 00:00:09,000
+I'll just quickly show you the error messages that you get when you declare constant pointers or pointers to
+
+2
+00:00:09,000 --> 00:00:13,000
+constant things and then break your own rules.
+
+3
+00:00:13,000 --> 00:00:19,000
+Here, I have some code that works with the const and non-const objects that we already have kicking around.
+
+4
+00:00:19,000 --> 00:00:26,000
+This is an integer pointer pI that's the address of i, no problem, but if I uncomment this line, if I try
+
+5
+00:00:26,000 --> 00:00:33,000
+to take the address of that const i, a value of type const integer pointer can't be in use to initialize an
+
+6
+00:00:33,000 --> 00:00:39,000
+entity of type integer pointer. In other words, if I want to do that, get that address of cI, I have to put
+
+7
+00:00:39,000 --> 00:00:46,000
+it in a const integer pointer. Here, I'm going to make a Person pointer, address of this Person up here.
+
+8
+00:00:46,000 --> 00:00:52,000
+That's fine. And another local Person, and then I'm going to try to make some pointers.
+
+9
+00:00:52,000 --> 00:01:00,000
+So if I make a const integer pointer, that is a pointer to a const int called pcI,
+
+10
+00:01:00,000 --> 00:01:06,000
+I can point that to the same place that this pI is pointing.
+
+11
+00:01:06,000 --> 00:01:13,000
+In other words, the same non-const I under the covers, but because I've said that it's a pointer to a const,
+
+12
+00:01:13,000 --> 00:01:19,000
+if I then try to go through it and do things, expression must be a modifiable lvalue.
+
+13
+00:01:19,000 --> 00:01:25,000
+The compiler doesn't try to follow back the chain and so on. I said pcI was a pointer to a const, then I
+
+14
+00:01:25,000 --> 00:01:29,000
+tried to use it to change the value. What am I doing? And I get an error message.
+
+15
+00:01:29,000 --> 00:01:36,000
+Notice, however, that I can change the pointer itself, pcI, to now point to a completely different local
+
+16
+00:01:36,000 --> 00:01:39,000
+variable,
+
+17
+00:01:39,000 --> 00:01:47,000
+j, that's sitting up here and is a non-const integer. Can take the address of that, put it in pcI,
+
+18
+00:01:47,000 --> 00:01:51,000
+not a problem. I'm allowed to change where the pointer points to.
+
+19
+00:01:51,000 --> 00:01:57,000
+Here the word const has moved away from the type and closer to the pointer.
+
+20
+00:01:57,000 --> 00:02:05,000
+This is a constant pointer, so I can use it, *cpI, reach out through the contents and change where it points
+
+21
+00:02:05,000 --> 00:02:12,000
+to the value 4, which means that i, among other things is going to change to 4.
+
+22
+00:02:12,000 --> 00:02:21,000
+But this line of code that tries to get it to point to j instead: (Typing) expression must be a modifiable lvalue.
+
+23
+00:02:21,000 --> 00:02:28,000
+I'm not allowed to change the value of cpI, not the value that it --- want to store through it when I go
+
+24
+00:02:28,000 --> 00:02:34,000
+*cpI, but the actual value in cpI, the address, not allowed to change it.
+
+25
+00:02:34,000 --> 00:02:40,000
+Now here's this crazy one, constant pointer to a constant int and I can't do either of these things, so I
+
+26
+00:02:40,000 --> 00:02:48,000
+(Typing) can't reach out through the pointer, must be a modifiable lvalue, and can't try to get it to point
+
+27
+00:02:48,000 --> 00:02:59,000
+somewhere else. (Typing) I can use it. I can say int k is equal to the contents of crazy (Typing), so it's
+
+28
+00:02:59,000 --> 00:03:05,000
+not completely worthless I just can't change either where it's pointing to or the value contained in what
+
+29
+00:03:05,000 --> 00:59:00,000
+it's pointing to and that's the story of const and pointers.
+

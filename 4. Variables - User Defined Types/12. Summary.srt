@@ -1,0 +1,84 @@
+1
+00:00:02,000 --> 00:00:10,000
+This module has covered a lot of ground. You've seen how you can make your own classes and then just declare
+
+2
+00:00:10,000 --> 00:00:15,000
+instances of those classes on the stack, just like fundamental types.
+
+3
+00:00:15,000 --> 00:00:22,000
+So you can make an integer, you can make a person, you can make something that is of type enum, just on the stack.
+
+4
+00:00:22,000 --> 00:00:29,000
+When you make an object, and instance of a class on the stack like this, it's lifetime is managed for you.
+
+5
+00:00:29,000 --> 00:00:32,000
+When the instance goes out of scope, the object gets cleaned up.
+
+6
+00:00:32,000 --> 00:00:40,000
+Any memory it was using is released and the destructor runs, which might close a file, close a database connection,
+
+7
+00:00:40,000 --> 00:00:45,000
+or in the demos you saw in the module, just write a message on the screen.
+
+8
+00:00:45,000 --> 00:00:51,000
+You also saw the order in which constructors and destructors run when you're using inheritance hierarchy
+
+9
+00:00:51,000 --> 00:00:59,000
+for your classes. You know both user defined types, Person, Tweeter, or string, which while it wasn't defined by
+
+10
+00:00:59,000 --> 00:01:06,000
+me as a user, it was defined by a user and not by the language itself, and the fundamental types like int, and
+
+11
+00:01:06,000 --> 00:01:12,000
+double, and bool, they're all just as real as each other and they can be used in the same ways.
+
+12
+00:01:12,000 --> 00:01:18,000
+They can initialized, they can go in and out of scope, they have their lifetimes managed, there's no special
+
+13
+00:01:18,000 --> 00:01:22,000
+distinction that says, when it's a user defined type you have to create it this way.
+
+14
+00:01:22,000 --> 00:01:27,000
+You create them the same way and they live the same kind of lives.
+
+15
+00:01:27,000 --> 00:01:36,000
+Your classes can do whatever fundamental types can do and one of the most important classes to any developer is a
+
+16
+00:01:36,000 --> 00:01:41,000
+string class. There's one in the standard library, which you can get started using from day one.
+
+17
+00:01:41,000 --> 00:01:46,000
+It's a great example of how important user defined types can be in every application.
+
+18
+00:01:46,000 --> 00:01:51,000
+Just because their defined by a user doesn't mean their defined by you, it just means they're not built into
+
+19
+00:01:51,000 --> 00:02:00,000
+the language itself. Now that you understand objects, and variables, and types, you understand I hope why the
+
+20
+00:02:00,000 --> 00:02:06,000
+complier is your friend and you're ready to write applications that actually do at besides just declaring variables
+
+21
+00:02:06,000 --> 00:59:00,000
+and putting values in them.
+

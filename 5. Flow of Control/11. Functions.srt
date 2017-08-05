@@ -1,0 +1,88 @@
+1
+00:00:02,000 --> 00:00:07,000
+That brings us to calling functions, really the heart of most applications.
+
+2
+00:00:07,000 --> 00:00:14,000
+We've already seen how to write a constructor and a destructor for classes and they are actually functions, so the
+
+3
+00:00:14,000 --> 00:00:18,000
+rules are the same for functions as you've already seen.
+
+4
+00:00:18,000 --> 00:00:23,000
+You have to declare it before you can use it and you typically declare it in a header file that can be included
+
+5
+00:00:23,000 --> 00:00:27,000
+in all the different places that might call the function.
+
+6
+00:00:27,000 --> 00:00:34,000
+You just implement them once, in an implementation file, typically with the extension .cpp and you add that .cpp
+
+7
+00:00:34,000 --> 00:00:42,000
+file into your project in Visual Studio, so that everything will be complied and linked together into the executable.
+
+8
+00:00:42,000 --> 00:00:47,000
+A function that's part of a class like constructors and destructors are called member functions.
+
+9
+00:00:47,000 --> 00:00:52,000
+In C++, you can also write functions that are not part of any class.
+
+10
+00:00:52,000 --> 00:00:57,000
+People sometimes call them global functions, but a better name for them is free functions and there's very little
+
+11
+00:00:57,000 --> 00:01:03,000
+difference between them, both in the rules when you write them, and declare them, and even when you call them.
+
+12
+00:01:03,000 --> 00:01:11,000
+When you call a member function you use the . syntax and when you call a free function you don't, that's about it.
+
+13
+00:01:11,000 --> 00:01:18,000
+A function takes parameters optionally, some functions don't take any and it can take them by value or by reference.
+
+14
+00:01:18,000 --> 00:01:25,000
+When parameters are taken by value, the compiler actually makes a copy of whatever you're passing down to give to
+
+15
+00:01:25,000 --> 00:01:30,000
+the function to work with and any changes the function makes are strictly local and are thrown away when the
+
+16
+00:01:30,000 --> 00:01:37,000
+function ends. When you pass by reference, the compiler gives the function access to the actual information, the
+
+17
+00:01:37,000 --> 00:01:44,000
+actual address that you chose to pass, and any changes that you make in the function are reflected back in the
+
+18
+00:01:44,000 --> 00:01:50,000
+calling code, and I'll have a demo to show you that. You can also return either nothing at all, we don't have a
+
+19
+00:01:50,000 --> 00:01:56,000
+subroutine in C++ we just have a function that doesn't return anything or a value, or a reference and when you
+
+20
+00:01:56,000 --> 00:02:05,000
+return by value, copies are made. Copies in C++ can potentially be expensive and this is why we sometimes like
+
+21
+00:02:05,000 --> 00:02:09,000
+to take parameters by reference or to return them by reference, however, when you return by reference you have
+
+22
+00:02:09,000 --> 00:59:00,000
+to make sure that you don't create what's know as a dangling reference and again that something that I'll demonstrate.
+

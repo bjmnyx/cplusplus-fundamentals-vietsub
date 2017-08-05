@@ -1,0 +1,168 @@
+1
+00:00:03,000 --> 00:00:11,000
+Pointers are straightforward when the objects that you have a pointer to are just flat objects with no
+
+2
+00:00:11,000 --> 00:00:19,000
+base class. So far, you've seen pointers to integers, to Person, to Resource.
+
+3
+00:00:19,000 --> 00:00:25,000
+When you have an inheritance hierarchy then you have to understand the rules around pointers to a base
+
+4
+00:00:25,000 --> 00:00:32,000
+class and pointers to a derived class. When you do an object-oriented design
+
+5
+00:00:32,000 --> 00:00:39,000
+you often use the test sentence, is a. So imagine a hierarchy where I have a base class BankAccount,
+
+6
+00:00:39,000 --> 00:00:43,000
+and some drive classes, CheckingAccount, and SavingAccount.
+
+7
+00:00:43,000 --> 00:00:47,000
+It's about a 30-year-old example, but it's a goody.
+
+8
+00:00:47,000 --> 00:00:53,000
+A CheckingAccount is a BankAccount; a savings account is a BankAccount; and if some function takes a
+
+9
+00:00:53,000 --> 00:01:00,000
+BankAccount pointer, you can pass down a savings account pointer, or a CheckingAccount pointer, and that
+
+10
+00:01:00,000 --> 00:01:08,000
+function shouldn't complain in any way. It's a Liskov substitutability and in C++ it's done with pointers.
+
+11
+00:01:08,000 --> 00:01:12,000
+The function takes a BankAccount pointer. I give it a CheckingAccount pointer.
+
+12
+00:01:12,000 --> 00:01:19,000
+It thinks of it as a BankAccount pointer, stores it in that base class pointer, and then, obviously,
+
+13
+00:01:19,000 --> 00:01:25,000
+calls only base class functions using the pointer. I haven't designed BankAccount.
+
+14
+00:01:25,000 --> 00:01:29,000
+I just started talking about it, but imagine it's got GetBalance.
+
+15
+00:01:29,000 --> 00:01:35,000
+That's a function in the base class. It will be in the drived classes.
+
+16
+00:01:35,000 --> 00:01:39,000
+Both CheckingAccount and SavingAccount will have a GetBalance and so, this code that expects a
+
+17
+00:01:39,000 --> 00:01:44,000
+BankAccount pointer can go ahead and call GetBalance in total confidence.
+
+18
+00:01:44,000 --> 00:01:49,000
+It's guaranteed to work, but a question arises. What code will run?
+
+19
+00:01:49,000 --> 00:01:55,000
+In a lot of languages you may think you know the answer. Oh, it's the more derived implementation in the
+
+20
+00:01:55,000 --> 00:02:04,000
+subclass. In C++ it's up to the programmer. You decide when you write BankAccount whether GetBalance is
+
+21
+00:02:04,000 --> 00:02:13,000
+virtual or not. If it's virtual then the derived class version of the function will run, so SavingAccount
+
+22
+00:02:13,000 --> 00:02:21,000
+GetBalance or CheckingAccount GetBalance, but if the author of BankAccount made GetBalance non-virtual, which
+
+23
+00:02:21,000 --> 00:02:27,000
+is the default because it's the fastest, then only the BankAccount version will be executed,
+
+24
+00:02:27,000 --> 00:02:32,000
+even when the object in question is really a SavingsAccount or really a CheckingAccount.
+
+25
+00:02:32,000 --> 00:02:39,000
+You as the developer get to choose whether you want virtual functions or non-virtual functions.
+
+26
+00:02:39,000 --> 00:02:44,000
+In C++ virtual functions are implemented through a virtual table, which is a little collection of memory
+
+27
+00:02:44,000 --> 00:02:49,000
+that has the name of the function and where to find the code for it.
+
+28
+00:02:49,000 --> 00:02:54,000
+You don't really care and, in fact, the standard doesn't insist on it working this way, but the point is,
+
+29
+00:02:54,000 --> 00:03:00,000
+at runtime there's a little bit of a cost of figuring out what function to run, and your program is a
+
+30
+00:03:00,000 --> 00:03:04,000
+little bit bigger because of the memory taken up by the virtual table.
+
+31
+00:03:04,000 --> 00:03:12,000
+If your class has no virtual functions at all it will be a little bit smaller and run a little faster, and,
+
+32
+00:03:12,000 --> 00:03:18,000
+in some cases, people want that, so you get to choose virtual or not virtual.
+
+33
+00:03:18,000 --> 00:03:23,000
+Now, this relationship based in derived only works in one direction, so you can't take a BankAccount pointer
+
+34
+00:03:23,000 --> 00:03:27,000
+and hand it to something that's expecting a CheckingAccount pointer.
+
+35
+00:03:27,000 --> 00:03:32,000
+That's not fair. Checking accounts might have, I don't know, overdraft limit and your bank account doesn't
+
+36
+00:03:32,000 --> 00:03:38,000
+have that, so a pointer to an actual bank account can only be given to code that's expecting an actual
+
+37
+00:03:38,000 --> 00:03:42,000
+bank account, not to something expecting a checking account, but a pointer to a checking account can always
+
+38
+00:03:42,000 --> 00:03:48,000
+be given to code expecting a bank account because a checking account is a bank account.
+
+39
+00:03:48,000 --> 00:03:53,000
+Interestingly, when you use smart pointers, like shared_ptr and unique_ptr, you can get this same
+
+40
+00:03:53,000 --> 00:03:59,000
+polymorphism preserved, exactly the same behavior as if you were using raw pointers.
+
+41
+00:03:59,000 --> 00:04:03,000
+Since I consider using smart pointers to be a best practice, I want to make sure that you know you're not
+
+42
+00:04:03,000 --> 00:59:00,000
+giving anything up when you use them in an inheritance hierarchy.
+

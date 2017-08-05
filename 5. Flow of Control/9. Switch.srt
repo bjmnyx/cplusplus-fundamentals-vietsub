@@ -1,0 +1,88 @@
+1
+00:00:02,000 --> 00:00:09,000
+Switch really solves only one problem, but it's a problem that happens a lot, it's a pattern that's super common
+
+2
+00:00:09,000 --> 00:00:13,000
+in your applications and that's when you basically have a whole pile of ifs because you're trying to figure out
+
+3
+00:00:13,000 --> 00:00:20,000
+which condition you're in. So affects is 1, do something or another affects is 2 do something or another, affects
+
+4
+00:00:20,000 --> 00:00:27,000
+3, do something else and it's a little inefficient to do it that way because the compiler would keep testing.
+
+5
+00:00:27,000 --> 00:00:34,000
+Once you know that x is 1 it can't possibly be 2 or 3, and yet you're testing your ifs over and over, so then people
+
+6
+00:00:34,000 --> 00:00:45,000
+write nested ifs. So they write if x is 1 do this else, brace bracket, if x is 2 do this else and you sort of
+
+7
+00:00:45,000 --> 00:00:48,000
+nest and nest and nest it, it gets really hard to read.
+
+8
+00:00:48,000 --> 00:00:54,000
+The switch statement is just a cleaner version that people can clearly follow.
+
+9
+00:00:54,000 --> 00:01:01,000
+Here's the syntax, other languages have this, but the exact word that's used varies from language to language.
+
+10
+00:01:01,000 --> 00:01:06,000
+Where the brackets and braces and what not also very vary, so we have round brackets around the expression, just
+
+11
+00:01:06,000 --> 00:01:16,000
+as with an if, just as with a while. Must have a and open brace immediately after that and a closed one, not optional
+
+12
+00:01:16,000 --> 00:01:26,000
+and then you have one or more case statements and each one of them is case value: what to do and then a break,
+
+13
+00:01:26,000 --> 00:01:31,000
+and optionally at the end of it all, you can have a default: and what to do.
+
+14
+00:01:31,000 --> 00:01:38,000
+If you leave the break off, control just falls down and executes the next case for you, which is sometimes what
+
+15
+00:01:38,000 --> 00:01:44,000
+you want, usually not what you want. Then you have a closed brace at the end of the whole thing to say okay, I'm
+
+16
+00:01:44,000 --> 00:01:51,000
+all done with the switching. You don't have to have a default, so it's not like the complier can say, I processed
+
+17
+00:01:51,000 --> 00:01:56,000
+the default, so I must be done, it needs that to let it know.
+
+18
+00:01:56,000 --> 00:02:02,000
+You don't put brace brackets after each case because you keep going until you hit the break, so there's no need for
+
+19
+00:02:02,000 --> 00:02:08,000
+braces after each individual case statement. The expression you're switching on, needs to work out to an integer.
+
+20
+00:02:08,000 --> 00:02:12,000
+It's very common to switch on the value of a single variable, but it could be some expression or in a enum,
+
+21
+00:02:12,000 --> 00:02:19,000
+which are integers behind the scenes and the individual case statements you're testing against integer values
+
+22
+00:02:19,000 --> 00:59:00,000
+also or enum values.
+

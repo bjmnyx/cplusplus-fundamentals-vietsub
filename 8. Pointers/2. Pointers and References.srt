@@ -1,0 +1,268 @@
+1
+00:00:02,000 --> 00:00:07,000
+Let's start with what a pointer or, for that matter, a reference actually is.
+
+2
+00:00:07,000 --> 00:00:14,000
+They are variables and a pointer is a variable that holds the address of another variable.
+
+3
+00:00:14,000 --> 00:00:20,000
+You can then use the address to go kind of through the pointer to get to the original place that it was
+
+4
+00:00:20,000 --> 00:00:25,000
+pointing to. You can change the pointer to point somewhere else or you can go through it and use it to
+
+5
+00:00:25,000 --> 00:00:33,000
+change the value that it points at. One way to get one is to take the address of an existing variable, so
+
+6
+00:00:33,000 --> 00:00:38,000
+if you had some integer A, you could take its address with the address of operator, which is spelled
+
+7
+00:00:38,000 --> 00:00:46,000
+capital seven, and that would return a pointer to that integer. You met the punctuation ampersand before
+
+8
+00:00:46,000 --> 00:00:51,000
+when we were declaring references. There is a deliberate similarity.
+
+9
+00:00:51,000 --> 00:00:56,000
+The symbol is supposed to make you think of addresses and pointers and so on, but when the ampersand is
+
+10
+00:00:56,000 --> 00:01:03,000
+before a variable it means, please take the address of this instance, this A.
+
+11
+00:01:03,000 --> 00:01:09,000
+When the ampersand is at the end of a type it means this is an integer reference or an Employee reference
+
+12
+00:01:09,000 --> 00:01:14,000
+or a BankAccount reference, so they're very different. Here, when we take the address of A, which is
+
+13
+00:01:14,000 --> 00:01:22,000
+presumably an integer, we get an integer pointer, and you can spell integer pointer either int*, all one
+
+14
+00:01:22,000 --> 00:01:30,000
+word, or int *. Actually you can have as many spaces as you want before and after the star,
+
+15
+00:01:30,000 --> 00:01:33,000
+but these are the two most popular ways to do it. And I have to tell you the compiler doesn't care
+
+16
+00:01:33,000 --> 00:01:38,000
+which of these you do, but a lot of humans do. The way you read the first one is you say,
+
+17
+00:01:38,000 --> 00:01:46,000
+I'm declaring an integer pointer called pA and I'm initializing it with the address of that integer A.
+
+18
+00:01:46,000 --> 00:01:54,000
+The way you read the second one is you say, an integer is the contents of pA
+
+19
+00:01:54,000 --> 00:01:59,000
+and I'm initializing pA with the address of A.
+
+20
+00:01:59,000 --> 00:02:04,000
+I prefer the first one, but as I often say when I discuss this with people, I'm married to someone who
+
+21
+00:02:04,000 --> 00:02:09,000
+prefers the second one and we get on just fine. Don't get worked up about where the star goes.
+
+22
+00:02:09,000 --> 00:02:14,000
+The fact is when you see a star with a type you're declaring a pointer.
+
+23
+00:02:14,000 --> 00:02:18,000
+When you see an ampersand before an instance of a variable you're taking the address of a variable, which
+
+24
+00:02:18,000 --> 00:02:23,000
+gets you a pointer, which you can put in some other pointer variable.
+
+25
+00:02:23,000 --> 00:02:30,000
+Now once you have one the way you use it, as I alluded, is with the star operator, so *pA means take that
+
+26
+00:02:30,000 --> 00:02:38,000
+pointer and go follow that value. So if there was a numerical value 123456 in pA it would go to memory
+
+27
+00:02:38,000 --> 00:02:43,000
+location 123456 and that's where it would put, in the sample you see here on the slide,
+
+28
+00:02:43,000 --> 00:02:48,000
+it would put the value 5. The pointer's still pointing to the same place,
+
+29
+00:02:48,000 --> 00:02:52,000
+but we went through the pointer to get to its target.
+
+30
+00:02:52,000 --> 00:02:59,000
+When the target is an object rather than an integer you can imagine that you could go through the pointer to
+
+31
+00:02:59,000 --> 00:03:06,000
+get to the object at the other end and then say dot and use some member function of the object that's being
+
+32
+00:03:06,000 --> 00:03:12,000
+pointed to and you can, in fact, do that. However, because of order of operations you have to put a bracket
+
+33
+00:03:12,000 --> 00:03:21,000
+around it. So you could say, bracket star p bracket dot, and that would mean evaluate the pointer, go
+
+34
+00:03:21,000 --> 00:03:27,000
+through the pointer to the memory that's there, and now dot, I want to call a member variable on that.
+
+35
+00:03:27,000 --> 00:03:33,000
+That's kind of awkward, so you can also just use this arrow operator, and you get that by typing two
+
+36
+00:03:33,000 --> 00:03:40,000
+characters, minus and the close angle bracket or greater than, and generally people pronounce it points to or
+
+37
+00:03:40,000 --> 00:03:46,000
+arrow. I've heard a couple people pronounce it at, but I don't care for that because I tend to use that to
+
+38
+00:03:46,000 --> 00:03:54,000
+pronounce the open bracket of some function calls. You'll see pointers being used with both fundamental
+
+39
+00:03:54,000 --> 00:04:00,000
+types, like integers, and with objects in the demo. One important aspect about a pointer is that they're not
+
+40
+00:04:00,000 --> 00:04:05,000
+always initialized to be pointing to something. They're not always initialized with a value that is
+
+41
+00:04:05,000 --> 00:04:11,000
+somebody's address and it's up to you if you would like to give them the value that means "not pointing to
+
+42
+00:04:11,000 --> 00:04:20,000
+anything." We generally tend to refer to that as a nullptr, so if you just say integer pointer p it has
+
+43
+00:04:20,000 --> 00:04:25,000
+a number in it, the same as all the way back in the first few demos I did with fundamental types.
+
+44
+00:04:25,000 --> 00:04:28,000
+If we just said int i, you know there was a random number in it,
+
+45
+00:04:28,000 --> 00:04:31,000
+whatever bits happened to be in that memory before, but it's not useful.
+
+46
+00:04:31,000 --> 00:04:34,000
+It's not a pointer and you can't use it and it's very important if you're going to work with
+
+47
+00:04:34,000 --> 00:04:41,000
+pointers that you get them assigned values when you first create them, even if that value is the hi I don't
+
+48
+00:04:41,000 --> 00:04:49,000
+point to anything value. Now you have some choices about what value to use for hi I don't point to anything.
+
+49
+00:04:49,000 --> 00:04:55,000
+You can actually get away with typing the number 0. The compiler will understand that that means something
+
+50
+00:04:55,000 --> 00:04:59,000
+and you can use that to test the pointer and make sure that it does point to something because, as you
+
+51
+00:04:59,000 --> 00:05:06,000
+remember, 0 is false and any other number is true. Better to use the all caps NULL.
+
+52
+00:05:06,000 --> 00:05:12,000
+This isn't actually a language keyword it's just a macro, something that a lot of people define in their
+
+53
+00:05:12,000 --> 00:05:19,000
+applications, and by a lot of people I mean everybody. I mean really, everybody defines null to 0 and
+
+54
+00:05:19,000 --> 00:05:24,000
+sometimes people stay up and argue and say what if null was defined to three, then what ha ha.
+
+55
+00:05:24,000 --> 00:05:31,000
+Null is defined to 0 and that's that, but you know what, who cares because now in C++ 11 we have a language
+
+56
+00:05:31,000 --> 00:05:40,000
+keyword, nullptr, or nullptr as many C++ folks pronounce it, to kind of distinguish it from the ordinary
+
+57
+00:05:40,000 --> 00:05:48,000
+English word null pointer. This keyword is perfect for saying this is a pointer that doesn't point to
+
+58
+00:05:48,000 --> 00:05:55,000
+anything and you can test it and it will return false. A pointer that's got the value nullptr will return
+
+59
+00:05:55,000 --> 00:06:04,000
+false when you say if the pointer. C++ got pointers from C, but it added its own capability references and
+
+60
+00:06:04,000 --> 00:06:09,000
+references are, in a lot of important ways, much simpler than pointers.
+
+61
+00:06:09,000 --> 00:06:14,000
+You can think of it as an alias. You can change a pointer to point to a different place.
+
+62
+00:06:14,000 --> 00:06:18,000
+It can point to A for a while and then start pointing to B; references can't.
+
+63
+00:06:18,000 --> 00:06:21,000
+They get their targets set when they're declared and that's that.
+
+64
+00:06:21,000 --> 00:06:25,000
+Anything you do to a reference you're actually doing to the target and you don't have to use different
+
+65
+00:06:25,000 --> 00:06:30,000
+punctuation like star or points to. You can just talk to it directly as though it were the
+
+66
+00:06:30,000 --> 00:06:35,000
+original object and, for most people, that makes references a lot simpler.
+
+67
+00:06:35,000 --> 00:59:00,000
+I will show you them both in action.
+

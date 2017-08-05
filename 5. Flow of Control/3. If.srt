@@ -1,0 +1,88 @@
+1
+00:00:01,000 --> 00:00:10,000
+Let's begin with if. Like all keywords in C++, it's spelled all lowercase and the syntax is if round bracket,
+
+2
+00:00:10,000 --> 00:00:14,000
+some condition and round bracket what to do if that condition is true.
+
+3
+00:00:14,000 --> 00:00:19,000
+The round brackets are not optional, if you leave them out you're going to get a syntax error.
+
+4
+00:00:19,000 --> 00:00:27,000
+Your condition could be something like x is &gt; than 0, y+2 is &gt; than some function or another, any expression you
+
+5
+00:00:27,000 --> 00:00:32,000
+like and you can test against things that are not Boolean values.
+
+6
+00:00:32,000 --> 00:00:37,000
+You can test against numbers and it's quite common actually to see C++ people do that.
+
+7
+00:00:37,000 --> 00:00:44,000
+When somebody tests against 7, or variables that are not Booleans, their converted to Booleans using the rules
+
+8
+00:00:44,000 --> 00:00:50,000
+we talked about before, 0 is false, everything else is true, going to the if or not.
+
+9
+00:00:50,000 --> 00:00:58,000
+So for example if x&gt;3, y=7. You can put a line break in there if you like, like this, they're both exactly the
+
+10
+00:00:58,000 --> 00:01:05,000
+same complier couldn't care less and it's important to note, compiler does not read indents and doesn't understand
+
+11
+00:01:05,000 --> 00:01:09,000
+anything special, based on whether or not you indent the lines, those are for humans.
+
+12
+00:01:09,000 --> 00:01:15,000
+So if you're going to have your action across multiple lines you have to enclose it in braces and I prefer to use
+
+13
+00:01:15,000 --> 00:01:22,000
+them even for a single line, like this. If x&gt;3 { y=7 }.
+
+14
+00:01:22,000 --> 00:01:29,000
+The reason I prefer them is simple. When you go and add a second line, you can add it between the braces and
+
+15
+00:01:29,000 --> 00:01:34,000
+it'll still works. If you just add a second line when you didn't have any braces and you forget to add them, you get
+
+16
+00:01:34,000 --> 00:01:40,000
+weird bugs because nobody complains, but the second line gets executed every single time regardless of whether
+
+17
+00:01:40,000 --> 00:01:46,000
+the if is true or not. So as a best practice, always have braces even when there's only a single line in your action.
+
+18
+00:01:46,000 --> 00:01:52,000
+Now you can have an else clause if you like, it just goes immediately after the if and if has all the same rules
+
+19
+00:01:52,000 --> 00:01:57,000
+about single line, multiple line with braces, best practices to have braces.
+
+20
+00:01:57,000 --> 00:02:00,000
+You don't have to have an else if you don't want to.
+
+21
+00:02:00,000 --> 00:02:06,000
+If you have a lot of ifs and elses all kind of muddled up together, sometimes the complier can match ifs up with
+
+22
+00:02:06,000 --> 00:59:00,000
+the wrong else, braces can help there to make it really clear what your intent is.
+

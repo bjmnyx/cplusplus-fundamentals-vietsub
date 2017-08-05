@@ -1,0 +1,108 @@
+1
+00:00:02,000 --> 00:00:09,000
+The fundamental types can be categorized according to what they hold, what kind of information they hold.
+
+2
+00:00:09,000 --> 00:00:16,000
+So there are a series of types for example that hold integers, numbers without a fractional part, like 3 or 702
+
+3
+00:00:16,000 --> 00:00:24,000
+and in C++ we have short, long, int, unsigned short, unsigned long, and unsigned int.
+
+4
+00:00:24,000 --> 00:00:27,000
+Short and long as you can probably guess from their names, different lengths, they have a different number of
+
+5
+00:00:27,000 --> 00:00:36,000
+bytes in them. An int is a convenient type that is actually chosen a length to be the most efficient on the machine
+
+6
+00:00:36,000 --> 00:00:40,000
+where it's running. So if you really don't care about the length at all because you're just going to put a number
+
+7
+00:00:40,000 --> 00:00:47,000
+in it like 3, int is a great choice. The unsigned versions can each hold a number twice as large as the signed
+
+8
+00:00:47,000 --> 00:00:54,000
+versions because they don't use a bit for sign. We'll talk more about how many bytes a number can hold and what
+
+9
+00:00:54,000 --> 00:00:57,000
+happens if you try to put overlarge numbers in, in a little while.
+
+10
+00:00:57,000 --> 00:01:03,000
+You won't go wrong when you first start by just putting integers into variables of type ints.
+
+11
+00:01:03,000 --> 00:01:10,000
+It's easy to remember, it's probably right, and unless you happen to be getting near the limit of the number that
+
+12
+00:01:10,000 --> 00:01:18,000
+can fit into the bytes, you're going to be doing just fine and that's a very large number as you'll see shortly.
+
+13
+00:01:18,000 --> 00:01:27,000
+Now, if your number has a fractional part, if it's a 7.2, 3.29, then that's a real number and you can use either
+
+14
+00:01:27,000 --> 00:01:35,000
+float or a double and double has more capacity, can hold larger numbers, and more digits of precision than float can.
+
+15
+00:01:35,000 --> 00:01:43,000
+Most of the time, just put things in doubles and your life will tick along as you expect.
+
+16
+00:01:43,000 --> 00:01:51,000
+There's also a type called character and believe or not, C++ people argue about how to say the name of this type.
+
+17
+00:01:51,000 --> 00:01:57,000
+Some people including me pronounce it char, but you will meet people who call it char.
+
+18
+00:01:57,000 --> 00:02:02,000
+Take my advice and don't argue about how to pronounce variable types, if someone says char this is what they mean,
+
+19
+00:02:02,000 --> 00:02:06,000
+if someone says char this is what they mean, you pronounce it however you want.
+
+20
+00:02:06,000 --> 00:02:13,000
+There's even an unsigned char, which probably doesn't sound like it makes an sense, I means what's -a or for that
+
+21
+00:02:13,000 --> 00:02:23,000
+matter, how is +y different from -y? Well, because char is a very small number of bytes, only 8 bytes, people
+
+22
+00:02:23,000 --> 00:02:30,000
+sometimes use it to hold little numbers like 3 and they therefore want to be able to distinguish whether their
+
+23
+00:02:30,000 --> 00:02:37,000
+putting say -3 in it or a positive number. So char and unsigned char can technically be used for numbers, but
+
+24
+00:02:37,000 --> 00:02:45,000
+they can also be used to hold a single letter and finally we can round out our fundamental types with Boolean values
+
+25
+00:02:45,000 --> 00:02:52,000
+true or false and they are of type bool. The only values that you can put into a bool are true or false, but there
+
+26
+00:02:52,000 --> 00:02:59,000
+are ways to convert to that from other values and one thing you'll especially see when we get into operators is
+
+27
+00:02:59,000 --> 00:59:00,000
+people converting back and forth from numbers to Boolean, but the only values a bool can hold are true or false.
+

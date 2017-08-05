@@ -1,0 +1,64 @@
+1
+00:00:01,000 --> 00:00:04,000
+Chào mừng tới C++.
+
+2
+00:00:04,000 --> 00:00:08,000
+Tên tôi là Kate Gregory, và tôi muốn giới thiệu bản thân tôi bằng cách nói với mọi người rằng tôi đã
+
+3
+00:00:08,000 --> 00:00:12,000
+sử dụng C++ từ trước khi Microsoft có trình dịch C++.
+
+4
+00:00:12,000 --> 00:00:16,000
+Cũng đã hơn 20 năm, và, trong lúc đó, Tôi đã nhìn thấy rất nhiều sự thay đổi tới
+
+5
+00:00:16,000 --> 00:00:18,000
+ngôn ngữ và làm cách nào để mọi người sử dụng nó.
+
+6
+00:00:18,000 --> 00:00:22,000
+Bạn biết nếu bạn đã làm một khóa học trong trường cao đẳng 10 hoặc 20 năm nơi mà bạn biết 1 ai đó
+
+7
+00:00:22,000 --> 00:00:24,000
+đã làm, và họ đã nói với bạn về nó, bạn có thể đã không recognize(nhìn nhận) C++ mà tôi sẽ
+
+8
+00:00:24,000 --> 00:00:26,000
+chỉ bạn.
+
+9
+00:00:26,000 --> 00:00:29,000
+Tôi sẽ chỉ(dạy) bạn những cái căn bản mà bạn cần biết để viết C++ cho tốt.
+
+10
+00:00:29,000 --> 00:00:33,000
+Đây là ngôn ngữ lập trình phổ biến nhất trước đây và nó vẫn
+
+11
+00:00:33,000 --> 00:00:36,000
+thích hợp và có ích cho hôm nay.
+
+12
+00:00:36,000 --> 00:00:39,000
+Để bắt đầu trong module này, tôi sẽ nói(kể) với bạn một vài lợi thế của C++
+
+13
+00:00:39,000 --> 00:00:42,000
+và lí do mà rất nhiều nhà phát triển đang sử dụng nó.
+
+14
+00:00:42,000 --> 00:00:49,000
+Bạn cũng sẽ thấy C++ CLI là gì, C++ OX là gì, và bắt đầu để học C++ hiện đại là
+
+15
+00:00:49,000 --> 00:00:53,000
+gì, và tại sao nó là cách để viết C++ vào thế kỷ này, và sau đó bạn sẽ sẵn sàng để bắt đầu
+
+16
+00:00:53,000 --> 00:59:00,000
+viết code.
+

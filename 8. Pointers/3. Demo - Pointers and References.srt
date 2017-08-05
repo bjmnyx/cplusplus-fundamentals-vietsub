@@ -1,0 +1,388 @@
+1
+00:00:01,000 --> 00:00:03,000
+Here's some sample
+
+2
+00:00:03,000 --> 00:00:09,000
+code that just plays around with pointers and I have to tell you that this demo suffers from the same
+
+3
+00:00:09,000 --> 00:00:16,000
+problem that all first pointer demos suffer from, which that it is utterly pointless and I'm just going to
+
+4
+00:00:16,000 --> 00:00:20,000
+confess that to you. I'm going to show you the mechanics and the syntax of how to get pointers and how to
+
+5
+00:00:20,000 --> 00:00:27,000
+use them, but you would never do this. You have a perfectly good integer A; you would just work with A.
+
+6
+00:00:27,000 --> 00:00:31,000
+Why would you make a pointer to it and then go through the pointer?
+
+7
+00:00:31,000 --> 00:00:38,000
+Where pointers become useful is when, for example, you pass them down to a function or you keep them in a
+
+8
+00:00:38,000 --> 00:00:45,000
+member variable and then you use them again later. Then, knowing how to go through the pointer to get what
+
+9
+00:00:45,000 --> 00:00:52,000
+you want back from the original fundamental type or the original object is a useful thing to know.
+
+10
+00:00:52,000 --> 00:00:55,000
+That sets up a lot of complexity for our first demo, so we do it all together.
+
+11
+00:00:55,000 --> 00:00:59,000
+Hopefully this is pretty straightforward. I make myself an integer called A, print out its value, make a
+
+12
+00:00:59,000 --> 00:01:08,000
+pointer to that very same integer by using the address of operator, and then I use the pointer, *pA, to
+
+13
+00:01:08,000 --> 00:01:14,000
+change the value that the pointer points to, to 4. Since the pointer points to A, this also changes A's
+
+14
+00:01:14,000 --> 00:01:20,000
+value to 4. There's only one piece of memory. You can just talk to it two ways, you can call it A or you
+
+15
+00:01:20,000 --> 00:01:27,000
+can call it *pA. And I make a different integer and now I change my pointer, pA,
+
+16
+00:01:27,000 --> 00:01:31,000
+to actually point to b and of course its name means nothing right?
+
+17
+00:01:31,000 --> 00:01:34,000
+So, it's called pA, but now it points to b.
+
+18
+00:01:34,000 --> 00:01:44,000
+If I take the contents of pA and do a ++ operator on them, b will be incremented from 100 to 101.
+
+19
+00:01:44,000 --> 00:01:51,000
+Here when we print out the contents of pA it's going to print out 101.
+
+20
+00:01:51,000 --> 00:01:58,000
+It works with objects too, so here I make a Person called Kate and a Person pointer called pKate is equal to
+
+21
+00:01:58,000 --> 00:02:06,000
+the address of that object Kate. And then this is kind of the long way, I can say the contents of pKate,
+
+22
+00:02:06,000 --> 00:02:10,000
+wrap that in brackets and then dot SetNumber. And as you can see the compiler,
+
+23
+00:02:10,000 --> 00:02:11,000
+I've got no error messages here.
+
+24
+00:02:11,000 --> 00:02:17,000
+It knows that that is a Person function, but I can also use the arrow notation.
+
+25
+00:02:17,000 --> 00:02:20,000
+So here where I'm using a solid object Kate, I use the dot notation.
+
+26
+00:02:20,000 --> 00:02:27,000
+And here where I'm using the pointer pKate I use the arrow notation, pKate points to GetName.
+
+27
+00:02:27,000 --> 00:02:30,000
+The same thing's going on over here with number.
+
+28
+00:02:30,000 --> 00:02:37,000
+Then we have some references, integer reference rA. Now, unlike a pointer, you can't just say, oh I have
+
+29
+00:02:37,000 --> 00:02:39,000
+this integer reference and I'll tell you later what it points to.
+
+30
+00:02:39,000 --> 00:02:48,000
+You have to say, is equal to, in this case, a. Then if I change rA to 5 that will actually change a to 5
+
+31
+00:02:48,000 --> 00:02:56,000
+because rA is just an alias now for a. You saw this when variables were passed down to functions.
+
+32
+00:02:56,000 --> 00:03:02,000
+The parameters were passed by reference, that when you changed the local variable inside the function
+
+33
+00:03:02,000 --> 00:03:09,000
+it actually changed the value of the parameter back in the calling code that had been passed down by reference.
+
+34
+00:03:09,000 --> 00:03:16,000
+That's what reference means, that you can kind of change another place, talking to it with this different
+
+35
+00:03:16,000 --> 00:03:22,000
+name. You can have references to objects as well as to people, so here I make a Person reference to that
+
+36
+00:03:22,000 --> 00:03:30,000
+same Kate object and call its SetNumber and then I can call its GetName and notice because it's a reference
+
+37
+00:03:30,000 --> 00:03:35,000
+that I'm using dot notation both for the gets and for the sets, for all the member functions, which for many
+
+38
+00:03:35,000 --> 00:03:41,000
+people is more readable than the pointer notation. Let's quickly run this just to prove that everything
+
+39
+00:03:41,000 --> 00:03:45,000
+does what you think it will do.
+
+40
+00:03:45,000 --> 00:03:48,000
+a is 3.
+
+41
+00:03:48,000 --> 00:03:59,000
+Let's just line these up. a is 3. When we make the pointer pA and then change its contents to 4, a becomes
+
+42
+00:03:59,000 --> 00:04:06,000
+4. We make the pointer pA now actually point to b and then we increment it.
+
+43
+00:04:06,000 --> 00:04:10,000
+When we print it out pA becomes 100 that then got incremented to 101,
+
+44
+00:04:10,000 --> 00:04:18,000
+so it's not touching a anymore it's only now touching b because that's where the pointer points.
+
+45
+00:04:18,000 --> 00:04:25,000
+With the objects we have a 234 from my arbitrarynumber and then using the pointer we change it to 235, print
+
+46
+00:04:25,000 --> 00:04:30,000
+it out both ways. We get 235 both ways because they're again, the same piece of memory,
+
+47
+00:04:30,000 --> 00:04:32,000
+no matter how you talk to them.
+
+48
+00:04:32,000 --> 00:04:37,000
+When we set rA to be a and then change rA to 5 and then print out a,
+
+49
+00:04:37,000 --> 00:04:41,000
+a is now 5 because rA is just an alias for a, and similarly
+
+50
+00:04:41,000 --> 00:04:49,000
+when we make rKate to Kate and then set its number to 345, print it out, it prints out 345.
+
+51
+00:04:49,000 --> 00:04:55,000
+I have code here that's commented out and let's kind of go through and talk about how the compiler would help
+
+52
+00:04:55,000 --> 00:05:06,000
+me if I absent-mindedly wrote this code. Here, I declare a pointer, and it's sort of foreshadowing that it
+
+53
+00:05:06,000 --> 00:05:10,000
+has the name badPointer, and I don't set it to the address of anything.
+
+54
+00:05:10,000 --> 00:05:14,000
+I just say, la la la, it's an integer badPointer and then I try to use it.
+
+55
+00:05:14,000 --> 00:05:20,000
+I try to go through badPointer and put 3 in there. Also, down here I try to go through badPointer and get
+
+56
+00:05:20,000 --> 00:05:30,000
+the value to print it out. If I run this (Typing)
+
+57
+00:05:30,000 --> 00:05:38,000
+a bad thing happens and, specifically, the variable badPointer is being used without being initialized, so
+
+58
+00:05:38,000 --> 00:05:39,000
+we'll just
+
+59
+00:05:39,000 --> 00:05:44,000
+put that to stop.
+
+60
+00:05:44,000 --> 00:05:48,000
+I told you that when I read the code, but you also noticed that it sort of blows up when the application runs
+
+61
+00:05:48,000 --> 00:05:59,000
+and that's a really bad plan. I can make this a little better if I initialize my badPointer to nullptr.
+
+62
+00:05:59,000 --> 00:06:08,000
+It's a C++ 11 feature if you're not using Visual Studio 2010 you can't use nullptr, but Visual C++ 2010
+
+63
+00:06:08,000 --> 00:06:16,000
+Express understands this C++ 11 feature, so it's all set. Now, if I just make only this change and run it
+
+64
+00:06:16,000 --> 00:06:23,000
+things don't really get much better. After all, it still doesn't point anywhere right?
+
+65
+00:06:23,000 --> 00:06:28,000
+We do still unfortunately go boom, but you notice we're going boom in a nicer way?
+
+66
+00:06:28,000 --> 00:06:36,000
+It's actually possible that we could send an error report, I'm not going to, and that this might be
+
+67
+00:06:36,000 --> 00:06:43,000
+a less severe situation. In fact, here we throw a nullptr exception that I could handle.
+
+68
+00:06:43,000 --> 00:06:46,000
+We haven't done exceptions yet, so I'm not going to dwell on that.
+
+69
+00:06:46,000 --> 00:06:52,000
+What's really important about initializing your pointer to nullptr is that you can test for nullptr very
+
+70
+00:06:52,000 --> 00:07:10,000
+compactly. So I can come here and say if badPointer (Typing), I'll use it, otherwise, I won't.
+
+71
+00:07:10,000 --> 00:07:15,000
+If I run this code (Typing)
+
+72
+00:07:15,000 --> 00:07:17,000
+we don't blowup.
+
+73
+00:07:17,000 --> 00:07:22,000
+The if kept me out of this block and prevented me from trying to dereference, that's what this process is
+
+74
+00:07:22,000 --> 00:07:28,000
+called, preventing me from trying to dereference the bad pointer.
+
+75
+00:07:28,000 --> 00:07:33,000
+Now, you might think well, it was just the if that helped you out, so let's take the equals nullptr back away
+
+76
+00:07:33,000 --> 00:07:40,000
+and run it again (Typing).
+
+77
+00:07:40,000 --> 00:07:50,000
+We're back to the very bad thing. Setting it to nullptr is what enables me to test whether, in fact, it's a
+
+78
+00:07:50,000 --> 00:07:58,000
+nullptr or not. When a pointer has the value nullptr or nullptr, as some people like to pronounce it,
+
+79
+00:07:58,000 --> 00:08:04,000
+this if will return false and we'll be protected. When it has random bits that happened to be in that
+
+80
+00:08:04,000 --> 00:08:12,000
+location before, it won't be protected. Any nonzero number comes out as true, so the if badPointer will say,
+
+81
+00:08:12,000 --> 00:08:17,000
+oh yeah, we're good, and it will go in here and try to dereference the pointer and then your program will blow up.
+
+82
+00:08:17,000 --> 00:08:22,000
+If you're going to use a pointer you need to be sure that it was initialized.
+
+83
+00:08:22,000 --> 00:08:30,000
+One way to be sure is to declare them and immediately give them a value, as you saw right here, but another
+
+84
+00:08:30,000 --> 00:08:35,000
+way is to declare them and immediately give them the value nullptr and then always check to see if they're
+
+85
+00:08:35,000 --> 00:08:46,000
+nullptr or not before you use them. Let's uncomment some badReference code now (Typing).
+
+86
+00:08:46,000 --> 00:08:54,000
+Pretty much the same thing, but an important difference. There's red wigglies right here.
+
+87
+00:08:54,000 --> 00:09:02,000
+There wasn't here. (Typing) Compiler's fine with you just declaring pointers and not initializing them to
+
+88
+00:09:02,000 --> 00:09:08,000
+anything. Let's put that back before I forget. It's not fine with you declaring a reference and not
+
+89
+00:09:08,000 --> 00:09:13,000
+initializing it to anything, so you can't make this mistake and there's no way to test, is this a null
+
+90
+00:09:13,000 --> 00:09:19,000
+reference because there's no such thing as a null reference. References have to be initialized pointing to
+
+91
+00:09:19,000 --> 00:09:26,000
+something real and that's one of the ways that they are simpler because you can't, oh I have to initialize,
+
+92
+00:09:26,000 --> 00:09:30,000
+I have to check if it's null yet. It's not optional. It will be initialized.
+
+93
+00:09:30,000 --> 00:09:36,000
+It won't be null. You will be able to use it. That's also, sometimes, the reason why you can't use
+
+94
+00:09:36,000 --> 00:09:40,000
+references because sometimes, you know, things are optional and you don't know if they're set or not.
+
+95
+00:09:40,000 --> 00:09:44,000
+When you can use references I prefer to use them; they're simpler.
+
+96
+00:09:44,000 --> 00:09:49,000
+You can use the dot notation instead of the arrow and you don't have to check to see if they're null or not,
+
+97
+00:09:49,000 --> 00:59:00,000
+but that's exactly why you also sometimes can't use them.
+

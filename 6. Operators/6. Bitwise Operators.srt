@@ -1,0 +1,200 @@
+1
+00:00:04,000 --> 00:00:10,000
+A natural response the first time you see those Boolean and and or operators that are doubled up, two
+
+2
+00:00:10,000 --> 00:00:16,000
+ampersands, two or bars is to ask why? Why do you need two of them?
+
+3
+00:00:16,000 --> 00:00:24,000
+The natural mistake is to only use one. When you only use one you're using a bitwise operator, not a Boolean
+
+4
+00:00:24,000 --> 00:00:31,000
+operator. I've mentioned a couple times, when you try to put an integer into an if,
+
+5
+00:00:31,000 --> 00:00:37,000
+it gets converted to true or false -- 0 is false; everything else is true.
+
+6
+00:00:37,000 --> 00:00:41,000
+So if I want to do 4 and 1, and imagine longer expressions, one
+
+7
+00:00:41,000 --> 00:00:48,000
+of which evaluates to 4 and one of which evaluates to 1. That's true and true and that's true.
+
+8
+00:00:48,000 --> 00:00:56,000
+Bitwise operators take the individual numbers, line them up as binary numbers, a series of 0's and 1's, and
+
+9
+00:00:56,000 --> 00:01:06,000
+then and or, or in the case of the not operator, negate, flip the bid bit by bit.
+
+10
+00:01:06,000 --> 00:01:16,000
+So, 4 in binary is 100; 1 in binary is 001. 100 bitwise _____anded with 001.
+
+11
+00:01:16,000 --> 00:01:23,000
+We take the first pair, the topmost bit in each number, 1 and 0, 0.
+
+12
+00:01:23,000 --> 00:01:30,000
+Move down to the middle one, 0 and 0 is 0, and the last one, 011, still 0, so we get a result of 000,
+
+13
+00:01:30,000 --> 00:01:36,000
+which is false. So, 4 &amp;&amp; 1 is using a Boolean operator, comes out true.
+
+14
+00:01:36,000 --> 00:01:43,000
+4 &amp; 1 using the bitwise operator comes out 0, which is false, completely opposite result.
+
+15
+00:01:43,000 --> 00:01:52,000
+Why would you want it? It's very common to save space and time by packing individual bit values into a
+
+16
+00:01:52,000 --> 00:02:00,000
+single number. If you have some operation, which has got seven different options that you could set, you can
+
+17
+00:02:00,000 --> 00:02:07,000
+take seven parameters, each of which is just true or false, or you can take a single integer and look at the
+
+18
+00:02:07,000 --> 00:02:14,000
+lowest seven bits of that integer and see if they're on or off to see whether you want the option on or off.
+
+19
+00:02:14,000 --> 00:02:21,000
+In other words, when someone passes in 4 they are saying that they want the particular option that
+
+20
+00:02:21,000 --> 00:02:26,000
+corresponds to that bit position on and all the other options off.
+
+21
+00:02:26,000 --> 00:02:34,000
+If they pass in 7, that means their number ends 111 in binary, they want those last three options on.
+
+22
+00:02:34,000 --> 00:02:38,000
+Nobody works that out in their head and says, oh I think I'll pass in 13.
+
+23
+00:02:38,000 --> 00:02:45,000
+Instead they use bitwise and an or to combine typically constants that match to those values, so there'll
+
+24
+00:02:45,000 --> 00:02:51,000
+be a constant defined whose value is 4. There'll be another constant defined whose value is 1, another
+
+25
+00:02:51,000 --> 00:02:58,000
+constant defined whose value is 8, and when you or them together you turn on the individual bits in the flag.
+
+26
+00:02:58,000 --> 00:03:04,000
+When you want to test you bitwise and to look and see if those bits are on in that flag.
+
+27
+00:03:04,000 --> 00:03:10,000
+Is this a beginner technique? No it is not. When you're calling those kind of functions someone'll give you
+
+28
+00:03:10,000 --> 00:03:18,000
+sample code showing that you set the options by passing in the last parameter, abc or bar, only one of them,
+
+29
+00:03:18,000 --> 00:03:25,000
+def or bar, ghi, where those letters represent individual constants.
+
+30
+00:03:25,000 --> 00:03:32,000
+For example, if you're writing a message box call, there's an mb_OK and an mb_Cancel and if you or them
+
+31
+00:03:32,000 --> 00:03:38,000
+together you want both an OK and a Cancel button, and the fact that it's bit-packed under the covers can be
+
+32
+00:03:38,000 --> 00:03:43,000
+completely hidden from you. If you know the trick you'll see the single or bar and go, oh I get it, we're
+
+33
+00:03:43,000 --> 00:03:50,000
+setting bits in an integer, but you don't really need to know. I consider it to be a non-beginner technique.
+
+34
+00:03:50,000 --> 00:03:55,000
+It's really only something I need to mention to keep you from accidentally using it.
+
+35
+00:03:55,000 --> 00:04:02,000
+You're always going to use the double ampersand Boolean and the double or bar or for your typical Boolean
+
+36
+00:04:02,000 --> 00:04:09,000
+calculations. In the interest of completeness I'll also mention the bit shift operators.
+
+37
+00:04:09,000 --> 00:04:15,000
+You've met these in their guise for putting input and output, but they actually existed first in the language
+
+38
+00:04:15,000 --> 00:04:21,000
+as a bit shift technique where you write the number out in binary and then move all the bits over one
+
+39
+00:04:21,000 --> 00:04:28,000
+direction or the other. Moving all of the bits leftwards is like multiplying the number by 2 because
+
+40
+00:04:28,000 --> 00:04:35,000
+everybody moves up a power of 2, and moving all the bits rightwards is like dividing by a power of 2 and
+
+41
+00:04:35,000 --> 00:04:40,000
+throwing away the remainder because all of the bits move down. Again, not a beginner technique, but if you
+
+42
+00:04:40,000 --> 00:04:48,000
+happen to see people putting these operators with numbers on both sides of them it's not about writing to the
+
+43
+00:04:48,000 --> 00:04:54,000
+screen or reading from the keyboard, it's about shifting bits around in a packed bit flag.
+
+44
+00:04:54,000 --> 00:04:59,000
+It's almost never what you want to do if you're just getting started in C++.
+
+45
+00:04:59,000 --> 00:05:04,000
+I'm not going to show you a bitwise demo. If you want to play around with these you're welcome to fire up
+
+46
+00:05:04,000 --> 00:05:10,000
+a console app and put some of these in and see that the examples here on the screen are true and make some
+
+47
+00:05:10,000 --> 00:05:16,000
+more up of your own if you're interested. Bit twiddling can have tremendous benefit.
+
+48
+00:05:16,000 --> 00:05:21,000
+It can also be tremendous difficulty and there's some very fiddly, worrisome bits
+
+49
+00:05:21,000 --> 00:05:25,000
+that I don't want to get into because in general it's not a beginner technique,
+
+50
+00:05:25,000 --> 00:59:00,000
+not something you need to know in order to do effective work in C++ starting from day one.
+

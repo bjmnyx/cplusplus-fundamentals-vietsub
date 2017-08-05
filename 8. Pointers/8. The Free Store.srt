@@ -1,0 +1,132 @@
+1
+00:00:02,000 --> 00:00:08,000
+So far, the only variables you've seen in all of these little sample applications have been local variables,
+
+2
+00:00:08,000 --> 00:00:12,000
+what we sometimes call, being on the stack and having stack semantics.
+
+3
+00:00:12,000 --> 00:00:17,000
+They go out of scope when the function ends and in fact, they go out of scope when they hit a brace bracket,
+
+4
+00:00:17,000 --> 00:00:22,000
+so if you have an if and then you declare some integer i inside the brace brackets of the if, do some
+
+5
+00:00:22,000 --> 00:00:27,000
+calculations, then you hit the close brace bracket of the if, the i actually goes out of scope.
+
+6
+00:00:27,000 --> 00:00:33,000
+That's not always what you want. Sometimes you actually want variables that have a longer life than that and
+
+7
+00:00:33,000 --> 00:00:41,000
+in C++ those variables live in what we call the free store. A small aside, many people use the word stack
+
+8
+00:00:41,000 --> 00:00:46,000
+for local variables and heap for the free store and if you go to a computer science textbook and look them up
+
+9
+00:00:46,000 --> 00:00:50,000
+stack and heap are data structures. They're ways of keeping information.
+
+10
+00:00:50,000 --> 00:00:56,000
+With stack you push things on and pop them off and the heap is a way to keep a large quantity of data and be
+
+11
+00:00:56,000 --> 00:01:03,000
+able to get to it when you want to. The technical terms, local variables or automatic storage, and the free
+
+12
+00:01:03,000 --> 00:01:09,000
+store. I say heap a lot, meaning the free store, so do an awful lot of C++ developers.
+
+13
+00:01:09,000 --> 00:01:15,000
+It's actually the leftover C name and many times the free store is implemented as a heap.
+
+14
+00:01:15,000 --> 00:01:22,000
+It's not exactly wrong to use local and stack interchangeably, to use free store and heap interchangeably.
+
+15
+00:01:22,000 --> 00:01:25,000
+It's a very common pattern among developers you're going to talk to.
+
+16
+00:01:25,000 --> 00:01:30,000
+You may even meet a few guys who say, huh, free store? What's that? and you'll say, the heap and they'll
+
+17
+00:01:30,000 --> 00:01:36,000
+say, oh, why didn't you say so. You may run into sticklers who say, what do you mean the heap?
+
+18
+00:01:36,000 --> 00:01:39,000
+I believe you will find it's the free store. You're like, okay,
+
+19
+00:01:39,000 --> 00:01:43,000
+so I'm telling you both names and technically the accurate name is the free store.
+
+20
+00:01:43,000 --> 00:01:49,000
+That said, most developers say heap. Anyway, it's for longer-lived variables and there's an operator called
+
+21
+00:01:49,000 --> 00:01:57,000
+new that sets aside some memory for you in the free store and this operator returns a pointer to what has
+
+22
+00:01:57,000 --> 00:02:02,000
+just been created for you up in the free store, the instance of a class, the object.
+
+23
+00:02:02,000 --> 00:02:07,000
+It also calls the constructor for you, so it creates the object completely:
+
+24
+00:02:07,000 --> 00:02:11,000
+sets aside the memory, sets aside the memory, runs its constructor.
+
+25
+00:02:11,000 --> 00:02:16,000
+What you get back is a pointer to a fully-constructed, happy, ready-to-go object.
+
+26
+00:02:16,000 --> 00:02:25,000
+It will stay on the free store forever until you decide you don't want it anymore and then you call delete on
+
+27
+00:02:25,000 --> 00:02:32,000
+that pointer that you got back from new and, among other things, the destructor will run to clean up anything
+
+28
+00:02:32,000 --> 00:02:39,000
+that the object has a hold of and the memory will be released back to the free store to be used for other
+
+29
+00:02:39,000 --> 00:02:46,000
+requests to new up an object. If you were creating what we call a raw array, if you want 100 integers you
+
+30
+00:02:46,000 --> 00:02:51,000
+want the memory for 100 integers continuously on the free store, the syntax is a little different for both
+
+31
+00:02:51,000 --> 00:02:57,000
+the new and the delete. However, beginners should stay away from raw arrays and instead use collections from
+
+32
+00:02:57,000 --> 00:03:04,000
+the Standard Library that we'll get to later. Using new and using delete are how you manage the lifetime of
+
+33
+00:03:04,000 --> 00:59:00,000
+the objects that you create up on the free store.
+

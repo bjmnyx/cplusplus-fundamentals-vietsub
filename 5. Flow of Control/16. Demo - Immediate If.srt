@@ -1,0 +1,80 @@
+1
+00:00:02,000 --> 00:00:05,000
+A simple demo for an immediate if.
+
+2
+00:00:05,000 --> 00:00:12,000
+To make it not entirely trivial, I also thought I'd show you another idiom for the let's keep going until someone
+
+3
+00:00:12,000 --> 00:00:20,000
+enters their signal value to quit. I showed you before with the switch, we first prompted the person, enter a
+
+4
+00:00:20,000 --> 00:00:24,000
+number, then we went into the loop, and then we did the prompting again at the bottom of the loop.
+
+5
+00:00:24,000 --> 00:00:29,000
+The other possibility is to put the prompting in the loop, then you have to initialize the variable to what we
+
+6
+00:00:29,000 --> 00:00:33,000
+call a signal value. Something that will make sure you go into the loop.
+
+7
+00:00:33,000 --> 00:00:39,000
+So here, we're setting x=99 and then saying while &gt; 0, which of course it will be for sure the first time.
+
+8
+00:00:39,000 --> 00:00:44,000
+Then we can go through and process our number. There are some other ways to move the test to the end, but you'll
+
+9
+00:00:44,000 --> 00:00:49,000
+see this pattern fairly often and sometimes people are confused they're like you set it 99 and then you immediately
+
+10
+00:00:49,000 --> 00:00:54,000
+check whether it was &gt; 0, of course it's &gt; 0, yes, but you'll be guaranteed they'll be some code inside the loop
+
+11
+00:00:54,000 --> 00:01:00,000
+that will change it and that way you're going to go into that loop at least once, but you don't know how many times.
+
+12
+00:01:00,000 --> 00:01:04,000
+That's the while part. Here's the immediate if part. Here's the ?.
+
+13
+00:01:04,000 --> 00:01:11,000
+So we're declaring a string which we're calling sign and we're giving it the value all in this single line of code.
+
+14
+00:01:11,000 --> 00:01:16,000
+We're saying, is x&gt;0? And you don't pronounce it, that's what the ? is supposed to help you do.
+
+15
+00:01:16,000 --> 00:01:24,000
+Is x&gt;0? If it is, sign will end up saying positive if it's not then sign will end up saying 0 or negative.
+
+16
+00:01:24,000 --> 00:01:28,000
+Then we're just going to print out your number is and that string variable sign.
+
+17
+00:01:28,000 --> 00:01:33,000
+Easy enough, let's run this one a couple times
+
+18
+00:01:33,000 --> 00:01:42,000
+So if I say 55, you're number is positive. Excellent. -11, your number is 0 or negative and then it's done
+
+19
+00:01:42,000 --> 00:01:49,000
+It's a very simple little thing. Mostly what it is, is people say what, where did this ? or why is there are :
+
+20
+00:01:49,000 --> 00:59:00,000
+in the middle of this statement, now you know that's an immediate if.
+

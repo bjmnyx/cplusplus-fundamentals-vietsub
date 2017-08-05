@@ -1,0 +1,188 @@
+1
+00:00:02,000 --> 00:00:05,000
+Flipping over to Visual Studio
+
+2
+00:00:05,000 --> 00:00:11,000
+I have a really simple application that asks you for a number and I'm going to work out if it's prime or not.
+
+3
+00:00:11,000 --> 00:00:15,000
+So I'm going to assume it's prime and then I'm going to go through a while loop looking for factors.
+
+4
+00:00:15,000 --> 00:00:21,000
+If I find a factor, it's not prime. If I come all the way through the while loop and didn't find a factor, it
+
+5
+00:00:21,000 --> 00:00:26,000
+must still be prime. I'm using a different operator, I'm using &lt;=, hopefully everyone can recognize that and this
+
+6
+00:00:26,000 --> 00:00:29,000
+is a bit of a trick if you haven't done a lot of calculating of primes.
+
+7
+00:00:29,000 --> 00:00:38,000
+It's enough to go until the number you're testing as a factor is larger than if I were to divide that number into
+
+8
+00:00:38,000 --> 00:00:46,000
+the original number. So in the case of 102, if I divide 51 into it, getting 2, 2 is less than 51 so I've already
+
+9
+00:00:46,000 --> 00:00:51,000
+tried the other half of the factor in other words. So it's just a little optimization to make your loop go faster
+
+10
+00:00:51,000 --> 00:00:57,000
+and I am really only including it so that you can again see that we can have more complex constructs in our
+
+11
+00:00:57,000 --> 00:01:02,000
+conditions for our whiles. So what do I do each time I go through this loop?
+
+12
+00:01:02,000 --> 00:01:08,000
+I try to figure out what the factor would be and I'm taking something that's almost certainly not an integer and
+
+13
+00:01:08,000 --> 00:01:15,000
+putting it into an integer. We talked about this in data types, that's going to silently truncate the result,
+
+14
+00:01:15,000 --> 00:01:21,000
+which is exactly what I want. So if I'm testing whether or not 2 goes into 7, I'll take 7 divide it by 2, get
+
+15
+00:01:21,000 --> 00:01:27,000
+3 and a bit, that'll get truncated out to 3. Then on the next line, I multiple it back 3*2 is 6 which is not
+
+16
+00:01:27,000 --> 00:01:34,000
+= to 7, so in this case, this if would fail and we would come out.
+
+17
+00:01:34,000 --> 00:01:37,000
+When it does =, it's because the numbers actually a factor.
+
+18
+00:01:37,000 --> 00:01:45,000
+Now we'll take more about operators later, but I do want to show you the == being used for testing equality in C++.
+
+19
+00:01:45,000 --> 00:01:49,000
+Something in the operators section we'll take more about that, just pointing it out here.
+
+20
+00:01:49,000 --> 00:01:55,000
+So if we did find a factor, we'll print that out, normally apps don't, but I'm trying to be transparent here and
+
+21
+00:01:55,000 --> 00:02:01,000
+set out Boolean prime to false. Super important if you're going to do a loop with a while you have to do something
+
+22
+00:02:01,000 --> 00:02:06,000
+to move you towards getting out of the loop. If you're looping while you read a file, you should read another
+
+23
+00:02:06,000 --> 00:02:11,000
+line of the file. If you're looping while you're process a data set, you should move onto the next row of the
+
+24
+00:02:11,000 --> 00:02:16,000
+data set and so on. Here, I'm just going to increment i. There are better ways to increment i, but those can
+
+25
+00:02:16,000 --> 00:02:25,000
+wait for the operators material. That's the loop, once we come out the other end, we can test that Boolean variable
+
+26
+00:02:25,000 --> 00:02:33,000
+prime and print out using our new found skills whether it's prime or not and that's the whole application.
+
+27
+00:02:33,000 --> 00:02:37,000
+So I'm going to Run it
+
+28
+00:02:37,000 --> 00:02:42,000
+let's test 7, 7 is prime.
+
+29
+00:02:42,000 --> 00:02:43,000
+Let's run it again.
+
+30
+00:02:43,000 --> 00:02:52,000
+Let's test 25, 25 has a factor, it makes sense, 25's not prime.
+
+31
+00:02:52,000 --> 00:03:00,000
+Now, I have a little bit of an optimization in this app in that I only go up as high as I need to and not all the
+
+32
+00:03:00,000 --> 00:03:06,000
+until I've tested up to the value X of the number of I put it, but I have an inefficiency still in place.
+
+33
+00:03:06,000 --> 00:03:10,000
+Let's try running one more time and this time I'll put in 12, a number that
+
+34
+00:03:10,000 --> 00:03:21,000
+has a lot of factors. You see it finds the factor 6 and 4, it concludes that 12 is not prime, but as soon as we
+
+35
+00:03:21,000 --> 00:03:29,000
+found the first factor 6, we knew 12 wasn't prime, there's no need to continue to go and find other factors. I can
+
+36
+00:03:29,000 --> 00:03:35,000
+make this exit once it's understood that this isn't a prime number.
+
+37
+00:03:35,000 --> 00:03:44,000
+This is a great use of the break keyword. Break gets you out of the loop you are in.
+
+38
+00:03:44,000 --> 00:03:50,000
+So here, it doesn't get it out of ifs of anything, it gets you out of whiles and when we do fors, it also gets
+
+39
+00:03:50,000 --> 00:03:56,000
+you out of fors and some other constructs. So what'll happen is if we find a factor, we'll break out of the
+
+40
+00:03:56,000 --> 00:04:02,000
+while loop and rather than incrementing i and going to back up to test again whether or not i is still less divided
+
+41
+00:04:02,000 --> 00:04:09,000
+by the new i, we'll just come straight out to the line after the close brace of the while and this just makes the
+
+42
+00:04:09,000 --> 00:04:15,000
+code in this example a little more efficient. You wouldn't do this if you wanted to find every one, but it's a common
+
+43
+00:04:15,000 --> 00:04:22,000
+idiom to have to find the first of something and this is a simple way to stop, once you have found that first one.
+
+44
+00:04:22,000 --> 00:04:28,000
+So I'll Run it
+
+45
+00:04:28,000 --> 00:04:36,000
+and again, we'll do 12. This time it only finds the factor 6, it doesn't go on and find the factor of 4 because
+
+46
+00:04:36,000 --> 00:04:39,000
+break took us out of the while.
+
+47
+00:04:39,000 --> 00:59:00,000
+You can see that once you know if, you also really know a lot of the rules around while, pretty straightforward.
+

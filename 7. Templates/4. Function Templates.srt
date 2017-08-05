@@ -1,0 +1,64 @@
+1
+00:00:02,000 --> 00:00:08,000
+Let me summarize what you just saw in that demo. First, when you want to write a template function you write
+
+2
+00:00:08,000 --> 00:00:15,000
+it out with a placeholder standing in for all the different types that the function might be used with.
+
+3
+00:00:15,000 --> 00:00:23,000
+Here's max for example. Starts template class T to indicate to everybody that this is a template and that T
+
+4
+00:00:23,000 --> 00:00:29,000
+is a placeholder, and then you just use T as though it were a type throughout the function.
+
+5
+00:00:29,000 --> 00:00:36,000
+In order to use it, generally the compiler will figure out what type you're using, so when you say max of 33
+
+6
+00:00:36,000 --> 00:00:43,000
+and 44 or of string 1 and string 2 or of person 1 and person 2, the compiler can work that out.
+
+7
+00:00:43,000 --> 00:00:49,000
+There are times when it's ambiguous. Say, for example, you were to ask for the max of a floating point
+
+8
+00:00:49,000 --> 00:00:56,000
+number and an integer. It could promote the integer to a floating point and use the floating point template,
+
+9
+00:00:56,000 --> 00:01:01,000
+but it may not be able to figure that out on its own, and for other templates it's not possible.
+
+10
+00:01:01,000 --> 00:01:09,000
+You could go either way. If you want you can specify which specialization you want, like this.
+
+11
+00:01:09,000 --> 00:01:16,000
+This says, I'd like the max of 33 and 2.0 and I specifically want you to use the double version of max and
+
+12
+00:01:16,000 --> 00:01:22,000
+that will of course, for the case of max, which returns a T, mean that it will return a double.
+
+13
+00:01:22,000 --> 00:01:28,000
+They're really awfully simple to use and a person could use max without ever knowing it was a template.
+
+14
+00:01:28,000 --> 00:01:34,000
+They could just believe that it had some magic ability to figure out the maximum of integers and strings and
+
+15
+00:01:34,000 --> 00:01:42,000
+person objects just, maybe by understanding the meaning of the letters max standing for maximum.
+
+16
+00:01:42,000 --> 00:59:00,000
+That's not how it is at all. It's a very simple template function. Now you know.
+

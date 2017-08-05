@@ -1,0 +1,108 @@
+1
+00:00:03,000 --> 00:00:13,000
+I showed you how much simpler using a shared_ptr is, but perhaps you need to be convinced that it's actually
+
+2
+00:00:13,000 --> 00:00:23,000
+usable as a pointer. Back in the copy constructor and the assignment operator we had some calls to
+
+3
+00:00:23,000 --> 00:00:28,000
+Resource's GetName function,
+
+4
+00:00:28,000 --> 00:00:33,000
+which you see here, and if you remember what those calls look like it was just
+
+5
+00:00:33,000 --> 00:00:42,000
+pResource, arrow, GetName. Let's come up with an excuse to call that from some other member function, a
+
+6
+00:00:42,000 --> 00:00:47,000
+Person, having now deleted most of the member functions of Person that were managing Resource, so that you
+
+7
+00:00:47,000 --> 00:00:53,000
+can see how easy it is still to use the pointer. Let's come here into Person and add a function called
+
+8
+00:00:53,000 --> 00:01:01,000
+GetResourceName. The ResourceName's of strings, a GetResourceName, (Typing) doesn't take any parameters,
+
+9
+00:01:01,000 --> 00:01:13,000
+doesn't change the object, (Typing) and it'll just return (Typing) that pResource, (Typing) points to, and
+
+10
+00:01:13,000 --> 00:01:21,000
+you see I even get IntelliSense. pResource is the shared_ptr. It's not any kind of a pointer with a star
+
+11
+00:01:21,000 --> 00:01:26,000
+and yet, because of the overload the operator points to, I can call the methods just as though it was a
+
+12
+00:01:26,000 --> 00:01:33,000
+traditional raw pointer, so I can call pResource, GetName. (Typing)
+
+13
+00:01:33,000 --> 00:01:39,000
+And now I've implemented GetResourceName. Back in here, if I want
+
+14
+00:01:39,000 --> 00:01:47,000
+to I can take any one of these Persons and just declare another string. (Typing)
+
+15
+00:01:47,000 --> 00:01:49,000
+They could be on one line, but let's do it down here.
+
+16
+00:01:49,000 --> 00:02:01,000
+String s1 is equal to, say (Typing) Kate.GetResourceName
+
+17
+00:02:01,000 --> 00:02:06,000
+(Typing) and we've implemented that function so that's going to work just fine and we'll be able to bring the
+
+18
+00:02:06,000 --> 00:02:10,000
+Resource by calling GetResourceName,
+
+19
+00:02:10,000 --> 00:02:17,000
+which is going to use the smart pointer pResource just as though it was a traditional raw pointer.
+
+20
+00:02:17,000 --> 00:02:21,000
+One of the great things about this is that you can take code that was written using raw pointers, which is
+
+21
+00:02:21,000 --> 00:02:28,000
+full of these arrow operators and so on, and just go and make this change, so that you declare to be a
+
+22
+00:02:28,000 --> 00:02:33,000
+shared_ptr instead of a raw pointer,
+
+23
+00:02:33,000 --> 00:02:42,000
+and then here use make_shared instead of =new and that, in very many cases, that, and ripping out all the
+
+24
+00:02:42,000 --> 00:02:48,000
+deletes, is all that you have to do to switch over to a shared_ptr.
+
+25
+00:02:48,000 --> 00:02:53,000
+Once you've made the switch you can forget that it's a shared_ptr and just treat it as though it was a raw
+
+26
+00:02:53,000 --> 00:03:02,000
+pointer everywhere in your application. Dereferencing it with star where that's appropriate and by using
+
+27
+00:03:02,000 --> 00:59:00,000
+this points to operator. Simple as that.
+

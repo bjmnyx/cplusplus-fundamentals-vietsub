@@ -1,0 +1,756 @@
+1
+00:00:03,000 --> 00:00:06,000
+So let's write a class and then use it. Come over to
+
+2
+00:00:06,000 --> 00:00:10,000
+Visual C++ Express and I'll use this New Project link
+
+3
+00:00:10,000 --> 00:00:18,000
+on the Start page to New Console application as usual,
+
+4
+00:00:18,000 --> 00:00:26,000
+and I'll put the project in my projects directory here
+
+5
+00:00:26,000 --> 00:00:37,000
+and call it ClassesAndObjects.
+
+6
+00:00:37,000 --> 00:00:45,000
+We go through the Wizard as always and just check here, Console application, Precompiled headers, nothing else
+
+7
+00:00:45,000 --> 00:00:49,000
+is set hit finish.
+
+8
+00:00:49,000 --> 00:00:54,000
+You can see that the new project template generates a main, which we'll come back to, but what I want to start
+
+9
+00:00:54,000 --> 00:01:03,000
+with is our class. In theory, I could simply start to type the definition of the class right here in this file.
+
+10
+00:01:03,000 --> 00:01:07,000
+It's possible for your C++ application to be one giant file.
+
+11
+00:01:07,000 --> 00:01:16,000
+I'm going to create specific files and the project system will pull them together when we build.
+
+12
+00:01:16,000 --> 00:01:23,000
+So I'll start by right clicking the project and saying Add, a New Item
+
+13
+00:01:23,000 --> 00:01:36,000
+and I'll add a C++ File. I'm going to call my class Person, so I'd like a file called Person.cpp.
+
+14
+00:01:36,000 --> 00:01:41,000
+and there's absolutely nothing in the file, it's simply an empty file that I can do whatever I like.
+
+15
+00:01:41,000 --> 00:01:49,000
+I could type the definition of the class in here. I'm actually going to add this sort of magic invocation line
+
+16
+00:01:49,000 --> 00:01:57,000
+that you'll see any time a project made with Visual C++ Express or any other version of Visual Studio, uses the
+
+17
+00:01:57,000 --> 00:02:05,000
+precompiled headers. The very first line of your file needs to be this include of the standard heads, stdafx.h.
+
+18
+00:02:05,000 --> 00:02:11,000
+If it's even second, you get error messages, so I like to put that in right away so that don't forget.
+
+19
+00:02:11,000 --> 00:02:14,000
+Now the next thing I could do is to actually type the definition of my class.
+
+20
+00:02:14,000 --> 00:02:21,000
+So I'm going to make a class called Person open brace, here's where the definition of the class belongs, then I'll
+
+21
+00:02:21,000 --> 00:02:29,000
+have a closed brace and then I'll have that trailing semicolon that I mentioned and in here, all the definition
+
+22
+00:02:29,000 --> 00:02:38,000
+of Person. However, I obviously intend to use this Person class more than just here in Person.cpp.
+
+23
+00:02:38,000 --> 00:02:41,000
+I intend probably to use it over here
+
+24
+00:02:41,000 --> 00:02:44,000
+and create some instances and so on from inside this main.
+
+25
+00:02:44,000 --> 00:02:52,000
+In order to do that, main would have to know that Person was a class and that's where the header file comes in.
+
+26
+00:02:52,000 --> 00:02:59,000
+So I'm going to Add another File into my project
+
+27
+00:02:59,000 --> 00:03:08,000
+a Header File, which I will call Person.h
+
+28
+00:03:08,000 --> 00:03:16,000
+and I'm going to take this definition of the Person class, Cut it out of here,
+
+29
+00:03:16,000 --> 00:03:28,000
+and Paste it into here. Now, I can define Person in the Person.h header file and include that header file
+
+30
+00:03:28,000 --> 00:03:32,000
+both here in Person.cpp and here
+
+31
+00:03:32,000 --> 00:03:39,000
+in ClassesAndObjects.cpp so that I can use Person objects.
+
+32
+00:03:39,000 --> 00:03:47,000
+Now what am I going to put in my definition of a Person? Well, we all have names, a firstname lastname, so those
+
+33
+00:03:47,000 --> 00:03:57,000
+seem like good candidates and they are probably best represented as strings, so I'm going to add an include statement
+
+34
+00:03:57,000 --> 00:04:08,000
+to let me use string from the standard library. So then here, inside my definition of my class, I'm going to put
+
+35
+00:04:08,000 --> 00:04:15,000
+these three member variables. By default, everything is private unless I say that it's in the public section,
+
+36
+00:04:15,000 --> 00:04:21,000
+but just as a matter of politeness for people who read your code, it's a good idea to specify things.
+
+37
+00:04:21,000 --> 00:04:28,000
+So I'm going to say, private and you notice it turns blue, keyword and the : is important and now everything that
+
+38
+00:04:28,000 --> 00:04:32,000
+list after this is going to be private until we bump into the word public.
+
+39
+00:04:32,000 --> 00:04:49,000
+So I'm going to make a string for the Person's firstname and another string for the Person's lastname and then
+
+40
+00:04:49,000 --> 00:04:55,000
+just so that we have something in this class that's not a string I'm going to add an integer and I'm going to
+
+41
+00:04:55,000 --> 00:05:05,000
+call it arbitrarynumber. Depending on your business problem that you're solving this might be somebody's salary,
+
+42
+00:05:05,000 --> 00:05:11,000
+it might be somebody's age, it might be somebody's number of dependents, it could be anything.
+
+43
+00:05:11,000 --> 00:05:15,000
+It's just a number just so we don't all have strings inside Person here.
+
+44
+00:05:15,000 --> 00:05:22,000
+So this header file Person.h is now doing a pretty good job of declaring the Person class.
+
+45
+00:05:22,000 --> 00:05:24,000
+Let's go into Person.cpp
+
+46
+00:05:24,000 --> 00:05:35,000
+and we'll add this include Person.h and I love this IntelliSense to help me remember the names of headers, Person.h
+
+47
+00:05:35,000 --> 00:05:39,000
+is exactly what I want and then we'll come here
+
+48
+00:05:39,000 --> 00:05:49,000
+into the main and include Person.h in here also. Once we've done that, this piece of code now knows what a
+
+49
+00:05:49,000 --> 00:06:00,000
+Person is so I can write lines like this Person p1, Person p2, the same as declaring an integer or anything else
+
+50
+00:06:00,000 --> 00:06:07,000
+the type and the then name that you want to call it and presto, I have some objects.
+
+51
+00:06:07,000 --> 00:06:14,000
+Now these two objects, p1 and p2 are both of type Person, but just as if I had two integers i and j, their values
+
+52
+00:06:14,000 --> 00:06:17,000
+are entirely independent and so it is with these people.
+
+53
+00:06:17,000 --> 00:06:25,000
+This code allocates a Person's worth of memory for p1 and a Person's worth of memory for p2, and it's there ready
+
+54
+00:06:25,000 --> 00:06:36,000
+to have values in it, and ready to be used. The values for most types in C++ are not defaulted or initialized
+
+55
+00:06:36,000 --> 00:06:45,000
+for you. It's possible for objects to have them defaulted and initialized, it's not possible for integers.
+
+56
+00:06:45,000 --> 00:06:52,000
+So if I just say integers i, it doesn't have a value it just has sort of random stuff that happened to be in memory.
+
+57
+00:06:52,000 --> 00:07:00,000
+When we created a string in earlier demos, it was initialized to "" to an empty string.
+
+58
+00:07:00,000 --> 00:07:05,000
+That's done because it's a class. The person who wrote the class decided if you just say that you have a string
+
+59
+00:07:05,000 --> 00:07:12,000
+it should be an empty string and we have the ability, which you'll see shortly to do that for person, but I haven't
+
+60
+00:07:12,000 --> 00:07:21,000
+yet done that for person. So Person p1 will have memory for a string for firstname, memory for a string for lastname
+
+61
+00:07:21,000 --> 00:07:28,000
+and because their strings they'll be initialized to "" and it'll have memory for the integer for arbitrarynumber
+
+62
+00:07:28,000 --> 00:07:33,000
+and that won't be initialized, so it'll just be whatever number happens to be in that piece of memory and the
+
+63
+00:07:33,000 --> 00:07:41,000
+same will be true for p2. I'm going to show you in the debugger how this looks so that you can see what's happening
+
+64
+00:07:41,000 --> 00:07:49,000
+with those variables. So I'll set a breakpoint on the initialization of the first Person and Run.
+
+65
+00:07:49,000 --> 00:07:56,000
+We'll have to Build it first, I had unsaved changes when I hit Run, that's fine, Saves my changes it's going to
+
+66
+00:07:56,000 --> 00:08:03,000
+build for me
+
+67
+00:08:03,000 --> 00:08:11,000
+and when we reach this breakpoint, before we've executed this line, p1 is full of things that are showing debugger
+
+68
+00:08:11,000 --> 00:08:16,000
+here in the watch window as being bad pointer, don't worry about that.
+
+69
+00:08:16,000 --> 00:08:22,000
+Once we go over that line, you'll see that firstname has been initialized to "", lastname to "" and
+
+70
+00:08:22,000 --> 00:08:28,000
+arbitrarynumber is just some random stuff that happened to be in that memory location, p2 is still uninitialized.
+
+71
+00:08:28,000 --> 00:08:36,000
+We step over this line, is firstname and lastname have also been initialized to "" and the arbitrarynumber again,
+
+72
+00:08:36,000 --> 00:08:43,000
+it looks like the exact same number, that's because this is a debug build and in order to help developers spot
+
+73
+00:08:43,000 --> 00:08:49,000
+uninitialized variables being used, in debug builds the memory is sort of prepopulated with signal values.
+
+74
+00:08:49,000 --> 00:08:55,000
+However, p1 and p2 are completely independent each with their own copies of these three variables and I'll show
+
+75
+00:08:55,000 --> 00:09:02,000
+you that very shortly. Let's stop the debugger because obviously in order to demonstrate that these are independent
+
+76
+00:09:02,000 --> 00:09:08,000
+we need to be able to get values into the variables. To put something in p1's firstname, put something in p2's
+
+77
+00:09:08,000 --> 00:09:14,000
+firstname and see that they are different and that changing one didn't change the other.
+
+78
+00:09:14,000 --> 00:09:20,000
+There are a couple of ways to do this, but since we were talking about initializing, this is the time to talk
+
+79
+00:09:20,000 --> 00:09:26,000
+about the constructor. The constructor for a class has the same name as a class and it's used to initialize
+
+80
+00:09:26,000 --> 00:09:34,000
+instances of that class or objects. So I'm going to add a constructor to Person. I'll go into the header file
+
+81
+00:09:34,000 --> 00:09:40,000
+where we've declared the class and I'll add a public section because obviously this constructor isn't much good
+
+82
+00:09:40,000 --> 00:09:47,000
+if people can't call it and the name has to be Person and it doesn't have a type before it the way some other
+
+83
+00:09:47,000 --> 00:09:57,000
+things might because constructors, they just don't. I have to specify what kinds of values can be passed into
+
+84
+00:09:57,000 --> 00:10:03,000
+constructor to initialize a Person. We could choose no values at all.
+
+85
+00:10:03,000 --> 00:10:11,000
+When we make a Person their person is "" their lastname is "" and their arbitrarynumber is 0 or -1, 107, or
+
+86
+00:10:11,000 --> 00:10:19,000
+whatever you'd like it to be. But a more useful constructor take values and puts them into the member variables.
+
+87
+00:10:19,000 --> 00:10:28,000
+So that's what I'm going to code here. I'm going to say, that I take a string from the standard library called
+
+88
+00:10:28,000 --> 00:10:41,000
+first and a string from the standard library called last and an integer called arbitrary and that's what this
+
+89
+00:10:41,000 --> 00:10:50,000
+function is defined to be and I put a semicolon here. In the header file, I'm only saying that this function exists.
+
+90
+00:10:50,000 --> 00:10:56,000
+Remember that other files include this header. They only need to know that the function exists, they don't need
+
+91
+00:10:56,000 --> 00:10:59,000
+to know the code for it. So we'll go over here
+
+92
+00:10:59,000 --> 00:11:08,000
+to put the code for it. To code the constructor, to code anything inside the cpp file, I have to give the full
+
+93
+00:11:08,000 --> 00:11:13,000
+name, which includes the class name. When we're here in Person.h
+
+94
+00:11:13,000 --> 00:11:18,000
+and I'm typing in what person takes, you can see I'm inside class Person, I'm between the open brace and the
+
+95
+00:11:18,000 --> 00:11:20,000
+closed brace of person.
+
+96
+00:11:20,000 --> 00:11:26,000
+Here I'm not, I'm just kicking around in space and so when I want to code that person function, I have to say
+
+97
+00:11:26,000 --> 00:11:34,000
+before that, Person:: this is the class name and this is the function name.
+
+98
+00:11:34,000 --> 00:11:37,000
+The function name for a constructor is always the same as the class name.
+
+99
+00:11:37,000 --> 00:11:44,000
+It's possible, although it would be horrible practice, to have in this file the implementations of a bunch of
+
+100
+00:11:44,000 --> 00:11:49,000
+different constructors from a bunch of completely unrelated classes and the complier could work it out.
+
+101
+00:11:49,000 --> 00:11:54,000
+It wouldn't be a good thing to do because humans who are going to read your code couldn't work it out, but the
+
+102
+00:11:54,000 --> 00:12:01,000
+compiler doesn't demand one file is for one class and as a result you have to specify, here's what I'm doing.
+
+103
+00:12:01,000 --> 00:12:06,000
+I'm implementing the constructor for Person. Now I have read wiggles right now because the constructor for Person
+
+104
+00:12:06,000 --> 00:12:12,000
+takes those three parameters the firstname, the lastname, and the arbitrarynumber and I haven't typed that part yet.
+
+105
+00:12:12,000 --> 00:12:21,000
+So I'm actually just going to Copy that part
+
+106
+00:12:21,000 --> 00:12:33,000
+and I'm using Ctrl+Tab to flip between the files. I'm just going to put this up onto a single line to make the rest of it a
+
+107
+00:12:33,000 --> 00:12:39,000
+little more readable, and to define the body of the function I need an open brace and a closed brace and in between
+
+108
+00:12:39,000 --> 00:12:47,000
+is the body of the constructor. Now here's how a lot of people would like to write this constructor.
+
+109
+00:12:47,000 --> 00:12:52,000
+They say sure you've got a member variable called firstname, I remember that, so we'll use that put first into that
+
+110
+00:12:52,000 --> 00:12:57,000
+and another member variable called lastname, we'll put last into that, and you got a member variable called
+
+111
+00:12:57,000 --> 00:13:07,000
+arbitrarynumber, and we'll put arbitrary into that. This isn't exactly wrong.
+
+112
+00:13:07,000 --> 00:13:16,000
+I can build this
+
+113
+00:13:16,000 --> 00:13:22,000
+and although I get an error, it's not an error in Person.ccp, you can see here Person.cpp generates code, complies
+
+114
+00:13:22,000 --> 00:13:29,000
+and then it moves onto the next file. I will discuss this error later, but here this code is fine from the
+
+115
+00:13:29,000 --> 00:13:36,000
+compliers point of view. It is however not the correct to write and this is something that people who are comfortable
+
+116
+00:13:36,000 --> 00:13:42,000
+in other languages come over to C++, they write code like this all the time and then experienced C++ people tell
+
+117
+00:13:42,000 --> 00:13:44,000
+them that their wrong and they say, how can I possibly be wrong?
+
+118
+00:13:44,000 --> 00:13:49,000
+It complies, it runs, it puts values in my variables, I don't know what you're talking about and it has to do with
+
+119
+00:13:49,000 --> 00:13:56,000
+this idea of how you default or initialize the member variables of the object.
+
+120
+00:13:56,000 --> 00:14:04,000
+When you code it this way, what ends up happening behind the scenes, when you create p1, is that first, all of
+
+121
+00:14:04,000 --> 00:14:11,000
+member variables are given their memory and if they have default values they're defaulted, and then when we hit
+
+122
+00:14:11,000 --> 00:14:18,000
+this open brace bracket, all of the member variables exist, they have memory and they've even been initialized
+
+123
+00:14:18,000 --> 00:14:22,000
+if they can be initialized, and then their values are changed.
+
+124
+00:14:22,000 --> 00:14:31,000
+If setting the value into a string were terribly expensive, which it isn't, this would be a real waste of time.
+
+125
+00:14:31,000 --> 00:14:36,000
+First setting it up to its default value, then changing to the value you really wanted.
+
+126
+00:14:36,000 --> 00:14:42,000
+Obviously for something like an integer where there is no default value, this is harmless and for strings, frankly
+
+127
+00:14:42,000 --> 00:14:47,000
+it's not a very big deal, but it's a bad habit to get into.
+
+128
+00:14:47,000 --> 00:14:52,000
+There are also some times when it's actually not possible to write this code, especially later when you get into
+
+129
+00:14:52,000 --> 00:14:59,000
+inheritance you'll see that. So you want to do things right from beginning and in C++ right means using something
+
+130
+00:14:59,000 --> 00:15:08,000
+called initializer syntax. When your initializers are expensive, initializer syntax is one of the ways you make
+
+131
+00:15:08,000 --> 00:15:14,000
+your application perform better. One of the ways that C++ gets really obsessive about performance is saying
+
+132
+00:15:14,000 --> 00:15:19,000
+don't waste your time initializing to a default value and the immediately changing the value, just initialize it
+
+133
+00:15:19,000 --> 00:15:28,000
+in the first place using the value you intend to use and that's done with initializer syntax to pass along the
+
+134
+00:15:28,000 --> 00:15:34,000
+parameters that came in, in the constructor. C++ certainly likes to be terse sometimes and the syntax for
+
+135
+00:15:34,000 --> 00:15:43,000
+initializers is a single character we just type this : and then we rattle them off with a member variable name
+
+136
+00:15:43,000 --> 00:15:54,000
+and what we want to initialize it to. So we say I want to initialize firstname to first, and then, I'm going to
+
+137
+00:15:54,000 --> 00:16:04,000
+initialize lastname to last, and I can have line breaks if I want them, it just helps to make things readable, and
+
+138
+00:16:04,000 --> 00:16:20,000
+I want to initialize arbitrarynumber to arbitrary. Once I've done that, I don't need the body anymore and this
+
+139
+00:16:20,000 --> 00:16:25,000
+is a very common pattern to see in a constructor that the open brace and the closed brace have really nothing
+
+140
+00:16:25,000 --> 00:16:32,000
+in between them. So the role that the constructor is serving here is to be a traffic cop and direct those three
+
+141
+00:16:32,000 --> 00:16:37,000
+parameters off to these initializers of my three member variables.
+
+142
+00:16:37,000 --> 00:16:45,000
+The benefit here is that if it costs to initialize that firstname, we're only going to initialize it once using
+
+143
+00:16:45,000 --> 00:16:51,000
+the parameter that was passed in rather than once to a default value, and then assigning it the value that was
+
+144
+00:16:51,000 --> 00:17:02,000
+passed in. So if I Build this again, you can see that Person compiled without an error.
+
+145
+00:17:02,000 --> 00:17:09,000
+There's no output related to Person, but again we're getting these errors in ClassesAndObjects and now I want to
+
+146
+00:17:09,000 --> 00:17:19,000
+show you what those are. So we'll go over and look here, it says Person : no appropriate default constructor available.
+
+147
+00:17:19,000 --> 00:17:24,000
+So a constructor is this function with the same name as the name of the class and a default constructor is a
+
+148
+00:17:24,000 --> 00:17:28,000
+constructor that doesn't take any argument and you know this is a fair complaint.
+
+149
+00:17:28,000 --> 00:17:33,000
+If we look at all of the constructors for Person, there's only one and it takes three arguments.
+
+150
+00:17:33,000 --> 00:17:40,000
+There isn't one that doesn't take any arguments, but some of those may be saying, I don't understand
+
+151
+00:17:40,000 --> 00:17:48,000
+because before this way okay. Before when we said p1 we didn't pass in any arguments and the compiler had no
+
+152
+00:17:48,000 --> 00:17:56,000
+complaint then. When you don't write any constructors you get a default constructor for free.
+
+153
+00:17:56,000 --> 00:17:58,000
+It doesn't do anything, but it exists and it keeps the compiler happy.
+
+154
+00:17:58,000 --> 00:18:05,000
+You can't see it, it's not generated for you by some sort of Wizard it's actually written by the compiler every
+
+155
+00:18:05,000 --> 00:18:13,000
+time you compile your program. The minute you have one constructor, the compiler is in effect saying, I see you
+
+156
+00:18:13,000 --> 00:18:20,000
+know what you're doing. Right, fine, if you wanted a default constructor I guess you would have written a
+
+157
+00:18:20,000 --> 00:18:25,000
+default constructor and so it doesn't make one for you anymore and that makes this code
+
+158
+00:18:25,000 --> 00:18:30,000
+say, well what I need here is a constructor that doesn't take any arguments since I don't have any arguments and
+
+159
+00:18:30,000 --> 00:18:35,000
+then it can't find one, and then you get this error. You can see if I hover here, no default constructor exists
+
+160
+00:18:35,000 --> 00:18:43,000
+for class Person. I could write a default constructor for class Person that would be trivial, but the only reason
+
+161
+00:18:43,000 --> 00:18:47,000
+we wrote this constructor that takes the three arguments was so we could call it.
+
+162
+00:18:47,000 --> 00:18:57,000
+So I need to change this code to call that constructor. So the syntax for initializing objects using a constructor
+
+163
+00:18:57,000 --> 00:19:04,000
+that takes arguments is with round brackets. You may remember from the other demo you can say, int i and then on
+
+164
+00:19:04,000 --> 00:19:15,000
+a later line you can say i=2, or you can say int i=2, or you can say int i(2) that also initializes.
+
+165
+00:19:15,000 --> 00:19:21,000
+That round bracket syntax is the way that you'd pass one more parameters to constructors of objects.
+
+166
+00:19:21,000 --> 00:19:38,000
+So I can say here, " I'm going to make a person based on me, so is pass in Kate", and my arbitrarynumber can be
+
+167
+00:19:38,000 --> 00:19:55,000
+123 and then we'll come down to this next line and we'll do someone else and their number can neighbor 456.
+
+168
+00:19:55,000 --> 00:20:02,000
+So now I'm constructing my two different Person objects p1 and p2 and I'm using that three argument constructor
+
+169
+00:20:02,000 --> 00:20:14,000
+to get values into them. So let's run again.
+
+170
+00:20:14,000 --> 00:20:24,000
+So if we step over this first line, you can see that p1 has those values, drag this over a little so you can see
+
+171
+00:20:24,000 --> 00:20:31,000
+all parts of it and if I Step Over here, you can see that p2 has completely different values and that changing p2
+
+172
+00:20:31,000 --> 00:20:35,000
+didn't change anything in p1. Hopefully, that's not a very big surprise.
+
+173
+00:20:35,000 --> 00:20:44,000
+So we'll Stop debugging and now I'm going to briefly have a bad practice so that I can show you something and then
+
+174
+00:20:44,000 --> 00:20:49,000
+I'll make it right again. I'm going to make one of my member variables public.
+
+175
+00:20:49,000 --> 00:20:56,000
+You really shouldn't do this, but it lets me easily write some code to set its value without having to get into
+
+176
+00:20:56,000 --> 00:21:02,000
+the ways you really should be setting values. We'll do that shortly.
+
+177
+00:21:02,000 --> 00:21:08,000
+So I'm making arbitrarynumber public and then I can come in here
+
+178
+00:21:08,000 --> 00:21:28,000
+and say, with the . syntax, p1.arbitrarynumber = 124 and we'll do for p2 also change the arbitrarynumber to 457
+
+179
+00:21:28,000 --> 00:21:41,000
+and we can run this,
+
+180
+00:21:41,000 --> 00:21:50,000
+and just as we step through, you can see p1 being created with value 123 for arbitrarynumber and now you see it
+
+181
+00:21:50,000 --> 00:22:00,000
+changed to 124, p2 being created and arbitrarynumber changing to 457.
+
+182
+00:22:00,000 --> 00:22:07,000
+This . syntax, the objects name . field or member variable, or member function, or whatever part of it you want
+
+183
+00:22:07,000 --> 00:22:13,000
+to talk to, happens whenever you're dealing with instances that have their own independent values.
+
+184
+00:22:13,000 --> 00:22:21,000
+So p1 and p2 have their own arbitrarynumbers, they are accessed with a . syntax.
+
+185
+00:22:21,000 --> 00:22:26,000
+Public member variables are a bad plan.
+
+186
+00:22:26,000 --> 00:22:31,000
+There's more appropriate, kind of best practices, ways to deal with
+
+187
+00:22:31,000 --> 00:22:36,000
+setting values in member variables. So I want to take this code back out, but just to demonstrate the simplicity
+
+188
+00:22:36,000 --> 00:22:44,000
+of the . syntax, the IntelliSense to help you access that member of the class and then the pretty consistent pattern
+
+189
+00:22:44,000 --> 00:59:00,000
+for talking to pieces of an object.
+

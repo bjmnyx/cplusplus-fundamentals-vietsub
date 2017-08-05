@@ -1,0 +1,36 @@
+1
+00:00:02,000 --> 00:00:07,000
+If since you're code threw one branch of the conditions true and possibly through a different one if it's false
+
+2
+00:00:07,000 --> 00:00:14,000
+and then life carries on as before, after the if. While, is for doing things over and over.
+
+3
+00:00:14,000 --> 00:00:22,000
+So the syntax is while something or another condition holds, some action and just like if, the round brackets are
+
+4
+00:00:22,000 --> 00:00:28,000
+not optional, you can have braces if action is multiple lines and the like.
+
+5
+00:00:28,000 --> 00:00:34,000
+If it's never true at all, their first time they check condition fails, then the stuff in the loop never happens.
+
+6
+00:00:34,000 --> 00:00:40,000
+You're not guaranteed to have it happen once, the check is at the top.
+
+7
+00:00:40,000 --> 00:00:45,000
+If you want to exit the loop earlier, there's a keyword break, that does just that.
+
+8
+00:00:45,000 --> 00:00:51,000
+So you might for example be going to through a file looking for something, once you found it there's no need to
+
+9
+00:00:51,000 --> 00:59:00,000
+process the rest of the file break. Pretty simple especially once you know if. Let me show you a demo.
+

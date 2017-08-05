@@ -1,0 +1,40 @@
+1
+00:00:01,000 --> 00:00:08,000
+You can use the const keyword when you're declaring pointers too and it has two different possible meanings.
+
+2
+00:00:08,000 --> 00:00:16,000
+First, you can declare that the pointer is a constant pointer. This means it can't be changed to point
+
+3
+00:00:16,000 --> 00:00:22,000
+somewhere else, so in the first pointer demo the pA pointer suddenly started pointing at B instead.
+
+4
+00:00:22,000 --> 00:00:29,000
+A constant pointer can't. Or, you can say that it's pointing to something const.
+
+5
+00:00:29,000 --> 00:00:39,000
+Then *cpI is const and you can't say *cpI = 7. You can't use the pointer to change the value of that const
+
+6
+00:00:39,000 --> 00:00:45,000
+integer. As you can imagine, if you take the address of a const integer, you better put it in a const
+
+7
+00:00:45,000 --> 00:00:51,000
+integer pointer saying I'm pointing to something const. Course, you could do both if you want.
+
+8
+00:00:51,000 --> 00:00:58,000
+This syntax declares a pointer that you cannot change to point somewhere else and nor can you go through the
+
+9
+00:00:58,000 --> 00:01:03,000
+pointer to change the value of what it's pointing at. I've called it crazy because it sounds like there'd be
+
+10
+00:01:03,000 --> 00:59:00,000
+nothing for it, but you can use it to get values and to invoke const functions, which may be enough for you.
+

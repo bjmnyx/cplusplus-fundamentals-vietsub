@@ -1,0 +1,124 @@
+1
+00:00:03,000 --> 00:00:08,000
+I have a project with some simple code in it to demonstrate these operators.
+
+2
+00:00:08,000 --> 00:00:16,000
+Now I don't have any classes in here. This is just some relatively artificial code just so that you can see
+
+3
+00:00:16,000 --> 00:00:22,000
+how they all work, and hopefully none of them are any great surprise.
+
+4
+00:00:22,000 --> 00:00:28,000
+I'm going to just run the project and show you the output next to
+
+5
+00:00:28,000 --> 00:00:36,000
+the code that produced it.
+
+6
+00:00:36,000 --> 00:00:43,000
+We do a number of things to i and just keep printing it out. We start out with i=0, prints out as 0.
+
+7
+00:00:43,000 --> 00:00:50,000
+Then we use the += operator to add 2 to it, becomes 2. We use the *= operator to multiply by 3, becomes 6.
+
+8
+00:00:50,000 --> 00:00:58,000
+We use the -= operator to take 2 off of it, becomes 4 and we use the /= operator to divide it by 4 and it
+
+9
+00:00:58,000 --> 00:01:05,000
+becomes 1. I don't have any demo of, you know, plus, minus, times, and divide, but I thought I'd show you
+
+10
+00:01:05,000 --> 00:01:10,000
+these four convenience operators. Now let's scroll down a little and take a look at the increment and
+
+11
+00:01:10,000 --> 00:01:16,000
+decrement behavior. You can see I'm using all four of them here.
+
+12
+00:01:16,000 --> 00:01:25,000
+I'm going to start by setting j = i++ and then I print out i and j.
+
+13
+00:01:25,000 --> 00:01:31,000
+Because i++ returns the old value, which is 1, j is 1, but i has been incremented to 2.
+
+14
+00:01:31,000 --> 00:01:38,000
+When I go ++i they both come out as 3, so the 2 is incremented to 3 and then that's what we return.
+
+15
+00:01:38,000 --> 00:01:48,000
+j = i--, j stays at 3 and then i is decremented to 2, and finally, j --i, the 2 gets decremented down to 1
+
+16
+00:01:48,000 --> 00:01:54,000
+and then they both get the value of 1. Those lines of code that we've just gone through, they're really
+
+17
+00:01:54,000 --> 00:01:59,000
+artificial. Why would you write int i = 2 and then add 3 to it or what have you.
+
+18
+00:01:59,000 --> 00:02:07,000
+It doesn't mean anything. Here's an actual use of the increment operator, kind of semi-realistic.
+
+19
+00:02:07,000 --> 00:02:14,000
+I'm going to run a loop. I'm going to start i = 2, and go while it's less than 101, and have just a single
+
+20
+00:02:14,000 --> 00:02:22,000
+line in my while, which is that I'm going to call IsPrime, and I'm going to call IsPrime with the current
+
+21
+00:02:22,000 --> 00:02:30,000
+value of i and then I'm going to increment i, so in this single line I'm able to run around the loop from 2
+
+22
+00:02:30,000 --> 00:02:36,000
+up to 101. I've taken this function IsPrime, which you may remember from other demos.
+
+23
+00:02:36,000 --> 00:02:42,000
+It returns true or false whether the number is prime, and if it returns true -- I'm using an immediate if --
+
+24
+00:02:42,000 --> 00:02:47,000
+I'm going to add 1 to j. If it returns false I'm going to add 0 to j,
+
+25
+00:02:47,000 --> 00:02:51,000
+so I'm counting how many prime numbers there are between 2
+
+26
+00:02:51,000 --> 00:03:00,000
+and 100. 101 is not strictly less than 101, so we'll stop after we've processed 100.
+
+27
+00:03:00,000 --> 00:03:06,000
+When this runs it claims there are 25 primes and you're welcome to count on your fingers and establish
+
+28
+00:03:06,000 --> 00:03:11,000
+whether that's correct or not. The real purpose of the code is to show you an actual use for the increment
+
+29
+00:03:11,000 --> 00:03:18,000
+operator and for it being important whether I called i++ or ++i.
+
+30
+00:03:18,000 --> 00:03:25,000
+If I were to call this with ++i the first number that would get passed down to IsPrime would be 3 not 2
+
+31
+00:03:25,000 --> 00:59:00,000
+because we'd increment it and then call it. We'd actually get a different result when we ran this.
+

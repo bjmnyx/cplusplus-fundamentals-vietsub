@@ -1,0 +1,28 @@
+1
+00:00:02,000 --> 00:00:09,000
+Welcome back to Introduction to C++. My name is Kate Gregory and I'm introducing you to the most popular general
+
+2
+00:00:09,000 --> 00:00:15,000
+purpose Programming Language C++. In this module, you'll really see how to build a program using loops,
+
+3
+00:00:15,000 --> 00:00:20,000
+conditionals, those other flow of control statements that essentially all programming languages have.
+
+4
+00:00:20,000 --> 00:00:25,000
+Some of the C++ ones aren't as well known as things that are common in other languages.
+
+5
+00:00:25,000 --> 00:00:32,000
+I have some lightning quick demos that don't really do anything useful, but they show how all these constructs work.
+
+6
+00:00:32,000 --> 00:00:38,000
+This is also a good time to start to talk about functions, the real building blocks of just about every application.
+
+7
+00:00:38,000 --> 00:59:00,000
+In C++ we have both free functions and member function, I'll show you them both and show you the difference.
+

@@ -1,0 +1,408 @@
+1
+00:00:02,000 --> 00:00:13,000
+Parts of this starter application were created by Visual Studio itself. I didn't have to type all of this in.
+
+2
+00:00:13,000 --> 00:00:24,000
+So, let me show you how to create a new application using Visual C++ Express.
+
+3
+00:00:24,000 --> 00:00:28,000
+When you open visual C++ Express, most of the time it is going to look like this.
+
+4
+00:00:28,000 --> 00:00:34,000
+This is called the Start Page. Now there may not be a start page when you open it if somebody unchecked this
+
+5
+00:00:34,000 --> 00:00:39,000
+box here that says, Show page on startup. If that's the case, you can always get it back on the view menu,
+
+6
+00:00:39,000 --> 00:00:46,000
+choose Start Page. In older versions of Visual Studio, a lot of people checked this box,
+
+7
+00:00:46,000 --> 00:00:51,000
+Show page on startup, because the start page serves no purpose once you've started.
+
+8
+00:00:51,000 --> 00:00:58,000
+It just uses up a tab and gets in the way. That's why I love this tick, Close page after project load.
+
+9
+00:00:58,000 --> 00:01:02,000
+This lets me have a startup page every time I launch Visual Studio,
+
+10
+00:01:02,000 --> 00:01:07,000
+but it doesn't bother me because as soon as I open an existing project, it goes away.
+
+11
+00:01:07,000 --> 00:01:12,000
+And speaking of opening existing projects, here under Recent Projects, it lists out my recent projects.
+
+12
+00:01:12,000 --> 00:01:18,000
+So the Hello project that I used in a previous demo is listed here, and it is a single click to open that up
+
+13
+00:01:18,000 --> 00:01:25,000
+and start working on it, but I want to show you how to make a new one. So I am going to click New Project.
+
+14
+00:01:25,000 --> 00:01:31,000
+Because this is Visual C++ Express, it is only offering me C++ applications.
+
+15
+00:01:31,000 --> 00:01:36,000
+If you are using another version of Visual Studio, it may be offering you Visual Basic, or C# or any other
+
+16
+00:01:36,000 --> 00:01:41,000
+number of languages and that's fine. Make sure that you find the C++.
+
+17
+00:01:41,000 --> 00:01:45,000
+And there are several different kinds of applications, and there are two different kinds with console
+
+18
+00:01:45,000 --> 00:01:51,000
+in their name, CLR Console Application and Win32 Console Application.
+
+19
+00:01:51,000 --> 00:01:53,000
+And it's important not to get them confused.
+
+20
+00:01:53,000 --> 00:01:58,000
+The CLR Console Application, has a rather unhelpful description.
+
+21
+00:01:58,000 --> 00:02:03,000
+A project for creating a console application, you are like woo-hoo that must be what I want right? No.
+
+22
+00:02:03,000 --> 00:02:07,000
+What you want is a Win32 Console Application.
+
+23
+00:02:07,000 --> 00:02:13,000
+The difference is that a CLR Console Application is that C++/CLI, it runs under the .NET framework.
+
+24
+00:02:13,000 --> 00:02:21,000
+So yes it is a console application, but it is not just C++, it has those extensions in it to make it C++/CLI.
+
+25
+00:02:21,000 --> 00:02:28,000
+It makes managed code, that's not what we are doing. So we want the Win32 Console Application.
+
+26
+00:02:28,000 --> 00:02:34,000
+Win32 Project makes a Windows application. A Windows Forms Application makes a managed Windows application,
+
+27
+00:02:34,000 --> 00:02:40,000
+we definitely don't want those. Makefile Project is appropriate if you are coming over from another
+
+28
+00:02:40,000 --> 00:02:46,000
+compiler, probably from another platform and you want to use something called a makefile to control the way
+
+29
+00:02:46,000 --> 00:02:50,000
+your project builds. We are not going to go there. Empty Project is what is sounds like, you have to add things to it.
+
+30
+00:02:50,000 --> 00:02:53,000
+CLR Empty Project, same deal, but slightly different settings.
+
+31
+00:02:53,000 --> 00:02:58,000
+And then finally Class Library, it mentions you can write libraries in C++ for reusable code
+
+32
+00:02:58,000 --> 00:03:01,000
+that's used by many other different applications.
+
+33
+00:03:01,000 --> 00:03:08,000
+It's a useful thing, but it is not what we are making today. So we want to use a Win32 Console Application.
+
+34
+00:03:08,000 --> 00:03:17,000
+And, you can give it whatever name you like, say FirstApp. And put it wherever you like.
+
+35
+00:03:17,000 --> 00:03:30,000
+By default, Visual Studio likes to put things in your documents under Visual Studio 2010 Projects.
+
+36
+00:03:30,000 --> 00:03:35,000
+And if that's where you are happy to have them, then that could be where they are.
+
+37
+00:03:35,000 --> 00:03:41,000
+I have a different place for mine, it doesn't really matter. I am just going to click OK.
+
+38
+00:03:41,000 --> 00:03:49,000
+And in some languages, you make a new project, you get a new project, but in C++ you get a Wizard.
+
+39
+00:03:49,000 --> 00:03:52,000
+It doesn't have very many steps. In fact, it really only has two steps
+
+40
+00:03:52,000 --> 00:03:55,000
+and the first one doesn't do anything, but you have a Wizard.
+
+41
+00:03:55,000 --> 00:03:59,000
+If without seeing the settings you are great because you just know what the settings are,
+
+42
+00:03:59,000 --> 00:04:07,000
+you could click Finish right now. Let's say we are not going to, let's click Next.
+
+43
+00:04:07,000 --> 00:04:12,000
+Now you may have noticed a slight sort of change in the font situation on this side.
+
+44
+00:04:12,000 --> 00:04:16,000
+It turns out, this is an index into the steps of the Wizard.
+
+45
+00:04:16,000 --> 00:04:22,000
+So if I click Previous, you can see one is a link and one is not.
+
+46
+00:04:22,000 --> 00:04:26,000
+And that's our two steps of our Wizard. So I could also get through it by clicking this,
+
+47
+00:04:26,000 --> 00:04:30,000
+or by using the Next and Previous.
+
+48
+00:04:30,000 --> 00:04:34,000
+Now the questions that it's asking here, are questions it already knows the answers to.
+
+49
+00:04:34,000 --> 00:04:41,000
+Do you want a Windows app, a console app, a DLL or a library? Well I already said I wanted a console app.
+
+50
+00:04:41,000 --> 00:04:44,000
+Do you actually want nothing at all, you can take Empty project and you are probably thinking,
+
+51
+00:04:44,000 --> 00:04:47,000
+well if I wanted Empty project wouldn't I have chosen an Empty project?
+
+52
+00:04:47,000 --> 00:04:51,000
+I know, I didn't write this Wizard, this is just what it is.
+
+53
+00:04:51,000 --> 00:04:54,000
+This pre-compiled header, I am going to suggest that you leave ticked,
+
+54
+00:04:54,000 --> 00:04:56,000
+even though you don't really know what it really means.
+
+55
+00:04:56,000 --> 00:04:58,000
+It is something that makes your application compile faster.
+
+56
+00:04:58,000 --> 00:05:04,000
+It doesn't make it run faster, but it can make it compile faster and it's therefore a good habit.
+
+57
+00:05:04,000 --> 00:05:06,000
+You won't be able to take full advantage of it for a while yet,
+
+58
+00:05:06,000 --> 00:05:10,000
+but if you just get in the habit of leaving that ticked, it won't hurt you.
+
+59
+00:05:10,000 --> 00:05:13,000
+And then over here we have some things that are grayed out.
+
+60
+00:05:13,000 --> 00:05:17,000
+And the reason they are grayed out is that this dialog is shared by different versions of Visual Studio
+
+61
+00:05:17,000 --> 00:05:24,000
+and in some of the other versions, you have options to add common header files for ATL and MFC.
+
+62
+00:05:24,000 --> 00:05:27,000
+Express doesn't support ATL or MFC, so those options are grayed out.
+
+63
+00:05:27,000 --> 00:05:31,000
+So it turns out you really have nothing to do on this step of the Wizard, except click Finish,
+
+64
+00:05:31,000 --> 00:05:37,000
+but you need to look at it before you can do that.
+
+65
+00:05:37,000 --> 00:05:43,000
+So the Wizard runs and you can see that it generates some of the things that you saw in the sample app I showed you.
+
+66
+00:05:43,000 --> 00:05:48,000
+The comment, saying the name of the file, and Defines the entry point for the application,
+
+67
+00:05:48,000 --> 00:05:54,000
+the include of stdafx.h, and that's actually there because you ticked the pre-compile headers box,
+
+68
+00:05:54,000 --> 00:05:59,000
+the tmain, and the return 0. So you would put your own code in here to do whatever it is you wanted
+
+69
+00:05:59,000 --> 00:06:05,000
+your application to do. I haven't really talked about Solution Explorer up until now,
+
+70
+00:06:05,000 --> 00:06:11,000
+but this is a good time to explain a little bit. Solution Explorer is showing you all of the files in
+
+71
+00:06:11,000 --> 00:06:18,000
+your project and in your solution. The sort of unit of work in Visual Studio is a solution.
+
+72
+00:06:18,000 --> 00:06:24,000
+And a solution contains one or more projects, and a project is in a single language, it contains one or more
+
+73
+00:06:24,000 --> 00:06:30,000
+files, and you build a project at a time. If there are multiple projects in a solution, you can build them
+
+74
+00:06:30,000 --> 00:06:36,000
+independently, or build the whole solution at once. And one of the projects typically produces an executable
+
+75
+00:06:36,000 --> 00:06:46,000
+that you can actually run. So, when you right-click on the solution, one of your choices is to build the solution.
+
+76
+00:06:46,000 --> 00:06:54,000
+When you right-click on the project, you have a build that would just build the project, Project Only,
+
+77
+00:06:54,000 --> 00:06:57,000
+Build Only FirstApp, and so on.
+
+78
+00:06:57,000 --> 00:07:02,000
+Here we have only one project in our solution, so there is not much of a distinction between the whole
+
+79
+00:07:02,000 --> 00:07:06,000
+solution and the single project, but that's how it is organized in here.
+
+80
+00:07:06,000 --> 00:07:14,000
+And then you have your files and Solution Explorer categorizes your Header Files separately from your Source Files. It's just a convenience.
+
+81
+00:07:14,000 --> 00:07:17,000
+They are not actually arranged this way on your hard drive.
+
+82
+00:07:17,000 --> 00:07:23,000
+So, if I come up here to this tab, and one thing a lot of people don't know is that if you pause
+
+83
+00:07:23,000 --> 00:07:31,000
+it will tell you the path to the file. I can right-click the tab and chose Open Containing Folder.
+
+84
+00:07:31,000 --> 00:07:37,000
+And these are the actual files on my machine that have been created as part of creating this project.
+
+85
+00:07:37,000 --> 00:07:41,000
+Now you will see that they are not split up into folders about headers and source and so on.
+
+86
+00:07:41,000 --> 00:07:46,000
+The .h files and .cpp files are all in here together.
+
+87
+00:07:46,000 --> 00:07:50,000
+That's just the way that Solution Explorer shows them to you.
+
+88
+00:07:50,000 --> 00:07:55,000
+And to open any other file in the editor, you just double-click it over here in Solution Explorer.
+
+89
+00:07:55,000 --> 00:08:01,000
+This is ReadMe.txt, which explains what all the bits and pieces of the project are.
+
+90
+00:08:01,000 --> 00:08:07,000
+And this is that stdafx.h. Standard afx.h is your pre-compiled headers.
+
+91
+00:08:07,000 --> 00:08:11,000
+Basically, things that you use a lot in many different places,
+
+92
+00:08:11,000 --> 00:08:15,000
+you can put in here and it will speed up the compilation process.
+
+93
+00:08:15,000 --> 00:08:20,000
+This poor little application doesn't use anything, never mind using something a lot in a lot of different files.
+
+94
+00:08:20,000 --> 00:08:27,000
+So we don't have anything extra in standard afx.h. Now that I have multiple files open in Visual Studio,
+
+95
+00:08:27,000 --> 00:08:32,000
+you can see how they each have their own document tab across the top.
+
+96
+00:08:32,000 --> 00:08:37,000
+You can switch between them just by clicking on the tabs, pretty straight forward.
+
+97
+00:08:37,000 --> 00:08:45,000
+And you can close any one of them just by clicking its X. It doesn't have to be open for you to close it that way.
+
+98
+00:08:45,000 --> 00:08:50,000
+I hope this helps you to see how Visual C++ Express works and how to work with it.
+
+99
+00:08:50,000 --> 00:08:55,000
+The most important things you are going to do is typing code here in this editor, and running your
+
+100
+00:08:55,000 --> 00:09:00,000
+applications and looking at the output and learning from what you see in the output.
+
+101
+00:09:00,000 --> 00:09:06,000
+A little bit of moving around from file to file, and occasionally creating a new project, and you are ready
+
+102
+00:09:06,000 --> 00:59:00,000
+to go in terms of using Visual C++ Express. Which means you are ready to go in terms of learning some syntax for C++.
+

@@ -1,0 +1,104 @@
+1
+00:00:01,000 --> 00:00:08,000
+So far, we've worked with fundamental types like integers, and
+
+2
+00:00:08,000 --> 00:00:15,000
+floating point numbers, objects whether defined in the library like string, in the standard libraries, or in our
+
+3
+00:00:15,000 --> 00:00:24,000
+own code like Person and Tweeter and I've mentioned structs which are essentially identical to classes.
+
+4
+00:00:24,000 --> 00:00:36,000
+Just to round the picture out, I want to talk about enums. So I'm going to add another header file into this system
+
+5
+00:00:36,000 --> 00:00:44,000
+and I'm going to call it status.h
+
+6
+00:00:44,000 --> 00:00:54,000
+and in here I'm going to define an enum called Status and like a class an enum has its definition inside braces
+
+7
+00:00:54,000 --> 00:01:05,000
+and has a ; at the end of that last brace and we simply list out the possible Statuses.
+
+8
+00:01:05,000 --> 00:01:11,000
+Now an interesting thing about C++ enums for people who have come from other languages is that when you use them,
+
+9
+00:01:11,000 --> 00:01:18,000
+you only use these internal things. So I wouldn't say Status.Pending, I would just say Pending.
+
+10
+00:01:18,000 --> 00:01:26,000
+That means that these names need to be unique. I can't have Approved as part of a Status enum and also have it as
+
+11
+00:01:26,000 --> 00:01:32,000
+part of a completely different unrelated enum. Very often, when you read other people's code, you will therefore
+
+12
+00:01:32,000 --> 00:01:39,000
+see decorations, bits of extra words like it might be status.pending, status.approved, status.canceled, to keep
+
+13
+00:01:39,000 --> 00:01:46,000
+that uniqueness in an enum. I'm going to keep these ones simple and we'll just use one.
+
+14
+00:01:46,000 --> 00:01:50,000
+So if I go back into my main
+
+15
+00:01:50,000 --> 00:02:04,000
+I'll just declare a Status s give it a value like pending. You can see the compiler saying what, don't know what
+
+16
+00:02:04,000 --> 00:02:06,000
+you're talking about? It's because I haven't included the header file.
+
+17
+00:02:06,000 --> 00:02:22,000
+So let's go up here status.h, give it a minute, it should become content down here and once I've declared the variable,
+
+18
+00:02:22,000 --> 00:02:26,000
+I can obviously change this value at anytime just as did with integers and so on.
+
+19
+00:02:26,000 --> 00:02:34,000
+So I can say now that s = Approved and that's a legitimate thing to do.
+
+20
+00:02:34,000 --> 00:02:49,000
+So if I Run the application, under the debugger,
+
+21
+00:02:49,000 --> 00:02:57,000
+and we'll just step through all this part, and see here s is just an arbitrary value at the moment --- control hasn't
+
+22
+00:02:57,000 --> 00:03:05,000
+reached that line, so it hasn't been initialized yet. We step over that line and the debugger actually shows the
+
+23
+00:03:05,000 --> 00:03:11,000
+enum value Pending and we go down to this line, it shows the enum value Approved.
+
+24
+00:03:11,000 --> 00:03:18,000
+So in the debugger I can see the word value rather than any underlying number that's inside of it and it saves
+
+25
+00:03:18,000 --> 00:03:25,000
+you as a developer having to memorize a lot of strange numeric values for error codes and status and the like and
+
+26
+00:03:25,000 --> 00:59:00,000
+it makes debugging simpler as well.
+

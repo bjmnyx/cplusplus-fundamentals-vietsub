@@ -1,0 +1,116 @@
+1
+00:00:02,000 --> 00:00:09,000
+There is no denying it, C++ has a lot of operators. Arithmetic operators, including things you may not have
+
+2
+00:00:09,000 --> 00:00:15,000
+heard of or that may not be in other languages you know, very specialized operators that were originally
+
+3
+00:00:15,000 --> 00:00:21,000
+brought in for performance reasons and that remain because they are concise and they can express your
+
+4
+00:00:21,000 --> 00:00:28,000
+intention without you having to write a lot. Now i = i + 1 or i++, when you're working with i it's kind of
+
+5
+00:00:28,000 --> 00:00:34,000
+the same, but when you're working with long variable names, it's not the same at all.
+
+6
+00:00:34,000 --> 00:00:40,000
+There are some traps waiting for some people. The double ampersand versus single ampersand, people
+
+7
+00:00:40,000 --> 00:00:46,000
+accidentally using bitwise operators when they mean to use Boolean operators, people using Boolean operators
+
+8
+00:00:46,000 --> 00:00:52,000
+and not realizing that they shortcut, and people mixing up the equality comparison operator, two equal signs,
+
+9
+00:00:52,000 --> 00:00:59,000
+with the assignment operator, a single equal sign. A single equal sign is not going to trigger a warning or
+
+10
+00:00:59,000 --> 00:01:05,000
+error message for you. It's often the right thing to do inside an if, but you need to be confident whether
+
+11
+00:01:05,000 --> 00:01:14,000
+you really meant to do it or not. The suite of operators that C++ has lets you write incredibly concise,
+
+12
+00:01:14,000 --> 00:01:22,000
+readable code and it lowers the burden on developers to remember how to do things or what things are called
+
+13
+00:01:22,000 --> 00:01:25,000
+and that's especially true when you combine operator overloading.
+
+14
+00:01:25,000 --> 00:01:33,000
+It's simply easier to remember the plus sign then whether something is called add or append or increment.
+
+15
+00:01:33,000 --> 00:01:40,000
+It's easier to remember the less than operator than whether it's called compare and having less than return
+
+16
+00:01:40,000 --> 00:01:48,000
+true or false is more memorable than having compare return -1 if it's less, 0 if they're the same, and +1 if
+
+17
+00:01:48,000 --> 00:01:56,000
+they're greater. Using operator overloading puts a tiny more burden on the developer of a class and it
+
+18
+00:01:56,000 --> 00:02:02,000
+really is a tiny more burden. After all, writing a function called ADD or writing a function called
+
+19
+00:02:02,000 --> 00:02:11,000
+Operator+, not that different, and yet, the user of your class gets the ability to really think of your type,
+
+20
+00:02:11,000 --> 00:02:18,000
+date or string or purchase order or employee, just as a thing, just like an integer or any other fundamental
+
+21
+00:02:18,000 --> 00:02:26,000
+type. I think you've already seen that because string is a class; it's not a fundamental type.
+
+22
+00:02:26,000 --> 00:02:30,000
+But I bet in your head it already feels like it's just a type, the same as integer,
+
+23
+00:02:30,000 --> 00:02:34,000
+And date can be that way too and, if the author of the class puts the work in,
+
+24
+00:02:34,000 --> 00:02:42,000
+so can employee or purchase order or insurance policy or whatever it is your application is all about.
+
+25
+00:02:42,000 --> 00:02:48,000
+Once you get into templates you'll see even more how this fundamental similarity between say,
+
+26
+00:02:48,000 --> 00:02:53,000
+an integer and a string, between a floating point number and a purchase order,
+
+27
+00:02:53,000 --> 00:03:00,000
+enables you to write very interesting, generic code in a way that can't be done in other languages.
+
+28
+00:03:00,000 --> 00:03:07,000
+For now, understanding the wide variety of operators that C++ offers and how you can be part of it by
+
+29
+00:03:07,000 --> 00:59:00,000
+writing your own overloads of those operators, it's a good addition to your C++ knowledge.
+

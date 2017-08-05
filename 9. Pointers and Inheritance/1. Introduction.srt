@@ -1,0 +1,32 @@
+1
+00:00:01,000 --> 00:00:09,000
+Welcome back to Introduction to C++. My name is Kate Gregory and I'm introducing you to the most popular
+
+2
+00:00:09,000 --> 00:00:16,000
+general purpose programming language, C++. In this module I'll talk about polymorphism in C++.
+
+3
+00:00:16,000 --> 00:00:21,000
+Now, polymorphism doesn't sneak up on you. It can only happen when you have classes that inherit from
+
+4
+00:00:21,000 --> 00:00:28,000
+other classes and new pointers. It's actually an incredibly useful and productive technique.
+
+5
+00:00:28,000 --> 00:00:35,000
+When you get to talk about polymorphism and pointers to objects and base classes and drive classes you have
+
+6
+00:00:35,000 --> 00:00:41,000
+other pieces of vocabulary like, virtual, slicing, casting. You know, to really get the C++ pointers story
+
+7
+00:00:41,000 --> 00:00:47,000
+you need to explore what happens with pointers to objects that are part of an inheritance hierarchy, so let's
+
+8
+00:00:47,000 --> 00:59:00,000
+do that.
+

@@ -1,0 +1,80 @@
+1
+00:00:01,000 --> 00:00:07,000
+Because for and while are so similar, I took the while example and
+
+2
+00:00:07,000 --> 00:00:09,000
+rewrote it as a for example,
+
+3
+00:00:09,000 --> 00:00:20,000
+so I didn't have to explain it again. Enter a number and now I'm using a for loop int i=2.
+
+4
+00:00:20,000 --> 00:00:24,000
+I don't need i after the loop so I'm declaring it right there.
+
+5
+00:00:24,000 --> 00:00:28,000
+The condition and the increment are what you recognize from the while.
+
+6
+00:00:28,000 --> 00:00:34,000
+You're much less likely to forget to increment and accidently write an infinite loop when you use a for loop, by the way.
+
+7
+00:00:34,000 --> 00:00:40,000
+The body's exactly the same and we can break out of a for the same as we can break out of a while and the printing
+
+8
+00:00:40,000 --> 00:00:46,000
+out exactly the same. So let's run this.
+
+9
+00:00:46,000 --> 00:00:51,000
+We'll enter a number, let's try 25, 25 is not a prime.
+
+10
+00:00:51,000 --> 00:00:53,000
+Hopefully, no one is surprised by any of these results.
+
+11
+00:00:53,000 --> 00:00:56,000
+Let's try another one, 7 is
+
+12
+00:00:56,000 --> 00:01:01,000
+prime and just to demonstrate breaking out of the for loop
+
+13
+00:01:01,000 --> 00:01:08,000
+let's choose a number with plenty of factors, let's try 24 this time instead of 12.
+
+14
+00:01:08,000 --> 00:01:15,000
+First factor it finds when it's trying to, it finds 12, not prime, breaks out of the for loop.
+
+15
+00:01:15,000 --> 00:01:20,000
+So there you go. They're not importantly different to the compiler.
+
+16
+00:01:20,000 --> 00:01:29,000
+For and while are importantly different to people and the ability to control that scope to have the loop variable
+
+17
+00:01:29,000 --> 00:01:33,000
+disappear after the loop is a big plus for many people.
+
+18
+00:01:33,000 --> 00:01:41,000
+They don't really want to liter their code with a bunch of different loop variables, i, j, k, ii, jj, so being
+
+19
+00:01:41,000 --> 00:01:48,000
+able to use one like this, that comes into scope and goes out of scope, and be a highly useful thing, and I have a
+
+20
+00:01:48,000 --> 00:59:00,000
+little more guidance a little later on about for versus while.
+

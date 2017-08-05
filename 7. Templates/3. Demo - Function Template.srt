@@ -1,0 +1,272 @@
+1
+00:00:02,000 --> 00:00:08,000
+I thought I'd start by showing you a very simple template. It's right here.
+
+2
+00:00:08,000 --> 00:00:14,000
+This is a free function and you can declare and define a function all at once as long as the whole thing is
+
+3
+00:00:14,000 --> 00:00:21,000
+before you use it. I could have made a header called utility.h in which I declared this function and a cpp
+
+4
+00:00:21,000 --> 00:00:26,000
+file in which I implemented it, but especially for templates we tend to do it all at once in the include and
+
+5
+00:00:26,000 --> 00:00:31,000
+rather than have a separate file, which the include statement would have just plunked right here, I decided
+
+6
+00:00:31,000 --> 00:00:35,000
+to simply put the contents here. You can see the structure of it.
+
+7
+00:00:35,000 --> 00:00:40,000
+If it wasn't for this first line it would just look like declaring and defining a function.
+
+8
+00:00:40,000 --> 00:00:48,000
+We have a function called max that returns something called T and it takes T references.
+
+9
+00:00:48,000 --> 00:00:53,000
+If you're thinking wait, we covered all the types, int, float, da da da; what is T?
+
+10
+00:00:53,000 --> 00:00:59,000
+T is a placeholder and it's traditional to use the letter T for this placeholder, but you're by no means
+
+11
+00:00:59,000 --> 00:01:02,000
+obliged to. You could use whatever you like. This line here says,
+
+12
+00:01:02,000 --> 00:01:07,000
+I'm defining a template and in my template there will be a placeholder for a class,
+
+13
+00:01:07,000 --> 00:01:11,000
+and despite the word class you can also put fundamental types like ints and things in here,
+
+14
+00:01:11,000 --> 00:01:14,000
+which I'm going to now refer to for the rest of the time as T.
+
+15
+00:01:14,000 --> 00:01:19,000
+This says, whatever this is a template of, if it's a template of ints, I mean int.
+
+16
+00:01:19,000 --> 00:01:24,000
+If it's a template of person objects, I mean person. That's what this function returns.
+
+17
+00:01:24,000 --> 00:01:31,000
+Its name is max. It takes a T reference, which I'm going to call t1 and another T reference, which I'm going
+
+18
+00:01:31,000 --> 00:01:39,000
+to call t2. We're using the immediate if and if t1 is less than t2 we'll return t2, otherwise, we'll return
+
+19
+00:01:39,000 --> 00:01:47,000
+t1. So in other words, if it's a tie we'll return t1. If it's not a tie we'll return whoever's bigger,
+
+20
+00:01:47,000 --> 00:01:54,000
+using the less than operator. It's hard to imagine a simpler function to write once you've really grasped
+
+21
+00:01:54,000 --> 00:01:59,000
+_____ if you're done with the difficulty level of this function, but it's really pretty powerful.
+
+22
+00:01:59,000 --> 00:02:05,000
+In fact, I should point out there's a better implementation of max in the Standard Library and we're only
+
+23
+00:02:05,000 --> 00:02:09,000
+showing you max so that you have something to look at and to understand.
+
+24
+00:02:09,000 --> 00:02:14,000
+I'm going to use it. Change my boundaries a little so you can see this whole line.
+
+25
+00:02:14,000 --> 00:02:21,000
+I'm going to print out max of 33 and 44 is and then I'm going to call the function passing in 33 and 44, and
+
+26
+00:02:21,000 --> 00:02:25,000
+the compiler's pretty smart. It says, hey, those are integers, you must want the version of max that works
+
+27
+00:02:25,000 --> 00:02:31,000
+with integers and it'll use that one and return an integer that I can send to cout.
+
+28
+00:02:31,000 --> 00:02:39,000
+Then I setup a couple of strings and I want to print out the max of them, and again, I just say max of s1, s2
+
+29
+00:02:39,000 --> 00:02:43,000
+and the compiler says well if you want to pass in a pair of strings you must mean the one that takes strings
+
+30
+00:02:43,000 --> 00:02:52,000
+and returns a string. And I can even work with Person objects. Here I'm going to print out p1.GetName and
+
+31
+00:02:52,000 --> 00:03:00,000
+p2.GetName just so I have something to put on the screen, but I'm actually determining the max of p1 and p2,
+
+32
+00:03:00,000 --> 00:03:07,000
+and that returns a person. So on a person I can use the dot operator and call one of its member functions
+
+33
+00:03:07,000 --> 00:03:15,000
+and that's how I can get somebody's name. I'm going to run this application and let you see the output.
+
+34
+00:03:15,000 --> 00:03:22,000
+You can see that the max of 33 and 44 is 44. That fits what we know about numbers, that the max of hello and
+
+35
+00:03:22,000 --> 00:03:30,000
+world is world. If you think about sorting, W coming after H in the alphabet, okay, that makes sense, and
+
+36
+00:03:30,000 --> 00:03:35,000
+the max of Kate Gregory and someone else is someone else. Now in order to test if that's right or not you
+
+37
+00:03:35,000 --> 00:03:40,000
+have to remember how we defined operator less than for Person.
+
+38
+00:03:40,000 --> 00:03:50,000
+Come back and take a look in Person (Typing). Here's operator&lt;. We compare their arbitrarynumbers.
+
+39
+00:03:50,000 --> 00:03:55,000
+If one person is less than another, if their arbitrarynumber is less than the other, and the two arbitrary
+
+40
+00:03:55,000 --> 00:04:01,000
+people I made here, Kate Gregory and someone else, someone else had a number of 456, so that's why they were
+
+41
+00:04:01,000 --> 00:04:07,000
+the bigger. This is just kind of intuitive and easy to understand.
+
+42
+00:04:07,000 --> 00:04:14,000
+You're just calling max -- max of two strings, max of two numbers, max of two person objects.
+
+43
+00:04:14,000 --> 00:04:23,000
+There is a potential problem. I've got to include here BankAccount.h and I'll just open that up and show you
+
+44
+00:04:23,000 --> 00:04:29,000
+this is a half-written BankAccount class. We're not going to design or write it.
+
+45
+00:04:29,000 --> 00:04:35,000
+What you need to know about the BankAccount class in its current unfinished state, it doesn't have an
+
+46
+00:04:35,000 --> 00:04:44,000
+operator&lt;. Person has an operator&lt;, which we discussed in operator overloading and you've just seen the code
+
+47
+00:04:44,000 --> 00:04:49,000
+for. BankAccount does not.
+
+48
+00:04:49,000 --> 00:04:56,000
+If I try to do this same behavior with BankAccounts as I've been doing with integers, strings, and persons
+
+49
+00:04:56,000 --> 00:05:01,000
+I don't get the kind of delightful error messages that I would like to get.
+
+50
+00:05:01,000 --> 00:05:07,000
+I have to tell you, when you're working with templates sometimes the error messages can be a little opaque.
+
+51
+00:05:07,000 --> 00:05:15,000
+Here is some code that creates two bank accounts and tries to call the max of b1 and b2.
+
+52
+00:05:15,000 --> 00:05:21,000
+Let's see what happens when I compile this. I'm just using the keystrokes to build it (Typing).
+
+53
+00:05:21,000 --> 00:05:30,000
+If failed and the error is, no operator found which takes a left-hand type operand of type 'BankAccount.'
+
+54
+00:05:30,000 --> 00:05:39,000
+That's not bad. It's even telling me that the problem is here with the less than, but you'd be tempted to go
+
+55
+00:05:39,000 --> 00:05:43,000
+and say well I'm not calling less than. I don't understand what the problem is.
+
+56
+00:05:43,000 --> 00:05:51,000
+You kind of need to know that max uses less than and that by calling max you're trying to use less than and
+
+57
+00:05:51,000 --> 00:05:59,000
+you don't have one. You don't really get a good error message saying you don't implement the right stuff to
+
+58
+00:05:59,000 --> 00:06:07,000
+use this template. The burden is all on you as the person who wants to use the template, in this case, a
+
+59
+00:06:07,000 --> 00:06:15,000
+BankAccount developer who wants to use max needs to know what that imposes on BankAccount.
+
+60
+00:06:15,000 --> 00:06:21,000
+By reading the documentation, if all else fails, maybe by reading the code and looking at it and saying, oh,
+
+61
+00:06:21,000 --> 00:06:28,000
+I see it uses operator&lt; or it uses operator+ or it uses a member function called compare or whatever it uses,
+
+62
+00:06:28,000 --> 00:06:35,000
+and if for some reason you have neither documentation nor code, by getting error messages from the compiler.
+
+63
+00:06:35,000 --> 00:06:43,000
+BankAccount's not eligible to work with max. It just is missing the operators that it needs to work with max
+
+64
+00:06:43,000 --> 00:06:49,000
+and that's okay. You have to find another way to compare BankAccounts or you can write the operator that's
+
+65
+00:06:49,000 --> 00:06:57,000
+missing for BankAccounts, but understanding that nobody's going to check for you explicitly.
+
+66
+00:06:57,000 --> 00:07:02,000
+You'll get errors and eventually you'll figure out what causes the errors, but nobody's going to explicitly
+
+67
+00:07:02,000 --> 00:07:07,000
+check whether a particular type is okay for use with a particular template or not.
+
+68
+00:07:07,000 --> 00:59:00,000
+That's your job as the developer.
+

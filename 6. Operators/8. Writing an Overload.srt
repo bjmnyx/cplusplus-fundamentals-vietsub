@@ -1,0 +1,128 @@
+1
+00:00:02,000 --> 00:00:11,000
+There are two ways to write an overload: as a member function of whatever type is before the operator and
+
+2
+00:00:11,000 --> 00:00:17,000
+the function takes an instance of the type that's after the operator, or as a free function, it's not in any
+
+3
+00:00:17,000 --> 00:00:22,000
+class, that takes two parameters, the first, the type that's before the operator, and the second, the type
+
+4
+00:00:22,000 --> 00:00:28,000
+that's after it. When it's your class you should always try to write it the member function way, so if
+
+5
+00:00:28,000 --> 00:00:33,000
+you've written some MyClass and you want to be able to say, is my object less than some other thing?
+
+6
+00:00:33,000 --> 00:00:41,000
+Is this order less than a different order? You write a function called operator&lt; and if you're writing an
+
+7
+00:00:41,000 --> 00:00:48,000
+overload for operator plus or operator times or operator +=, all of which can be overloaded, then those are
+
+8
+00:00:48,000 --> 00:00:55,000
+the names you give. The return type of the comparison operator is less than, less than or equal to, is equal
+
+9
+00:00:55,000 --> 00:01:03,000
+to, is always Boolean true or false. The return type of the other operators is not a Boolean.
+
+10
+00:01:03,000 --> 00:01:08,000
+For example, when I add two numbers I get a number. If I take a date and add a number to it I would expect
+
+11
+00:01:08,000 --> 00:01:14,000
+to get a date. If I take two dates and subtract them I probably don't expect to get a date back right?
+
+12
+00:01:14,000 --> 00:01:18,000
+I probably expect to get a number back, so you have to think about what the return types are.
+
+13
+00:01:18,000 --> 00:01:24,000
+For the comparisons, it's Boolean, true or false. This is a member function of MyClass and the parameter that
+
+14
+00:01:24,000 --> 00:01:29,000
+it takes is of type OtherType, whatever it is I'm going to compare to.
+
+15
+00:01:29,000 --> 00:01:34,000
+If it makes sense to compare two dates, I might write an operator that just takes a date.
+
+16
+00:01:34,000 --> 00:01:41,000
+If I am going to say is this order less than 100, then I guess I have to write an operator that takes an
+
+17
+00:01:41,000 --> 00:01:49,000
+integer. Very common for the comparison operators that they just take the same type, so you compare two
+
+18
+00:01:49,000 --> 00:01:56,000
+dates, compare two orders, compare two deals, but the compiler won't stop you from comparing a date to a
+
+19
+00:01:56,000 --> 00:02:03,000
+string if you can figure out a smart way to do that. What about the case where you don't own the type that's
+
+20
+00:02:03,000 --> 00:02:08,000
+before the operator? So something that you don't own -- could be an integer; nobody owns integer.
+
+21
+00:02:08,000 --> 00:02:13,000
+Could be string, the Standard Library owns string, or could just be some other class within your system, but
+
+22
+00:02:13,000 --> 00:02:20,000
+that you're not the developer of and you want to be able to say is something less than my object?
+
+23
+00:02:20,000 --> 00:02:29,000
+You can't go into the other type class and add an operator less than, so you have to write a free function.
+
+24
+00:02:29,000 --> 00:02:32,000
+Returns bool because this is operator&lt;, returns true or false.
+
+25
+00:02:32,000 --> 00:02:39,000
+Its name is still operator&lt;, but notice it no longer has the full class name:: because it's not;
+
+26
+00:02:39,000 --> 00:02:42,000
+it's just a free function; it's not in a class; and it takes two parameters.
+
+27
+00:02:42,000 --> 00:02:49,000
+The first one is the type that's before the operator, the second is the type that's after the operator.
+
+28
+00:02:49,000 --> 00:02:55,000
+Now this is not part of my class, so if it needs to get to any member variables of my class it's probably
+
+29
+00:02:55,000 --> 00:03:00,000
+going to have to get at them through public functions. There is a way around that with something called friend,
+
+30
+00:03:00,000 --> 00:03:04,000
+I'll show you it in the demo, but it's not your first choice. If there are public function's available,
+
+31
+00:03:04,000 --> 00:03:09,000
+that's what you should use. It looks complicated when you try to write it out generically.
+
+32
+00:03:09,000 --> 00:59:00,000
+It's actually really simple when you go to write one, so let me show you how.
+

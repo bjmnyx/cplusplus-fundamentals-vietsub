@@ -1,0 +1,32 @@
+1
+00:00:01,000 --> 00:00:09,000
+Welcome back to Introduction to C++. My name is Kate Gregory and I'm introducing you to the most popular
+
+2
+00:00:09,000 --> 00:00:16,000
+general purpose programming language, C++. In this module it's time to finally tackle the most scary part of
+
+3
+00:00:16,000 --> 00:00:25,000
+C++, pointers. Now you've seen you can write useful and powerful C++ applications without pointers.
+
+4
+00:00:25,000 --> 00:00:31,000
+We've written a lot of code and covered a lot of ground in a completely pointer-free way.
+
+5
+00:00:31,000 --> 00:00:38,000
+In fact, if you have pointers or difficult stories from other people or memories of your own, you know
+
+6
+00:00:38,000 --> 00:00:45,000
+they're based on how C++ used to be written. That said, it is time to see what pointers are, what they're
+
+7
+00:00:45,000 --> 00:00:51,000
+for, how you can have long-lived objects in your applications, and why it's not as bad as people have told
+
+8
+00:00:51,000 --> 00:59:00,000
+you. This is also the place to discuss references and the const keyword, so let's get started.
+

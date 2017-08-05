@@ -1,0 +1,360 @@
+1
+00:00:01,000 --> 00:00:04,000
+I have another very trivial demo just to
+
+2
+00:00:04,000 --> 00:00:10,000
+show what happens and what sometimes people get confused by. We have this local i and I'm going to test to
+
+3
+00:00:10,000 --> 00:00:14,000
+see if it's 3 or not, and if it is I'm going to print out that i is 3.
+
+4
+00:00:14,000 --> 00:00:18,000
+You would expect when I run this that this would not print out that i is 3.
+
+5
+00:00:18,000 --> 00:00:23,000
+Then, I'm going to print out the value of i again, you'll see that it's 2, and we're going to test again, but
+
+6
+00:00:23,000 --> 00:00:28,000
+here I'm making a "mistake" of using a single equal sign rather than a double.
+
+7
+00:00:28,000 --> 00:00:35,000
+If this returns true I'll print out that i is 3 and then I'll deliberately set it equal to 4, hoping then for
+
+8
+00:00:35,000 --> 00:00:40,000
+a failed comparison, and now here I have a kind of a backwards comparison.
+
+9
+00:00:40,000 --> 00:00:46,000
+People sometimes call this Yoda syntax and I'm comparing 3 to i instead of i to 3, either way it should
+
+10
+00:00:46,000 --> 00:00:59,000
+come out false, so we should expect not to see i is 3. Let's run this (Typing).
+
+11
+00:00:59,000 --> 00:01:03,000
+I'll just put the output next to the code.
+
+12
+00:01:03,000 --> 00:01:08,000
+We'll see we start out and i is not equal to 3, so we don't print this line out.
+
+13
+00:01:08,000 --> 00:01:13,000
+The first thing we print out is that i is 2. The next thing that happens is that suddenly we're told, yep i
+
+14
+00:01:13,000 --> 00:01:20,000
+is 3. The reason is that this i = 3 line actually assigns the value 3 to i.
+
+15
+00:01:20,000 --> 00:01:26,000
+Compiler does exactly as it's told, puts the value 3 into i. The equals operation returns 3, the value we
+
+16
+00:01:26,000 --> 00:01:33,000
+just put into i, and since 3 isn't 0 that's converted to Boolean true, the if succeeds and the statement
+
+17
+00:01:33,000 --> 00:01:40,000
+i = 3 prints out. Here we pump out the value of i again, to confirm that sure enough, it is 3, and we
+
+18
+00:01:40,000 --> 00:01:45,000
+deliberately set it to 4, and testing here it doesn't print out i = 3.
+
+19
+00:01:45,000 --> 00:01:54,000
+When printed out the value is still 4. Well why would anybody write their ifs this way, 3==i?
+
+20
+00:01:54,000 --> 00:01:57,000
+The answer is what happens when you make this mistake.
+
+21
+00:01:57,000 --> 00:02:01,000
+Here, when I make this mistake, I still get valid C++ code.
+
+22
+00:02:01,000 --> 00:02:06,000
+This is actually something that happens quite often in real code on purpose.
+
+23
+00:02:06,000 --> 00:02:12,000
+But here if I take away one of the equal signs, you can't set the number 3 to a new value,
+
+24
+00:02:12,000 --> 00:02:19,000
+so you get a compiler error, and people who are fans of the Yoda syntax are trying to prevent themselves from
+
+25
+00:02:19,000 --> 00:02:25,000
+this error by using their syntax in this order so that if they ever just forget
+
+26
+00:02:25,000 --> 00:02:29,000
+and type a single equal sign that they'll get helped by the compiler.
+
+27
+00:02:29,000 --> 00:02:34,000
+Let me just show you. I said this is something people would actually really do, have a single equal sign
+
+28
+00:02:34,000 --> 00:02:41,000
+and an if. I'm going to type some kind of gibberish code and it calls some non-existent functions and prove
+
+29
+00:02:41,000 --> 00:02:47,000
+to you how people might do this. Something you might do, you might declare another integer (Typing), call
+
+30
+00:02:47,000 --> 00:02:59,000
+some function passing in a string, and then if that p is not 0 do something, call some other function
+
+31
+00:02:59,000 --> 00:03:08,000
+(Typing). Let's just make this true-ish, at least keep the compiler happy, by just declaring some functions.
+
+32
+00:03:08,000 --> 00:03:15,000
+I'm going to have an integer foo that takes a string s and in order for that to work I have to include string
+
+33
+00:03:15,000 --> 00:03:24,000
+(Typing), and another integer function called something that doesn't take any parameters.
+
+34
+00:03:24,000 --> 00:03:30,000
+I'm not going to implement these, but simply by declaring them this way I take away any red wigglies and make
+
+35
+00:03:30,000 --> 00:03:37,000
+it clear to everybody that the compiler is okay with this code. Now let's make it a little nicer.
+
+36
+00:03:37,000 --> 00:03:44,000
+Let's put the braces here no matter what, so that if we add more into what we're going to do when p is not 0
+
+37
+00:03:44,000 --> 00:03:50,000
+that we won't get messed up by thinking the compiler might read our indents.
+
+38
+00:03:50,000 --> 00:03:56,000
+This is working code. The compiler will compile. It'll run, assuming I were to have the functions foo and
+
+39
+00:03:56,000 --> 00:04:05,000
+something written, but it's not kind of C++ish. The first thing is to take this away (Typing).
+
+40
+00:04:05,000 --> 00:04:13,000
+It's very non C++ish to write if whatever equals true or if whatever is not 0 because they're the same as
+
+41
+00:04:13,000 --> 00:04:21,000
+just if whatever, so when I say if p that will come out as false if p is 0, otherwise it'll come out true, so
+
+42
+00:04:21,000 --> 00:04:28,000
+if p and if p are not equal to 0 exactly the same. This is the more C++ way to do it and the really more
+
+43
+00:04:28,000 --> 00:04:38,000
+C++ way to do it is to take this assignment and put it here. Now I am in the one breath, assigning p to the
+
+44
+00:04:38,000 --> 00:04:42,000
+result of the function call and checking the result of the function call.
+
+45
+00:04:42,000 --> 00:04:49,000
+If it's nonzero we'll do something, if it's zero we won't, and this is a C++ idiom that happens all of the
+
+46
+00:04:49,000 --> 00:04:54,000
+time. And for the compiler to warn you when you did this and say, oh are you sure, did you really mean to type
+
+47
+00:04:54,000 --> 00:05:01,000
+only one equal sign? would mess this idiom up, so as a result, there is no warnings, you see there's no red
+
+48
+00:05:01,000 --> 00:05:05,000
+wigglies, and if I were to build this I would only get linker errors because I haven't actually implemented
+
+49
+00:05:05,000 --> 00:05:11,000
+those functions, but I wouldn't get any compiler errors at all.
+
+50
+00:05:11,000 --> 00:05:21,000
+I'm going to take this code and just comment it out (Typing)
+
+51
+00:05:21,000 --> 00:05:30,000
+and then uncomment some other code that I want you to see (Typing).
+
+52
+00:05:30,000 --> 00:05:34,000
+This code is going to ask for a number and figure out if it's prime or not.
+
+53
+00:05:34,000 --> 00:05:38,000
+We're going to use the IsPrime function that's been kicking around in a lot of different demos and the not
+
+54
+00:05:38,000 --> 00:05:46,000
+operator. So IsPrime will return true when it's prime, not will turn that into false.
+
+55
+00:05:46,000 --> 00:05:51,000
+It'll return false when it isn't prime and not-ing that will turn that into true, which in this case,
+
+56
+00:05:51,000 --> 00:05:58,000
+will cause it to print out not, so it'll write out either 4 is not prime or 5 is prime, depending on the
+
+57
+00:05:58,000 --> 00:06:04,000
+number that I enter. That's showing you combining the results of a function with the not operator right
+
+58
+00:06:04,000 --> 00:06:13,000
+inside the if. I'm then going to ask for a second number, j, and I'm going to calculate i % j, that is the
+
+59
+00:06:13,000 --> 00:06:24,000
+modulus, the remainder, after dividing i by j. If i is 5 and j is 2, 5 divided by 2 has a remainder of 1.
+
+60
+00:06:24,000 --> 00:06:30,000
+If the remainder is exactly 0 then they're multiples. Alright, so if I take 4 divided by 2 that has a
+
+61
+00:06:30,000 --> 00:06:36,000
+remainder of 0, that's because 4 is a multiple of 2 and I've written this out the long way, saying if it's
+
+62
+00:06:36,000 --> 00:06:48,000
+not 0 then it's not a multiple, but again, the more C++ way to do it would simply be to test i % j.
+
+63
+00:06:48,000 --> 00:06:57,000
+If i % j is 0 that's false and we won't go into the if. If i % j is nonzero that's true and we will go
+
+64
+00:06:57,000 --> 00:07:05,000
+into the if and print out the not. I'm going to run this code and try it with a couple different numbers.
+
+65
+00:07:05,000 --> 00:07:10,000
+(Typing)
+
+66
+00:07:10,000 --> 00:07:21,000
+Let's try 5 and 2 (Typing). 5 is not a multiple of 2. Hopefully not a surprise to anybody (Typing),
+
+67
+00:07:21,000 --> 00:07:24,000
+run it again.
+
+68
+00:07:24,000 --> 00:07:30,000
+This time I'll do 4 and 2 (Typing). 4 is a multiple of 2.
+
+69
+00:07:30,000 --> 00:07:35,000
+Let me show you one other possibility.
+
+70
+00:07:35,000 --> 00:07:42,000
+I'll try 5 again. This time I'm going to ask if it's a multiple of 0. (Typing)
+
+71
+00:07:42,000 --> 00:07:49,000
+You see what happens; we sort of sit here, and then Windows says your program has a major problem and the
+
+72
+00:07:49,000 --> 00:07:53,000
+major problem is that it's thrown a divide by 0 exception, which I could figure out if I were to click
+
+73
+00:07:53,000 --> 00:08:01,000
+problem details and scroll through and take a look at the problem, but there's no way to solve it and I'm
+
+74
+00:08:01,000 --> 00:08:05,000
+not going to submit details.
+
+75
+00:08:05,000 --> 00:08:09,000
+We divided by 0 because I entered 0 for the second number, which is j.
+
+76
+00:08:09,000 --> 00:08:14,000
+There are a variety of ways to cope with that. I could have put in a while loop that said, you know, while
+
+77
+00:08:14,000 --> 00:08:21,000
+the person didn't enter 0, and if I do enter 0 I could put an error message, ask me again, and so on, and
+
+78
+00:08:21,000 --> 00:08:26,000
+honestly, taking the modulus like this may not be the world's most common behavior, but there are plenty of
+
+79
+00:08:26,000 --> 00:08:36,000
+functions out there that expect to get a number that is not 0 and passing 0 will make the function blow up.
+
+80
+00:08:36,000 --> 00:08:50,000
+We can simulate that with this i % j calculation, and if I simply say here, if j &amp;&amp; (Typing) i % j, what's
+
+81
+00:08:50,000 --> 00:08:54,000
+going to happen is when j is 0, that's false. We shortcut.
+
+82
+00:08:54,000 --> 00:08:58,000
+We won't calculate i % j. We won't throw the arithmetic exception.
+
+83
+00:08:58,000 --> 00:09:02,000
+Now we also won't print out the word not, so this is going to have the consequence
+
+84
+00:09:02,000 --> 00:09:08,000
+that everything can be a multiple of 0. If you don't like that mathematically you could write a slightly
+
+85
+00:09:08,000 --> 00:09:14,000
+more complicated version of the expression here, but I'm okay with everything being a multiple of 0, so let's
+
+86
+00:09:14,000 --> 00:09:23,000
+run this now and say 0 and watch it not blow up. (Typing)
+
+87
+00:09:23,000 --> 00:09:29,000
+I'll say 5 for the first one again, 0 for the second one, and it reports that 5 is a multiple of 0.
+
+88
+00:09:29,000 --> 00:09:34,000
+You may not like that mathematically, but what's important here is the application did not blow up and the
+
+89
+00:09:34,000 --> 00:09:41,000
+reason it didn't blow up is that this line, which tried to divide by the second number, this expression was
+
+90
+00:09:41,000 --> 00:59:00,000
+never evaluated, and it was never evaluated because the and is a shortcutting operator.
+

@@ -1,0 +1,111 @@
+1
+00:00:01,000 --> 00:00:07,000
+Tôi muốn bắt đầu bằng cách đưa(cho) bạn một cái nhìn tổng quan về cách mà các khóa học liên kết như một toàn thể.
+
+2
+00:00:07,000 --> 00:00:13,000
+Chúng ta sẽ bắt đầu với hoàn cảnh(bối cảnh), vì sao C++, tất cả những từ này(trên màn hình) và khuôn mẫu là gì, vì
+
+3
+00:00:13,000 --> 00:00:16,000
+thế bạn kind of feel bạn biết bạn đứng ở đâu, và sau đó đưa bạn cài đặt các công cụ
+
+4
+00:00:16,000 --> 00:00:20,000
+là những thứ bạn cần để theo dõi trong demos
+
+5
+00:00:20,000 --> 00:00:24,000
+Lần đầu nó phải được chăm sóc(luyện tập), bạn có thể đi vào viết vài ứng dụng đơn giản mà chúng
+
+6
+00:00:24,000 --> 00:00:25,000
+chứng minh được ngôn ngữ cơ bản.
+
+7
+00:00:25,000 --> 00:00:29,000
+Bạn biết, như bất kỳ ngôn ngữ lập trình nào, C++ cùng bạn khai báo và làm việc với các biến,
+
+8
+00:00:29,000 --> 00:00:34,000
+và nó là ngôn ngữ hướng đối tượng vì thế bạn có thể làm các đối tượng và định nghĩa các lớp, và
+
+9
+00:00:34,000 --> 00:00:39,000
+bạn có thể điều khiển sự lưu thông(sự trôi chảy) của ứng dụng của bạn, như là 1 vòng lặp, làm những thứ hơn nữa
+
+10
+00:00:39,000 --> 00:00:44,000
+hoặc kiểm tra để thấy 1 điều kiện cụ thể xảy ra hoặc không.
+
+11
+00:00:44,000 --> 00:00:48,000
+Cú pháp chỉ là những thứ mà chúng ta phải che dấu nó để (cùng) xây dựng những ứng dụng 
+
+12
+00:00:48,000 --> 00:00:50,000
+lớn hơn.
+
+13
+00:00:50,000 --> 00:00:54,000
+Một trong những thứ mà nó hơi bất thường về C++ là cách nó thực sự cùng
+
+14
+00:00:54,000 --> 00:00:59,000
+bạn mở rộng ngôn ngữ tới các đối tượng và lớp của bạn, và vì thế chúng ta phải nói 1
+
+15
+00:00:59,000 --> 00:01:04,000
+chút xíu về các toán tử so với chúng ta thường mong muốn.
+
+16
+00:01:04,000 --> 00:01:06,000
+Sau đó chúng ta có thể bắt đầu nói về các khuôn mẫu.
+
+17
+00:01:06,000 --> 00:01:10,000
+Thật sự có vài thứ mà chúng kết hợp C++ mỗi phần từ các ngôn ngữ khác, và nó cũng là
+
+18
+00:01:10,000 --> 00:01:13,000
+một trong những cornerstones của C++.
+
+19
+00:01:13,000 --> 00:01:15,000
+Nó là cuộc sống của bạn đơn giản hơn.
+
+20
+00:01:15,000 --> 00:01:17,000
+Nó không phải là 1 chức năng cao cấp phức tạp.
+
+21
+00:01:17,000 --> 00:01:21,000
+Đó là vài thứ mà bạn thật sự cần để biết từ khi bắt đầu, và sau đó chúng ta phải
+
+22
+00:01:21,000 --> 00:01:22,000
+nói về con trỏ.
+
+23
+00:01:22,000 --> 00:01:29,000
+Rất nhiều người sợ về con trỏ, bởi vì họ được dạy con trỏ theo cách cũ của trường.
+
+24
+00:01:29,000 --> 00:01:34,000
+Trong C++ hiện đại, trách nhiệm của việc quản lí bộ nhớ không phải do người lập trình.
+
+25
+00:01:34,000 --> 00:01:39,000
+Có 1 Thư viện Chuẩn mạnh(lớn) để giúp bạn thực hiện các nhiệm vụ phổ biến, vì thế nó là tất cả về
+
+26
+00:01:39,000 --> 00:01:45,000
+sức mạnh, nhưng không nguy hiểm, và hiểu Con trỏ trong hoàn cảnh này sẽ đưa bạn
+
+27
+00:01:45,000 --> 00:59:00,000
+tới vị trí mới để sẵn sàng có(get) sự thuận lợi của những cái mà C++ hiện đại đem lại
+
+
+
+
